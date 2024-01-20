@@ -12,6 +12,7 @@ export default function Navigation() {
     "directions",
     "fish-report",
     "captain-and-vessel",
+    "recipes",
     "contact",
   ];
   console.log(location);
