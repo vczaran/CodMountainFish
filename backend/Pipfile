@@ -23,6 +23,7 @@ six = "==1.16.0"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 flask-pymongo = "*"
+pymongo = "==4.6.1"
 
 [dev-packages]
 
