@@ -3,7 +3,7 @@ from flask_pymongo import PyMongo
 from pymongo import MongoClient
 
 client = MongoClient(os.environ.get('MONGO_URI'))
-db = client['db']
+db = client['CodMountainFish']
 
 try:
     client.admin.command('ping')

@@ -35,10 +35,10 @@ def new():
         # name = form.data["name"],
         # date = form.data["date"],
         # isTrue = form.data["isTrue"]
-        name="Jane Doe",
-        date="2024-10-5",
+        # ====== sample for database ======
+        name="John Doe",
+        date=datetime(2024, 10, 5),
         isTrue=False
     )
-    print(new_Example)
     new_Example.save()
     return {'Message': 'Example saved successfully'}

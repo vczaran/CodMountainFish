@@ -17,9 +17,6 @@ class Example:
     def save(self):
         ExampleCollection = db.db[Example.collection_name]
         result = ExampleCollection.insert_one(self.__dict__)
-        print("===========")
-        print(self.__dict__)
-        print("===========")
         return result.inserted_id
 
     def to_dict(self):
