@@ -9,7 +9,9 @@ export default function Footer() {
             <img className="object-contain h-20 w-20" src="./logo.png" alt="Logo"></img>
             <Link to="/about">About Us</Link>
             <Link to="/contact">Contact Us</Link>
-            <img className="object-contain h-20 w-20" src="./map.png" alt="Map"></img>
+            <Link to="/directions">
+                <img className="object-contain h-20 w-20" src="./map.png" alt="Map"></img>
+            </Link>
             <div>
                 <h3>Subscribe to our newsletter</h3>
                 <h4>For announcements and exclusive deals</h4>
