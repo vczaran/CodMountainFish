@@ -9,6 +9,7 @@ import Directions from "./pages/Directions";
 import FishReport from "./pages/FishReport";
 import CaptainAndVessel from "./pages/CaptainAndVessel";
 import Recipes from "./pages/Recipes";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/fish-report" element={<FishReport />} />
         <Route path="/recipes" element={<Recipes />} />
       </Routes>
-      {/* Footer? */}
+      <Footer />
     </div>
   );
 }
