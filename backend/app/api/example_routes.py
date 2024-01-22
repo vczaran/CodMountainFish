@@ -1,4 +1,7 @@
 from flask import Blueprint, jsonify, session, request
+from datetime import datetime
+
+from ..models.exampleModel import Example
 
 example_routes = Blueprint('example', __name__)
 
@@ -20,3 +23,22 @@ def example():
     Example description.
     """
     return {'Message': ['Returning a String']}
+
+
+@example_routes.route('/new')
+def new():
+    """
+    example of new example
+    """
+    new_Example = Example(
+        # ====== when working with Forms ======
+        # name = form.data["name"],
+        # date = form.data["date"],
+        # isTrue = form.data["isTrue"]
+        name="Jane Doe",
+        date="2024-10-5",
+        isTrue=False
+    )
+    print(new_Example)
+    new_Example.save()
+    return {'Message': 'Example saved successfully'}
