@@ -10,6 +10,11 @@ export default function About() {
         Our dedicated crew is here to ensure that your time on the water is not only productive but also enjoyable 
         and filled with excitement.</p>
       <Link className="bg-cyan-600 text-white active:bg-cyan-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
+      <div className="bg-cyan-600 w-full grid-cols-2 gap-2 mt-10">
+        <img src="" alt="family"></img>
+        <p className="text-amber-500 font-bold">About Us</p>
+        <img src="" alt="boat"></img>
+      </div>
     </div>
   )
 }
