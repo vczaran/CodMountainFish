@@ -2,9 +2,9 @@ from datetime import datetime
 from .db import db
 
 
-class recipe_Review:
+class Recipe_Review:
 
-    collection_name = "recipe_Review"
+    collection_name = "Recipe_Review"
 
     # Table Columns
     def __init__(self, user_Id, recipe_Id, rating, stars):
@@ -17,8 +17,8 @@ class recipe_Review:
         self.updated_at = datetime.utcnow()
 
     def save(self):
-        recipe_ReviewCollection = db.db[recipe_Review.collection_name]
-        result = recipe_ReviewCollection.insert_one(self.__dict__)
+        Recipe_ReviewCollection = db.db[Recipe_Review.collection_name]
+        result = Recipe_ReviewCollection.insert_one(self.__dict__)
         return result.inserted_id
 
     def to_dict(self):

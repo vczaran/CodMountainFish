@@ -8,9 +8,10 @@ class Example:
 
     # Table Columns
     def __init__(self, name, date, isTrue):
-        self.name = name  # Fix the variable name
+        self.name = name
         self.date = date
         self.isTrue = isTrue
+        # properties only initialized here
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
 
@@ -22,7 +23,7 @@ class Example:
     def to_dict(self):
         return {
             "id": str(self._id),
-            "title": self.name,
+            "name": self.name,
             "is_default": self.date,
             "ownerId": self.isTrue,
             "created_at": self.created_at,
