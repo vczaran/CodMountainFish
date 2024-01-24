@@ -14,7 +14,7 @@ class Activity:
         self.updated_at = datetime.utcnow()
 
     def save(self):
-        ActivityCollection = db.db[User.collection_name]
+        ActivityCollection = db.db[Activity.collection_name]
         result = ActivityCollection.insert_one(self.__dict__)
         return result.inserted_id
 
