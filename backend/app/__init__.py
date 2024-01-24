@@ -7,7 +7,7 @@ from .config import Config
 from pymongo.server_api import ServerApi
 # Api routes
 from .api.example_routes import example_routes
-
+from .api.user_routes import user_routes
 
 # app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 app = Flask(__name__)
@@ -16,6 +16,7 @@ app = Flask(__name__)
 # Tell flask about our app extension
 app.config.from_object(Config)
 app.register_blueprint(example_routes, url_prefix='/api/example')
+app.register_blueprint(user_routes, url_prefix='/api/user')
 # test the environmental variable
 print("===========")
 mongo_uri = os.environ.get('MONGO_URI')

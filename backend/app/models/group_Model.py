@@ -1,7 +1,7 @@
 from datetime import datetime
 from .db import db
 
-
+# not needed after all
 class Group:
 
     collection_name = "Group"

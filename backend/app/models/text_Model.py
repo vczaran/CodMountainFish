@@ -1,6 +1,8 @@
 from datetime import datetime
 from .db import db
 
+#@ do not need
+
 
 class Text:
 
@@ -9,6 +11,8 @@ class Text:
     # Table Columns
     def __init__(self, page, Section, Images):
         self.page = page
+        #@ do not need
+
         self.Section = Section
         self.Images = Images
         # properties only initialized here
