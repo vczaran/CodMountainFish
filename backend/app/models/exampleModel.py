@@ -24,7 +24,7 @@ class Example:
         return {
             "id": str(self._id),
             "name": self.name,
-            "is_default": self.date,
+            "date": self.date,
             "isTrue": self.isTrue,
             "created_at": self.created_at,
             "updated_at": self.updated_at
