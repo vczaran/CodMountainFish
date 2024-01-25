@@ -9,6 +9,8 @@ import Directions from "./pages/Directions";
 import FishReport from "./pages/FishReport";
 import CaptainAndVessel from "./pages/CaptainAndVessel";
 import Recipes from "./pages/Recipes";
+import Footer from "./components/Footer/Footer";
+import LoginPage from "./components/LoginPage/LoginPage";
 
 function App() {
   return (
@@ -23,8 +25,9 @@ function App() {
         <Route path="/directions" element={<Directions />} />
         <Route path="/fish-report" element={<FishReport />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/captain" element={<LoginPage />} />
       </Routes>
-      {/* Footer? */}
+      <Footer />
     </div>
   );
 }
