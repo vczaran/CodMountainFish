@@ -8,6 +8,9 @@ class Fish_Report:
 
     # Table Columns
     def __init__(self):
+        self.date = date
+        self.description = description
+        self.images = images
         # properties only initialized here
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
