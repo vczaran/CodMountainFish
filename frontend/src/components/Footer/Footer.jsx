@@ -6,12 +6,12 @@ import Subscribe from "../SubscribeForm/Subscribe";
 
 export default function Footer() {
     return (
-        <footer className="flex justify-evenly bg-teal-400 absolute inset-x-0 bottom-0">
-            <img className="object-contain mt-5 h-20 w-20" src="./logo.png" alt="Logo"></img>
+        <footer className="flex justify-evenly bg-teal-400 inset-x-0 bottom-0">
+            <img className="object-contain h-20 w-20" src="./logo.png" alt="Logo"></img>
             <Link to="/about">About Us</Link>
             <Link to="/contact">Contact Us</Link>
-            <Link to="/directions">
-                <img className="mt-5 h-20 w-20" src="./map.png" alt="Map"></img>
+            <Link to="/trip-info">
+                <img className="object-contain h-20 w-20" src="./map.png" alt="Map"></img>
             </Link>
             <Subscribe />
             <a
