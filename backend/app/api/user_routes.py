@@ -33,7 +33,7 @@ def new():
 
 
 @user_routes.route('/all', methods=["GET"])
-def get_AllUser():
+def AllUser():
     """
     get All User
     """
@@ -41,7 +41,7 @@ def get_AllUser():
 
 
 @user_routes.route('/<string:id>', methods=["GET"])
-def get_UserById(id):
+def UserById(id):
     """
     get one user by its Id
     """
