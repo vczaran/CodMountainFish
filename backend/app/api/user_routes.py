@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, session, request
+from bson import ObjectId
 from datetime import datetime
 
 from ..models.user_Model import User
+from app.models.db import db
 
 user_routes = Blueprint('user', __name__)
 
@@ -30,9 +32,17 @@ def new():
     return {'Message': 'User saved successfully'}
 
 
-@user_routes.route('/user', methods=["GET"])
-def getUserId():
+@user_routes.route('/all', methods=["GET"])
+def get_AllUser():
     """
     get All User
     """
-    return User.getAllUser()
+    return User.get_AllUser()
+
+
+@user_routes.route('/<string:id>', methods=["GET"])
+def get_UserById(id):
+    """
+    get one user by its Id
+    """
+    return User.get_UserById(ObjectId(id))
