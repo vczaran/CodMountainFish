@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import user_Model, db
+from app.models import user_Model, db, User
 from app.forms import LoginForm
 
 from flask_login import current_user, login_user, logout_user, login_required
