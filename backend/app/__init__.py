@@ -2,6 +2,10 @@ import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask_login import LoginManager
+from .models import db, user_Model
+from .api.auth_routes import auth_routes
+
 from flask_pymongo import PyMongo
 from .config import Config
 from pymongo.server_api import ServerApi
@@ -12,10 +16,22 @@ from .api.example_routes import example_routes
 # app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 app = Flask(__name__)
 
+# Setup login manager
+login = LoginManager(app)
+login.login_view = 'auth.unauthorized'
+
+# @login.user_loader
+# def load_user(id):
+#     return User.query.get(int(id))
+
+
+
+
 
 # Tell flask about our app extension
 app.config.from_object(Config)
 app.register_blueprint(example_routes, url_prefix='/api/example')
+app.register_blueprint(auth_routes, url_prefix='/api/auth')
 # test the environmental variable
 print("===========")
 mongo_uri = os.environ.get('MONGO_URI')
