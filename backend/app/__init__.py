@@ -24,6 +24,7 @@ print("===========")
 # connection to DB
 # db = PyMongo(app)
 
+
 # Application Security
 CORS(app)
 

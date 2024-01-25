@@ -7,12 +7,12 @@ class User:
     collection_name = "User"
 
     # Table Columns
-    def __init__(self, firstName, lastName, phoneNumber, age, email, isTrue, admin ):
+    def __init__(self, firstName, lastName, phoneNumber, password, size, email, isTrue, admin ):
         self.firstName = firstName
         self.lastName = lastName
         self.phoneNumber = phoneNumber
-        self.age = age
-        self.disability = disability
+        self.password = password
+        self.size = size
         self.email = email
         self.admin = admin
         # properties only initialized here
@@ -30,8 +30,8 @@ class User:
             "firstName": self.firstName,
             "lastName": self.lastName,
             "phoneNumber": self.phoneNumber,
-            "age": self.age,
-            "disability": self.disability,
+            "password": self.password,
+            "size": self.age,
             "email": self.email,
             "admin": self.admin,
             "created_at": self.created_at,
