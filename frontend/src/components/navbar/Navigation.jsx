@@ -9,7 +9,7 @@ export default function Navigation() {
   const links = [
     "about",
     "availability",
-    "directions",
+    "trip-info",
     "fish-report",
     "captain-and-vessel",
     "recipes",
@@ -19,9 +19,9 @@ export default function Navigation() {
   return (
     <nav className="flex justify-between mt-3 mx-10 items-center">
       <Link className="" to={"/"}>
-        LOGO
+        <img className="object-contain h-20 w-20" src="./logo.png" alt="Logo"></img>
       </Link>
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-10 items-center">
         {links.map((link, index) => (
           <Link
             key={index}
@@ -35,14 +35,12 @@ export default function Navigation() {
           <a
             href="https://www.facebook.com/Codmountain"
             className="text-4xl"
-            target="_blank"
           >
             <FaFacebookF />
           </a>
           <a
             href="https://www.instagram.com/codmountainfishco"
             className="text-4xl"
-            target="_blank"
           >
             <FaInstagram />
           </a>
