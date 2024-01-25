@@ -5,7 +5,8 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-class User:
+
+class User(UserMixin):
 
     collection_name = "User"
 
@@ -33,24 +34,16 @@ class User:
     # get All users
     @staticmethod
     def get_AllUser():
-        try:
-            UserCollection = db.db[User.collection_name]
-            cursor = UserCollection.find()
-            users = list(cursor)
-            if users:
-                # Convert ObjectId to string for JSON serialization
-                for user in users:
-                    user['_id'] = str(user['_id'])
-                return {'Message': 'User retrieved successfully', "Users": users}
-            else:
-                return {'Message': 'User not found'}, 404
-        except PyMongoError as e:
-            # Handle MongoDB-related errors
-            return {'Message': f'MongoDB Error: {str(e)}'}, 500
-
-        except Exception as e:
-            # Handle other unexpected errors
-            return {'Message': f'Unexpected Error: {str(e)}'}, 500
+        UserCollection = db.db[User.collection_name]
+        cursor = UserCollection.find()
+        users = list(cursor)
+        if users:
+            # Convert ObjectId to string for JSON serialization
+            for user in users:
+                user['_id'] = str(user['_id'])
+            return {'Message': 'User retrieved successfully', "Users": users}
+        else:
+            return {'Message': 'User not found'}, 404
 
     # GET user by ID
     @staticmethod
