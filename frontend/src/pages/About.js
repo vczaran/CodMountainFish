@@ -10,16 +10,17 @@ export default function About() {
         Our dedicated crew is here to ensure that your time on the water is not only productive but also enjoyable 
         and filled with excitement.</p>
       <Link className="bg-cyan-600 text-white active:bg-cyan-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
-      <div className="bg-cyan-600 w-full grid-cols-2 gap-2 mt-10 text-white">
+      <div className="bg-cyan-600 grid grid-cols-2 gap-5 w-full mt-10 text-white">
         <img src="" alt="family"></img>
-        <h1 className="text-amber-500 font-bold">About Us</h1>
-        <p>We are a premier charter fishing company located in Santa Cruz, California, offering unforgettable guided fishing tours of the beautiful Monterey Bay. 
+        <div>
+          <h1 className="text-amber-500 font-bold">About Us</h1>
+          <p>We are a premier charter fishing company located in Santa Cruz, California, offering unforgettable guided fishing tours of the beautiful Monterey Bay. 
           Founded by Greg Webb, a dedicated fisherman and seasoned captain, Cod Mountain Fish Co. is committed to providing an exceptional fishing experience for anglers 
           of all skill levels.</p>
-        <p>At Cod Mountain Fish Co., we prioritize sustainability, ethical fishing practices, and responsible charter boat operations. We firmly believe that protecting our 
+          <p>At Cod Mountain Fish Co., we prioritize sustainability, ethical fishing practices, and responsible charter boat operations. We firmly believe that protecting our 
           local waters and the fish species we target is of utmost importance. Through our daily operations, we strive to set an example of responsible practices and educate 
           our customers about the significance of sustainable fishing. We are proud to play a role in preserving our precious marine ecosystem for future generations.</p>
-        <p>What sets Cod Mountain Fish Co. apart is our unwavering commitment to delivering a personalized fishing experience. Whether you're a novice angler looking to 
+          <p>What sets Cod Mountain Fish Co. apart is our unwavering commitment to delivering a personalized fishing experience. Whether you're a novice angler looking to 
           learn the ropes or a seasoned pro seeking an exciting challenge, our team will cater to your specific needs and desires. Step aboard our 2006 Parker 2520 XLD, 
           equipped with top-of-the-line tackle and gear from industry-leading brands. Enjoy the comfort of our heated cabin and have control over the music that sets the 
           tone for your day of fishing. We provide ample cold storage for your drinks and food, as well as sufficient space to hold your well-earned catch.</p>
@@ -31,39 +32,42 @@ export default function About() {
             aspects of our operations. Our goal is to be the go-to charter fishing company in Santa Cruz, providing a memorable adventure for anglers of all ages and skill levels.</p>
           <p>Thank you for considering Cod Mountain Fish Co. for your next fishing excursion. We invite you to join us on an unforgettable journey into the abundant waters of the 
             Monterey Bay. Let's make a memory, pull on some fish, and have a good time doing it!</p>
+        </div>
+        <div>
+          <h1 className="text-amber-500 font-bold">Trip Types</h1>
+          <p> We offer a range of exciting trips tailored to different fishing preferences. Below are the trip types we offer, along with the details and rates:</p>
+          <p>Nearshore/Deeper Nearshore Trip:</p>
+          <ul>
+            <li>Target Species: Rockfish, with chances of catching patrale sole and the occasional lingcod.</li>
+            <li>Bag Limit: 10 rockfish per fishing license, with sub-species limits within the general bag limit.</li>
+            <li>Trip Focus: We focus solely on rockfish species and go wherever the best quality is.</li>
+            <li>Price: $250 per person.</li>
+            <li>Capacity: Maximum of 4 individuals.</li>
+          </ul>
+          <p>Long Range Trip:</p>
+          <ul>
+            <li>Target Species: Lingcod and rockfish.</li>
+            <li>Trip Details: We travel north to target lingcod and fill our rockfish limits.</li>
+            <li>Duration: Longer trip with more travel time and fuel consumption.</li>
+            <li>Price: $350 per person.</li>
+          </ul>
+          <p>Halibut Trip</p>
+          <ul>
+            <li>Target Species: Halibut, occasional rockfish kept if encountered.</li>
+            <li>Trip Focus: We concentrate on halibut fishing, dedicating our efforts and time to maximize your chances of catching these prized fish.</li>
+            <li>Fishing Grounds: Shallow water areas away from our regular fishing spots.</li>
+            <li>Price: $250 per person.</li>
+          </ul>
+          <p>Tuna Charter</p>
+          <ul>
+            <li>Target Species: Bluefin tuna, with occasional bonito as welcomed bycatch.</li>
+            <li>Season: Late summer/early fall.</li>
+            <li>Fishing Technique: Trolling.</li>
+            <li>Fuel Consumption: These trips require more fuel than any other.</li>
+            <li>Price: $2500 for the whole boat.</li>
+            </ul>
+        </div>
         <img src="" alt="boat"></img>
-        <h1 className="text-amber-500 font-bold">Trip Types</h1>
-        <p> We offer a range of exciting trips tailored to different fishing preferences. Below are the trip types we offer, along with the details and rates:</p>
-        <p>Nearshore/Deeper Nearshore Trip:</p>
-        <ul>
-          <li>Target Species: Rockfish, with chances of catching patrale sole and the occasional lingcod.</li>
-          <li>Bag Limit: 10 rockfish per fishing license, with sub-species limits within the general bag limit.</li>
-          <li>Trip Focus: We focus solely on rockfish species and go wherever the best quality is.</li>
-          <li>Price: $250 per person.</li>
-          <li>Capacity: Maximum of 4 individuals.</li>
-        </ul>
-        <p>Long Range Trip:</p>
-        <ul>
-          <li>Target Species: Lingcod and rockfish.</li>
-          <li>Trip Details: We travel north to target lingcod and fill our rockfish limits.</li>
-          <li>Duration: Longer trip with more travel time and fuel consumption.</li>
-          <li>Price: $350 per person.</li>
-        </ul>
-        <p>Halibut Trip</p>
-        <ul>
-          <li>Target Species: Halibut, occasional rockfish kept if encountered.</li>
-          <li>Trip Focus: We concentrate on halibut fishing, dedicating our efforts and time to maximize your chances of catching these prized fish.</li>
-          <li>Fishing Grounds: Shallow water areas away from our regular fishing spots.</li>
-          <li>Price: $250 per person.</li>
-        </ul>
-        <p>Tuna Charter</p>
-        <ul>
-          <li>Target Species: Bluefin tuna, with occasional bonito as welcomed bycatch.</li>
-          <li>Season: Late summer/early fall.</li>
-          <li>Fishing Technique: Trolling.</li>
-          <li>Fuel Consumption: These trips require more fuel than any other.</li>
-          <li>Price: $2500 for the whole boat.</li>
-        </ul>
         <p>Please note that all our rates are subject to change, and availability may vary based on the season and demand. We strive to provide exceptional
            service and ensure an unforgettable fishing experience for every charter.</p>
         <p>For more information or to make a booking, please visit our "Book Now" page or contact our team directly. We are here to assist you and answer any questions you may have.

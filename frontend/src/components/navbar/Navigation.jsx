@@ -9,7 +9,7 @@ export default function Navigation() {
   const links = [
     "about",
     "availability",
-    "directions",
+    "trip-info",
     "fish-report",
     "captain-and-vessel",
     "recipes",
@@ -35,14 +35,12 @@ export default function Navigation() {
           <a
             href="https://www.facebook.com/Codmountain"
             className="text-4xl"
-            target="_blank"
           >
             <FaFacebookF />
           </a>
           <a
             href="https://www.instagram.com/codmountainfishco"
             className="text-4xl"
-            target="_blank"
           >
             <FaInstagram />
           </a>
