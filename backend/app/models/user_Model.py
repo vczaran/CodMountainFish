@@ -1,3 +1,4 @@
+from flask import jsonify
 from datetime import datetime
 from .db import db
 
@@ -24,6 +25,16 @@ class User:
         UserCollection = db.db[User.collection_name]
         result = UserCollection.insert_one(self.__dict__)
         return result.inserted_id
+
+    def getAllUser():
+        UserCollection = db.db[User.collection_name]
+        cursor = UserCollection.find()
+        users = list(cursor)
+        print("-------------")
+        for user in users:
+            print(  user )
+        print("-------------")
+        return jsonify({"User": users})
 
     def to_dict(self):
         return {

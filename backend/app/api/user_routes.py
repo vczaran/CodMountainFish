@@ -6,7 +6,7 @@ from ..models.user_Model import User
 user_routes = Blueprint('user', __name__)
 
 
-@user_routes.route('/new')
+@user_routes.route("/new", methods=["POST"])
 def new():
     """
     example of new user
@@ -28,3 +28,11 @@ def new():
     )
     new_User.save()
     return {'Message': 'User saved successfully'}
+
+
+@user_routes.route('/user', methods=["GET"])
+def getUserId():
+    """
+    get All User
+    """
+    return User.getAllUser()
