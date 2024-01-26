@@ -2,10 +2,20 @@ import React from 'react'
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
+import ContactForm from '../components/ContactForm/ContactForm';
+import Map from '../components/Map/Map';
+
+
 
 
 
 export default function Contact() {
+  const location = {
+    address: 'Cod Mountain Fish Co.',
+    lat: 36.96578633181195,
+    lng: -122.00103392460099,
+  }
+
   return (
     <div>
       <img src="https://codmountain.s3.us-west-1.amazonaws.com/hooked-up-charter-boat-hero1.jpeg" alt="cover-photo" class="w-full h-40 object-cover"></img>
@@ -19,7 +29,7 @@ export default function Contact() {
             <div className="addy-phone-email-box flex-col ">
               <div className="flex">
                 <div className="pr-2"><IoLocation /></div>
-                <p>Santa Cruz Harbor - S Dock Slip ?</p>
+                <p>Santa Cruz Harbor - S Dock Slip #15</p>
               </div>
               <p className="pl-6 pb-3">333 Lake Ave, Santa Cruz, CA 95062</p>
               <div className="flex pb-3">
@@ -42,10 +52,11 @@ export default function Contact() {
 
           <div className="right-top border h-[50%]">
 
-            <div>hiii</div>
+            <ContactForm />
           </div>
           <div className="right-bottom border h-[50%]">
             <div>fjfjjfjfjf</div>
+            <Map location={location} zoomLevel={17} />
           </div>
         </div>
 
