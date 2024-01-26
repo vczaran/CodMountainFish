@@ -2,6 +2,7 @@ import React from 'react'
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
+import ContactForm from '../components/ContactForm/ContactForm';
 
 
 
@@ -42,7 +43,7 @@ export default function Contact() {
 
           <div className="right-top border h-[50%]">
 
-            <div>hiii</div>
+            <ContactForm />
           </div>
           <div className="right-bottom border h-[50%]">
             <div>fjfjjfjfjf</div>
