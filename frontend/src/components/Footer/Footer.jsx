@@ -10,8 +10,8 @@ export default function Footer() {
             <img className="object-contain mt-5 h-20 w-20" src="./logo.png" alt="Logo"></img>
             <Link to="/about">About Us</Link>
             <Link to="/contact">Contact Us</Link>
-            <Link to="/directions">
-                <img className="mt-5 h-20 w-20" src="./map.png" alt="Map"></img>
+            <Link to="/trip-info">
+                <img className="object-contain h-20 w-20" src="./map.png" alt="Map"></img>
             </Link>
             <Subscribe />
             <a

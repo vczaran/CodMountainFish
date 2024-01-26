@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Directions() {
+export default function TripInfo() {
   return (
     <div>
-      Directions
+      Trip Info
     </div>
   )
 }
