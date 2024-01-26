@@ -3,10 +3,19 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import ContactForm from '../components/ContactForm/ContactForm';
+import Map from '../components/Map/Map';
+
+
 
 
 
 export default function Contact() {
+  const location = {
+    address: 'Cod Mountain Fish Co.',
+    lat: 36.96578633181195,
+    lng: -122.00103392460099,
+  }
+
   return (
     <div>
       <img src="https://codmountain.s3.us-west-1.amazonaws.com/hooked-up-charter-boat-hero1.jpeg" alt="cover-photo" class="w-full h-40 object-cover"></img>
@@ -47,6 +56,7 @@ export default function Contact() {
           </div>
           <div className="right-bottom border h-[50%]">
             <div>fjfjjfjfjf</div>
+            <Map location={location} zoomLevel={17} />
           </div>
         </div>
 
