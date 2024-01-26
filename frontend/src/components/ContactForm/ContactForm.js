@@ -1,7 +1,11 @@
 import React, { useRef } from 'react';
+import { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const ContactForm = () => {
+  const [value, setValue] = useState()
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -24,6 +28,14 @@ const ContactForm = () => {
       {/* <label>Email</label> */}
       <div className='w-[400px]'>
       <input type="email" name="user_email" placeholder='Your email' className="w-[100%] border-b-[2px] border-gray-400"/>
+      </div>
+      <div className='w-[400px]'>
+      <PhoneInput
+      defaultCountry="US"
+      name="user_phone"
+      placeholder="Your phone number"
+      value={value}
+      onChange={setValue}/>
       </div>
       {/* <label>Message</label> */}
       <div className='w-[400px] h-[100px]'>
