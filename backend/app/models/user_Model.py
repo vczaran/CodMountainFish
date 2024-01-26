@@ -11,28 +11,32 @@ class User(UserMixin):
     collection_name = "User"
 
     # Table Columns
-    def __init__(self, firstName, lastName, phoneNumber, password, size, email, isTrue, admin):
+
+
+    def __init__(self, firstName, lastName, password, phoneNumber, notes, size, email, admin):
         self.firstName = firstName
         self.lastName = lastName
-        self.password = password
+        self.password = generate_password_hash(password)
         self.phoneNumber = phoneNumber
-        self.password = password
+        self.notes = notes
         self.size = size
         self.email = email
         self.admin = admin
         # properties only initialized here
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
-
     # save the user
-    @staticmethod
-    def save(self):
+
+    def saveOne(self):
         UserCollection = db.db[User.collection_name]
         result = UserCollection.insert_one(self.__dict__)
         return result.inserted_id
 
+    def saveMany(list):
+        UserCollection = db.db[User.collection_name]
+        result = UserCollection.insert_many()
+
     # get All users
-    @staticmethod
     def get_AllUser():
         UserCollection = db.db[User.collection_name]
         cursor = UserCollection.find()
@@ -46,7 +50,6 @@ class User(UserMixin):
             return {'Message': 'User not found'}, 404
 
     # GET user by ID
-    @staticmethod
     def get_UserById(id):
         UserCollection = db.db[User.collection_name]
         user = db.db.User.find_one({"_id": id})
@@ -57,6 +60,43 @@ class User(UserMixin):
             return {'Message': 'User retrieved successfully', "User": user}
         else:
             return {'Message': 'User not found'}, 404
+    # not ready and need error fixed
+    def put_UserUpdate(currentUser):
+        updated_User = {
+            "_id": str(currentUser["_id"]),
+            "firstName": currentUser["firstName"],
+            "lastName": currentUser["lastName"],
+            "password": currentUser["password"],
+            "phoneNumber": currentUser["phoneNumber"],
+            "password": currentUser["password"],
+            "size": currentUser["size"],
+            "email": currentUser["email"],
+            "admin": currentUser["admin"],
+            "size": currentUser["size"],
+            "created_at": currentUser["created_at"],
+            "updated_at": datetime.utcnow()
+        }
+        UserCollection = db.db[User.collection_name]
+        user = db.db.User.update_one({"$set": {current_user: updated_User}})
+        if current_user is user:
+            return {'Message': 'User retrieved successfully', "Users": users}
+        else:
+            return {'Message': 'User not found'}, 404
+
+    def get_id(self):
+        return str(self._id)
+
+    def password(self):
+        return self.hashed_password
+
+    def password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    def check_password(password_hash, password):
+        return check_password_hash(password_hash, password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
     def to_dict(self):
         return {
@@ -73,33 +113,3 @@ class User(UserMixin):
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
-
-    # @staticmethod
-    # def is_authenticated():
-    #     return True
-
-    # @staticmethod
-    # def is_active():
-    #     return True
-
-    # @staticmethod
-    # def is_anonymous():
-    #     return False
-
-    # def get_id(self):
-    #     return str(self._id)
-
-    # @staticmethod
-    # def check_password(password_hash, password):
-    #     return check_password_hash(password_hash, password)
-
-    # @property
-    # def password(self):
-    #     return self.hashed_password
-
-    # @password.setter
-    # def password(self, password):
-    #     self.hashed_password = generate_password_hash(password)
-
-    # def check_password(self, password):
-    #     return check_password_hash(self.password, password)
