@@ -20,7 +20,7 @@ export default function Contact() {
             <div className="addy-phone-email-box flex-col ">
               <div className="flex">
                 <div className="pr-2"><IoLocation /></div>
-                <p>Santa Cruz Harbor - S Dock Slip ?</p>
+                <p>Santa Cruz Harbor - S Dock Slip #15</p>
               </div>
               <p className="pl-6 pb-3">333 Lake Ave, Santa Cruz, CA 95062</p>
               <div className="flex pb-3">

@@ -16,14 +16,23 @@ const ContactForm = () => {
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="user_name" />
-      <label>Email</label>
-      <input type="email" name="user_email" />
-      <label>Message</label>
-      <textarea name="message" />
-      <input type="submit" value="Send" />
+    <form ref={form} onSubmit={sendEmail} className="flex flex-col w-[100%] h-[100%] items-center justify-around bg-yellow-200">
+      {/* <label>Name</label> */}
+      <div className='w-[400px]'>
+      <input type="text" name="user_name" placeholder='Your name' className="w-[100%] border-b-[2px] border-gray-400"/>
+      </div>
+      {/* <label>Email</label> */}
+      <div className='w-[400px]'>
+      <input type="email" name="user_email" placeholder='Your email' className="w-[100%] border-b-[2px] border-gray-400"/>
+      </div>
+      {/* <label>Message</label> */}
+      <div className='w-[400px] h-[100px]'>
+      <textarea name="message" placeholder='Your message'className="w-[100%] h-[100%] border-[2px] border-gray-400"/>
+      </div>
+      <div className='w-[400px]'>
+      {/* <input type="submit" value="Send" /> */}
+      <button type="submit" value="Send" className='bg-cyan-600 pl-5 pr-5 pb-1 pt-1' >Send</button>
+      </div>
     </form>
   );
 };
