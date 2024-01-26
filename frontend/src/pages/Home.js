@@ -3,8 +3,15 @@ import bg from "../assets/bg.jpg";
 import BookButton from "../components/navbar/BookButton";
 
 export default function Home() {
+
+
+
+
+
+
+
   return (
-    <div className="flex flex-col h-full w-full home space-y-0">
+    <div className="flex flex-col h-full w-full home space-y-0 ">
       <div className="relative flex flex-col h-96 bgContainer"   >
         <div class="h-full w-full bg-center bg-cover bg-no-repeat" style={{ backgroundImage: `url(${bg})` }} >  
         </div>
@@ -13,12 +20,11 @@ export default function Home() {
           <BookButton />
         </div>
       </div>
-
-
-      <div className="flex flex-col items-center justify-center h-42 w-100 bg-vuejs-400 missionContainer">
+      
+      <div className="flex flex-col items-center justify-center h-42 w-100 bg-vuejs-300 missionContainer">
         <div className="flex flex-col items-center justify-center space-y-2 " >
           {/* <article class="h-30 w-100 prose"> */}
-            <p class="font-bold text-2xl text-white"> Cod Mountain Fish Co.! </p>
+            <p class="font-bold text-2xl text-yellow-500"> Cod Mountain Fish Co.! </p>
             <p class="text-white">Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. 
             Our dedicated crew is here to ensure that your time on the water is not only productive but also enjoyable and filled with excitement.
             </p>
@@ -28,8 +34,42 @@ export default function Home() {
         </div>
       </div>
 
-      <div> 
-        <p> Trip Types </p>
+      <div className="h-80 flex flex-row items-center justify-around trips"> 
+
+        
+        {/* placeholder - will need function to populate info below */}
+        <div className="flex flex-col h-80 w-96 trip mt-4">
+          <div class="group border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent">
+            <div class="rounded-md h-full w-full bg-center bg-cover bg-no-repeat" 
+               style={{ backgroundImage: `url(${bg})` }} >  
+            </div>
+            <p class="text-indigo-600 group-hover:text-gray-900 ...">Longrange(Lingcod)</p>
+            <p class="text-indigo-600 group-hover:text-gray-900 ...">6 hours @ $350.00 </p>
+            <p class="text-indigo-500 group-hover:text-gray-500 ...">This charter takes you to the productive waters near Ano Nuevo and Pigeon Point, located north of Santa Cruz. </p>
+            <div className="flex flex-row items-start justify-evenly ">
+              <BookButton />
+              <button className="rounded-md h-10 w-20 bg-yellow-600 text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50"> Details</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col h-80 w-96 trip mt-4">
+          <div class="group border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent">
+            <div class="rounded-md h-full w-full bg-center bg-cover bg-no-repeat" 
+               style={{ backgroundImage: `url(${bg})` }} >  
+            </div>
+            <p class="text-indigo-600 group-hover:text-gray-900 ...">Longrange(Lingcod)</p>
+            <p class="text-indigo-600 group-hover:text-gray-900 ...">6 hours @ $350.00 </p>
+            <p class="text-indigo-500 group-hover:text-gray-500 ...">This charter takes you to the productive waters near Ano Nuevo and Pigeon Point, located north of Santa Cruz. </p>
+            <div className="flex flex-row items-start justify-evenly ">
+              <BookButton />
+              <button className="rounded-md h-10 w-20 bg-yellow-600 text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50"> Details</button>
+            </div>
+          </div>
+        </div>
+
+        
+
 
 
       </div>
@@ -48,7 +88,7 @@ export default function Home() {
 
       </div>
 
-      <div> Customer Reviews (Short)
+      <div> Customer Reviews
 
       </div>
 
