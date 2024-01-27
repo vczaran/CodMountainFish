@@ -1,5 +1,6 @@
 from flask import jsonify
 from datetime import datetime
+from bson import ObjectId
 from .db import db
 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -60,28 +61,28 @@ class User(UserMixin):
             return {'Message': 'User retrieved successfully', "User": user}
         else:
             return {'Message': 'User not found'}, 404
-    # not ready and need error fixed
-    def put_UserUpdate(currentUser):
-        updated_User = {
-            "_id": str(currentUser["_id"]),
-            "firstName": currentUser["firstName"],
-            "lastName": currentUser["lastName"],
-            "password": currentUser["password"],
-            "phoneNumber": currentUser["phoneNumber"],
-            "password": currentUser["password"],
-            "size": currentUser["size"],
-            "email": currentUser["email"],
-            "admin": currentUser["admin"],
-            "size": currentUser["size"],
-            "created_at": currentUser["created_at"],
-            "updated_at": datetime.utcnow()
-        }
+
+
+    def put_UserUpdate(id,updatedUser):
+
         UserCollection = db.db[User.collection_name]
-        user = db.db.User.update_one({"$set": {current_user: updated_User}})
-        if current_user is user:
-            return {'Message': 'User retrieved successfully', "Users": users}
+        currentUser = UserCollection.find_one({"_id": ObjectId(id)})
+        if currentUser:
+            user = UserCollection.update_one({"_id": ObjectId(id)}, {"$set": updatedUser.__dict__})
+            if user.modified_count > 0:
+                return {'Message': 'User updated successfully'}
         else:
-            return {'Message': 'User not found'}, 404
+            return {'Message': "User not found"},404
+
+    def delete_User(id):
+
+        UserCollection = db.db[User.collection_name]
+        currentUser = UserCollection.find_one({"_id": ObjectId(id)})
+        if currentUser:
+            UserCollection.delete_one({"_id":ObjectId(id)})
+            return {'Message':"User has been Deleted"}
+        else:
+            return {'Message':"User not found"}
 
     def get_id(self):
         return str(self._id)
@@ -113,3 +114,17 @@ class User(UserMixin):
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
+   # updated_User = {
+        #     "_id": str(id),
+        #     "firstName": currentUser["firstName"],
+        #     "lastName": currentUser["lastName"],
+        #     "password": currentUser["password"],
+        #     "phoneNumber": currentUser["phoneNumber"],
+        #     "password": currentUser["password"],
+        #     "size": currentUser["size"],
+        #     "email": currentUser["email"],
+        #     "admin": currentUser["admin"],
+        #     "size": currentUser["size"],
+        #     "created_at": currentUser["created_at"],
+        #     "updated_at": datetime.utcnow()
+        # }

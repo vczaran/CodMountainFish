@@ -54,8 +54,34 @@ def UserById(id):
 
 
 @user_routes.route('/<string:id>', methods=["PUT"])
-def UserUpdate(updateUser):
+def UserUpdate(id):
     """
     update user with updated properties
     """
-    return User.put_UserUpdate(updateUser)
+    form = UserForm()
+
+    password = str(form.data.get("password"))
+    print("Password: ", form.data.get("password"))
+
+    if password is None:
+        # Handle the case where the password is not provided
+        return jsonify({"error": "Password is required"}), 400
+
+    updateUser = User(
+        firstName=form.data.get("firstName"),
+        lastName=form.data.get("lastName"),
+        password=password,
+        phoneNumber=form.data.get("phoneNumber"),
+        notes=form.data.get("notes"),
+        size=form.data.get("size"),
+        email=form.data.get("email"),
+        admin=form.data.get("admin")
+    )
+    return User.put_UserUpdate(id,updateUser)
+
+@user_routes.route('/<string:id>', methods=["DELETE"])
+def DeleteUser(id):
+    """
+    delete user from database
+    """
+    return User.delete_User(id)
