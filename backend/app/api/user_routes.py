@@ -18,7 +18,6 @@ def new():
     form = UserForm()
 
     password = str(form.data.get("password"))
-    print("Password: ", form.data.get("password"))
     if password is None:
         # Handle the case where the password is not provided
         return jsonify({"error": "Password is required"}), 400
@@ -33,7 +32,7 @@ def new():
         email=form.data.get("email"),
         admin=form.data.get("admin")
     )
-    return jsonify({"user_id": str(newUser.saveOne())})
+    return jsonify({"user_id": str(newUser.save_One())})
 
 
 
@@ -61,7 +60,6 @@ def UserUpdate(id):
     form = UserForm()
 
     password = str(form.data.get("password"))
-    print("Password: ", form.data.get("password"))
 
     if password is None:
         # Handle the case where the password is not provided
