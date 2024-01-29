@@ -3,16 +3,22 @@ from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+# DataBase Models
 from .models import db, user_Model
 from .models.user_Model import User
 from .api.auth_routes import auth_routes
 
+# DataBase Models_Version 2
+from .models_Version2 import db
+from .models_Version2.Children import user_Model, date_Model
+# DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config
 from pymongo.server_api import ServerApi
 # Api routes
 from .api.example_routes import example_routes
 from .api.user_routes import user_routes
+from .api.date_routes import date_routes
 
 # app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 app = Flask(__name__)
@@ -21,27 +27,17 @@ app = Flask(__name__)
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
-@login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
 
-
-
-
+# @login.user_loader
+# def load_user(id):
+#     return User.query.get(int(id))
 
 # Tell flask about our app extension
 app.config.from_object(Config)
 app.register_blueprint(example_routes, url_prefix='/api/example')
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-# test the environmental variable
-print("===========")
-mongo_uri = os.environ.get('MONGO_URI')
-print(f"MONGO_URI: {mongo_uri}")
-print("===========")
-# connection to DB
-# db = PyMongo(app)
-
+app.register_blueprint(date_routes, url_prefix='/api/date')
 
 # Application Security
 CORS(app)

@@ -3,7 +3,10 @@ from bson import ObjectId
 from datetime import datetime
 
 from ..models.user_Model import User
+
 from app.models.db import db
+# from app.models_Version2.db import db
+
 from ..forms.user_form import UserForm
 from flask import current_app as app
 
@@ -19,7 +22,6 @@ def new():
 
     password = str(form.data.get("password"))
     if password is None:
-        # Handle the case where the password is not provided
         return jsonify({"error": "Password is required"}), 400
 
     newUser = User(
@@ -33,7 +35,6 @@ def new():
         admin=form.data.get("admin")
     )
     return jsonify({"user_id": str(newUser.save_One())})
-
 
 
 @user_routes.route('/all', methods=["GET"])
@@ -75,7 +76,8 @@ def UserUpdate(id):
         email=form.data.get("email"),
         admin=form.data.get("admin")
     )
-    return User.put_UserUpdate(id,updateUser)
+    return User.put_UserUpdate(id, updateUser)
+
 
 @user_routes.route('/<string:id>', methods=["DELETE"])
 def DeleteUser(id):

@@ -1,7 +1,8 @@
 from flask import jsonify
 from datetime import datetime
 from bson import ObjectId
-from .db import db
+from ..db import db
+from .crud_Model import CRUD
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
