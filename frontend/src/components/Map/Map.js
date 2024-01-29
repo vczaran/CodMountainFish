@@ -23,8 +23,8 @@ const Map = ({ location, zoomLevel }) => {
           defaultZoom={zoomLevel}
         >
           <LocationPin
-            lat={location?.lat}
-            lng={location?.lng}
+            lat={location.lat}
+            lng={location.lng}
             text={location.address}
           />
         </GoogleMapReact>

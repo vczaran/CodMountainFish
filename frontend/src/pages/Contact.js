@@ -55,7 +55,6 @@ export default function Contact() {
             <ContactForm />
           </div>
           <div className="right-bottom border h-[50%]">
-            <div>fjfjjfjfjf</div>
             <Map location={location} zoomLevel={17} />
           </div>
         </div>
