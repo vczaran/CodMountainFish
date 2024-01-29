@@ -1,5 +1,6 @@
 import React from "react";
 import bg from "../assets/bg.jpg";
+import fishing from "../assets/fishing.jpg"
 import BookButton from "../components/navbar/BookButton";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col h-full w-full home">
+      {/* Top Background picture - might consider change to carousel */}
       <div className="relative flex flex-col h-72 bgContainer"   >
         <div class="h-full w-full bg-center bg-cover bg-no-repeat" style={{ backgroundImage: `url(${bg})` }} >  
         </div>
@@ -20,7 +22,7 @@ export default function Home() {
           <BookButton />
         </div>
       </div>
-      
+      {/* Mission statement section - need to fix the width of inner text */}
       <div className="flex flex-col items-center justify-center h-30 w-full bg-vuejs-300 missionContainer border-4 border-red-400">
         <div className="flex flex-col items-center justify-center h-26 w-full border-4 border-orange-300" >
           <article class="flex flex-col h-30 w-full items-center border-4 border-pink-500 prose">
@@ -34,6 +36,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Trip Tiles - need to add link to trip pages & booking page  */}
       <div className="h-96 flex flex-row items-center justify-evenly border-4 border-blue-500 trips"> 
 
         {/* placeholder - will need function to populate info below */}
@@ -50,7 +53,7 @@ export default function Home() {
               </article>
               <div className="flex flex-row items-start justify-evenly h-10">
                 <BookButton />
-                <button className="rounded-md h-8 w-20 bg-yellow-600 text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50"> Details</button> 
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Details</button> 
               </div>
             </div> 
           </div>
@@ -70,7 +73,7 @@ export default function Home() {
               </article>
               <div className="flex flex-row items-start justify-evenly h-10">
                 <BookButton />
-                <button className="rounded-md h-8 w-20 bg-yellow-600 text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50"> Details</button> 
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Details</button> 
               </div>
             </div> 
           </div>
@@ -80,6 +83,7 @@ export default function Home() {
       </div>
 
 
+      {/* About sections - need to add video, link to about page, fix text width */}
       <div className="h-90 w-full  flex flex-col justify-center items-center about" > 
         <div className="h-52 w-full  bg-vuejs-300 flex flex-row items-center space-x-2 about-general">
           <div className="h-48 w-96 bg-purple-200 vidoe" >
@@ -151,7 +155,29 @@ export default function Home() {
 
       </div>
 
-      
+      {/* bottom bg */}
+
+      <div className="flex flex-col h-80 bgContainer"   >
+        <div class="h-full w-full bg-center bg-cover bg-no-repeat" style={{ backgroundImage: `url(${fishing})` }} >  
+        </div>
+      </div>
+
+
+      {/* customer review */}
+      <div class="flex flex-row items-center justify-between space-x-2 max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg my-5 ">
+        <div class="p-5 border-2">
+            <div class="font-bold text-xl mb-2" id="name">Shali P.</div>
+            <div class="rating mb-4 text-yellow-400" id="rating">★★★★★</div>
+            <p class="text-gray-600 text-sm" id="description">Nostrud aute id elit proident veniam ex. Elit enim laborum enim velit laborum anim. Occaecat do non velit sint elit mollit. </p>
+        </div>
+
+
+
+       
+    </div>
+
+
+
 
     </div>
 
