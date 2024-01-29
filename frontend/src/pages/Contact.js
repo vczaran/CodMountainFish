@@ -30,9 +30,9 @@ export default function Contact() {
         <div className="left-side flex-col w-[50%]" >
 
           <div className="left-top ml-[10%] h-[470px]">
-            <h1 className="text-4xl pb-8 text-cyan-800">Contact Us</h1>
+            <h1 className="text-4xl pb-8 text-cyan-800 flex">Contact Us</h1>
 
-            <p className='pb-9 pr-5'>Thank you for your interest in Cod Mountain Fish Co. We're here to answer any questions or concerns you may have. Please feel free to reach out to us using the contact information provided below, or you can fill out the contact form and we'll get back to you as soon as possible.</p>
+            <p className='pb-7 pr-5'>Thank you for your interest in Cod Mountain Fish Co. We're here to answer any questions or concerns you may have. Please feel free to reach out to us using the contact information provided below, or you can fill out the contact form and we'll get back to you as soon as possible.</p>
 
             <div className="addy-phone-email-box flex-col min-h-[200px] gap-1">
               <div className="flex">
@@ -44,12 +44,12 @@ export default function Contact() {
                 <div className="pr-2 text-cyan-800"><FaPhoneAlt /></div>
                 <p>(+1) 831 419 8443</p>
               </div>
-              <div className="flex pb-6">
+              <div className="flex pb-7">
                 <div className="pr-2 text-cyan-800"><MdEmail /></div>
                 <p>codmountainfishco@gmail.com</p>
               </div>
 
-              <div className='social-med  pl-3 flex gap-5 text-cyan-800'>
+              <div className='social-med flex gap-5 text-cyan-800'>
               <a href="https://www.facebook.com/Codmountain" className="text-3xl" target="_blank">
             <FaFacebook />
             </a>
