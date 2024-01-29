@@ -6,6 +6,7 @@ export default function FishReport() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 my-5">
+      <p>!!!This will be shown when owner is logged in!!!</p>
       <CreateReport />
       {/* This is just an example. This should eventually pull from the database */}
       <Report

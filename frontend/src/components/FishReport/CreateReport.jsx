@@ -21,8 +21,16 @@ export default function CreateReport() {
     const image = e.target.files[0];
     setForm({ ...form, image });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
   return (
-    <form className="max-w-[80rem] flex flex-col w-[30rem]">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-[80rem] flex flex-col w-[30rem]"
+    >
       {/* Extract this? */}
       {form.image ? (
         <img
@@ -65,7 +73,7 @@ export default function CreateReport() {
           className={"h-40"}
         />
       </div>
-      <Button>Add Fish Report</Button> 
+      <Button>Add Fish Report</Button>
     </form>
   );
 }
