@@ -81,7 +81,7 @@ export default function Contact() {
 
         <div className="right-side flex-col w-[50%]">
 
-          <div className="right-top mr-[10%] h-[470px]">
+          <div className="right-top mr-[10%] pb-10 h-[470px]">
 
             <ContactForm />
           </div>
