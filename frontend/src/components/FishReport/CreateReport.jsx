@@ -1,9 +1,16 @@
 import React, { useRef, useState } from "react";
 import { FaRegImages } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
+import InputField from "../form-components/InputField";
+import TextBoxField from "../form-components/TextBoxField";
+import Button from "../form-components/Button";
 
 export default function CreateReport() {
-  const [image, setImage] = useState("");
+  const [form, setForm] = useState({
+    image: null,
+    description: "",
+    date: "",
+  });
   const inputRef = useRef(null);
 
   const handleButtonClick = () => {
@@ -11,12 +18,18 @@ export default function CreateReport() {
   };
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const image = e.target.files[0];
+    setForm({ ...form, image });
   };
   return (
-    <div>
-      {image ? (
-        <img src={URL.createObjectURL(image)} alt="fish" />
+    <form className="max-w-[80rem] flex flex-col w-[30rem]">
+      {/* Extract this? */}
+      {form.image ? (
+        <img
+          src={URL.createObjectURL(form.image)}
+          alt="fish"
+          className="w-[30rem] rounded-md min-w-96 "
+        />
       ) : (
         <>
           <input
@@ -28,7 +41,7 @@ export default function CreateReport() {
           <button
             type="button"
             onClick={handleButtonClick}
-            className="w-40 h-40 border-dashed border-2 border-gray-400 rounded-xl text-gray-400 m-auto hover:text-sky-600 hover:border-sky-600"
+            className="w-[30rem] min-w-96 h-96 border-dashed border-2 border-gray-400 rounded-xl text-gray-400 m-auto hover:text-sky-600 hover:border-sky-600"
           >
             <div className="flex justify-center gap-2">
               <IoAdd className="text-5xl" />
@@ -37,6 +50,22 @@ export default function CreateReport() {
           </button>
         </>
       )}
-    </div>
+      <div className="flex flex-col justify-between pt-4 gap-4">
+        <InputField
+          placeholder="Date"
+          type="date"
+          value={form.date}
+          onChange={(e) => setForm({ ...form, date: e.target.value })}
+        />
+        <TextBoxField
+          placeholder="Description"
+          type="text"
+          value={form.description}
+          onChange={(e) => setForm({ ...form, description: e.target.value })}
+          className={"h-40"}
+        />
+      </div>
+      <Button>Add Fish Report</Button> 
+    </form>
   );
 }
