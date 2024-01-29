@@ -20,7 +20,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail} className="flex flex-col w-[100%] h-[100%] items-center justify-around bg-yellow-200">
+    <form ref={form} onSubmit={sendEmail} className="flex flex-col w-[100%] h-[100%] items-center justify-around pt-[40px] pb-[30px] gap-[30px]">
       {/* <label>Name</label> */}
       <div className='w-[400px]'>
       <input type="text" name="user_name" placeholder='Your name' className="w-[100%] border-b-[2px] border-gray-400"/>
@@ -43,7 +43,7 @@ const ContactForm = () => {
       </div>
       <div className='w-[400px]'>
       {/* <input type="submit" value="Send" /> */}
-      <button type="submit" value="Send" className='bg-cyan-600 pl-5 pr-5 pb-1 pt-1' >Send</button>
+      <button type="submit" value="Send" className='bg-cyan-600 pl-5 pr-5 pb-1 pt-1' >Send message</button>
       </div>
     </form>
   );
