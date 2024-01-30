@@ -2,11 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from bson import ObjectId
 from datetime import datetime
 
-from ..models_Version2.date_Model import Date
-# from ..models.date_Model import Date
-
-# from app.models.db import db
-# from app.models_Version2.db import db
+from ..models.date_Model import Date
 
 from ..forms.date_form import DateForm
 from flask import current_app as app

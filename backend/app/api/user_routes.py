@@ -3,9 +3,7 @@ from bson import ObjectId
 from datetime import datetime
 
 from ..models.user_Model import User
-
 from app.models.db import db
-# from app.models_Version2.db import db
 
 from ..forms.user_form import UserForm
 from flask import current_app as app
