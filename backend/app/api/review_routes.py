@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from datetime import datetime
+from bson import ObjectId
 
 from ..models_Version2.review_Model import Review
 from ..forms.review_form import ReviewForm
@@ -15,8 +16,7 @@ def newReview():
         Create a new Review entry
     """
     form = ReviewForm()
-    print(form.data.get("user_Id"))
-    newReview = Date(
+    newReview = Review(
         user_Id=form.data.get("user_Id"),
         activity_Id=form.data.get("activity_Id"),
         description=form.data.get("description"),
@@ -31,7 +31,7 @@ def ReviewById(id):
     """
     get one Reviews by its Id
     """
-    return jsonify(Date.get_ById("Date", ObjectId(id)))
+    return jsonify(Review.get_ById("Review", ObjectId(id)))
 
 
 @review_routes.route('/all', methods=["GET"])

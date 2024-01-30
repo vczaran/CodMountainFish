@@ -16,9 +16,9 @@ class Review(CRUD):
 
         self.user_Id = user_Id
         self.activity_Id = activity_Id
-        self.description = booked
-        self.rating = available_space
-        self.stars = group_Id
+        self.description = description
+        self.rating = rating
+        self.stars = stars
         # properties only initialized here
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
