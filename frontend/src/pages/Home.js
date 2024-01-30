@@ -164,6 +164,12 @@ export default function Home() {
 
 
       {/* customer review */}
+      <div>
+        <h1 className="font-bold text-2xl m-5"> Hear from our awesome users! </h1>
+
+
+      </div>
+
       <div class="flex flex-row items-center justify-between space-x-2 max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg my-5 ">
         <div class="p-5 border-2">
             <div class="font-bold text-xl mb-2" id="name">Shali P.</div>
