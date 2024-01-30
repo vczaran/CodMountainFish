@@ -7,10 +7,6 @@ from .db import db
 class CRUD:
 
     def save_One(self, Table):
-        print("_______________________")
-        print(self.__dict__)
-        print(Table)
-        print("_______________________")
 
         collection = db.db[Table]
         result = collection.insert_one(self.__dict__)
