@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function CaptainAndVessel() {
   return (
-    <div className='grid grid-cols-2 w-full mt-10'>
+    <div className='grid grid-cols-2 gap-5 w-full mt-10'>
       <div className='bg-cyan-600 text-white space-y-4'>
         <h1 className="text-amber-500 text-xl font-bold m-5">About the Captain</h1>
         <p className='ml-5'>Captain Greg Webb brings over a decade of dedicated experience and a genuine love for fishing to Cod Mountain Fish Co. 
@@ -24,8 +24,8 @@ export default function CaptainAndVessel() {
         captain who genuinely cares about your experience. His commitment to safety, professionalism, and making lasting memories ensures that your 
         time on the water will be filled with excitement, relaxation, and the thrill of reeling in your catch.</p>
       </div>
-      <img className="bg-cyan-600" src="" alt="Captain"></img>
-      <img src="" alt="SeaMarie"></img>
+      <img className="bg-cyan-600" src="./Photos/cap.jpeg" alt="Captain"></img>
+      <img src="./Photos/boat.png" alt="SeaMarie"></img>
       <div className='mt-10 mb-10 space-y-4'>
         <h1 className="text-sky-500 text-xl font-bold m-5">Sea Marie</h1>
         <p>Introducing the Sea Marie, the pride and joy of Cod Mountain Fish Co. This remarkable fishing vessel combines power, comfort, and functionality 

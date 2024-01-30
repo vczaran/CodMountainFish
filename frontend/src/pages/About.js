@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 export default function About() {
   return (
     <div className="flex flex-col items-center">
-      <img src="./placeholder.jpg" alt="boaty boat"></img>
+      <img className="w-full h-[400px]" src="./Photos/cover-boat.jpg" alt="boat"></img>
       <h1 className="text-center text-teal-600 text-2xl font-bold mt-10 mb-10">Cod Mountain Fish Co.</h1>
       <p className="w-1/2 text-center mb-3">Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. 
         Our dedicated crew is here to ensure that your time on the water is not only productive but also enjoyable 
         and filled with excitement.</p>
       <Link className="bg-cyan-600 text-white active:bg-cyan-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
       <div className="bg-cyan-600 grid grid-cols-2 gap-2 w-full mt-10 text-white">
-        <img src="" alt="family"></img>
+        <img src="./Photos/fam.jpeg" alt="family"></img>
         <div className="m-10 space-y-4">
           <h1 className="text-amber-500 text-xl font-bold m-5">About Us</h1>
           <p>We are a premier charter fishing company located in Santa Cruz, California, offering unforgettable guided fishing tours of the beautiful Monterey Bay. 
@@ -68,7 +68,7 @@ export default function About() {
           </ul>
           <Link className=" bg-amber-600 text-white active:bg-amber-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150" to="/availability">Book Now</Link>
         </div>
-        <img src="" alt="boat"></img>
+        <img src="./Photos/trip.png" alt="boat"></img>
         <p className="m-10">Please note that all our rates are subject to change, and availability may vary based on the season and demand. We strive to provide exceptional
            service and ensure an unforgettable fishing experience for every charter.</p>
         <p className="m-10">For more information or to make a booking, please visit our <Link className="underline" to="/availability">Booking</Link> page or contact our team directly. We are here to assist you and answer any questions you may have.
