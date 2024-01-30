@@ -2,7 +2,9 @@ from flask import Blueprint, jsonify, session, request
 from datetime import datetime
 from bson import ObjectId
 
-from ..models_Version2.Reviews import activity_Review_Model, recipe_Review_Model
+from ..models_Version2.Reviews.activity_Review_Model import Activity_Review
+from ..models_Version2.Reviews.recipe_Review_Model import Recipe_Review
+
 from ..forms.review_form import ReviewForm
 from flask import current_app as app
 
