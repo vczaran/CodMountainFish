@@ -84,8 +84,8 @@ export default function Home() {
 
 
       {/* About sections - need to add video, link to about page, fix text width */}
-      <div className="h-90 w-full  flex flex-col justify-center items-center about" > 
-        <div className="h-52 w-full  bg-vuejs-300 flex flex-row items-center space-x-2 about-general">
+      <div className="h-90 w-full flex flex-col justify-center items-center about" > 
+        <div className="h-52 w-full p-24 bg-vuejs-300 flex flex-row items-center space-x-4 about-general">
           <div className="h-48 w-96 bg-purple-200 vidoe" >
           <div class="rounded-md h-48 w-96 bg-center bg-cover bg-no-repeat " 
                style={{ backgroundImage: `url(${bg})` }} >  
@@ -93,8 +93,8 @@ export default function Home() {
 
           </div>
 
-          <div className="h-48 w-full ml-10">
-            <h1 className="text-amber-500 text-xl font-bold mb-5">About US</h1>
+          <div className="h-48 w-full">
+            <h1 className="text-amber-500 text-xl font-bold mb-5 ">About US</h1>
               <p className="h-auto w-auto text">   
                 At Cod Mountain Fish Co., we prioritize sustainability, ethical fishing practices, and responsible charter boat operations. 
                 We firmly believe that protecting our local waters and the fish species we target is of utmost importance. Through our daily operations, we strive to set an example of responsible 
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="h-52 w-full   flex flex-row items-center space-x-2 about-captain">
+        <div className="h-52 w-full p-24  flex flex-row items-center space-x-4 about-captain">
           <div className="h-48 w-100">
             <h1 className="text-amber-500 text-xl font-bold mb-5">The Captain </h1>
               <p className="h-auto w-auto text">   Introducing the Sea Marie, the pride and joy of Cod Mountain Fish Co. This remarkable fishing vessel combines power, comfort, and functionality 
@@ -126,7 +126,7 @@ export default function Home() {
 
         </div>
 
-        <div className="h-52 w-full  bg-vuejs-300 flex flex-row items-center space-x-2 about-general">
+        <div className="h-52 w-full p-24 bg-vuejs-300 flex flex-row items-center space-x-4 about-general">
           <div className="h-48 w-96 bg-purple-200 vidoe" >
           <div class="rounded-md h-48 w-96 bg-center bg-cover bg-no-repeat " 
                style={{ backgroundImage: `url(${bg})` }} >  
@@ -147,12 +147,6 @@ export default function Home() {
         </div>
 
 
-        
-
-
-
-
-
       </div>
 
       {/* bottom bg */}
@@ -165,7 +159,7 @@ export default function Home() {
 
       {/* customer review */}
       <div>
-        <h1 className="font-bold text-2xl m-5"> Hear from our awesome users! </h1>
+        <h1 className="font-bold text-2xl p-5"> Hear from our awesome users! </h1>
 
 
       </div>
