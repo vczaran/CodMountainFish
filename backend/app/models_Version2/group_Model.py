@@ -1,8 +1,11 @@
 from datetime import datetime
 from .db import db
+from .crud_Model import CRUD
 
 # not needed after all
-class Group:
+
+
+class Group(CRUD):
 
     collection_name = "Group"
 
@@ -14,18 +17,3 @@ class Group:
         # properties only initialized here
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
-
-    def save(self):
-        GroupCollection = db.db[Group.collection_name]
-        result = GroupCollection.insert_one(self.__dict__)
-        return result.inserted_id
-
-    def to_dict(self):
-        return {
-            "id": str(self._id),
-            "user_Id": self.user_Id,
-            "size_Of_Group": self.size_Of_Group,
-            "accommodations": self.accommodations,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at
-        }

@@ -4,8 +4,6 @@ from bson import ObjectId
 from .db import db
 from .crud_Model import CRUD
 
-
-
 class Subscriber(CRUD):
 
     collection_name = "Subscriber"

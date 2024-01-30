@@ -7,6 +7,8 @@ from .crud_Model import CRUD
 
 class Date(CRUD):
 
+    collection_name = "Date"
+
     # Table Columns
 
     def __init__(self, date, activity_Id, booked, available_space, group_Id):

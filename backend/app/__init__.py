@@ -10,7 +10,9 @@ from .api.auth_routes import auth_routes
 
 # DataBase Models_Version 2
 # from .models_Version2 import db
-from .models_Version2 import db, user_Model, date_Model, review_Model
+from .models_Version2 import db, user_Model, date_Model
+from .models_Version2.Images import fish_Images_Model, scenery_Images_Model
+from .models_Version2.Reviews import activity_Review_Model, recipe_Review_Model
 # DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config
