@@ -24,12 +24,6 @@ export default function About() {
           learn the ropes or a seasoned pro seeking an exciting challenge, our team will cater to your specific needs and desires. Step aboard our 2006 Parker 2520 XLD, 
           equipped with top-of-the-line tackle and gear from industry-leading brands. Enjoy the comfort of our heated cabin and have control over the music that sets the 
           tone for your day of fishing. We provide ample cold storage for your drinks and food, as well as sufficient space to hold your well-earned catch.</p>
-          <p>Our mission is to create cherished memories and provide unparalleled service to our valued customers. We are passionate about ensuring your fishing trip 
-            with us is not only productive but also enjoyable and filled with excitement. Our friendly and knowledgeable crew is dedicated to making your experience with 
-            Cod Mountain Fish Co. one that exceeds your expectations and leaves you with a lasting impression.</p>
-          <p>As we look to the future, we envision Cod Mountain Fish Co. growing into a larger company with a larger vessel to accommodate larger parties, while also serving 
-            the smaller ones, and offering even more unique and thrilling fishing experiences. We will continue to set industry standards and strive for excellence in all 
-            aspects of our operations. Our goal is to be the go-to charter fishing company in Santa Cruz, providing a memorable adventure for anglers of all ages and skill levels.</p>
           <p>Thank you for considering Cod Mountain Fish Co. for your next fishing excursion. We invite you to join us on an unforgettable journey into the abundant waters of the 
             Monterey Bay. Let's make a memory, pull on some fish, and have a good time doing it!</p>
         </div>
