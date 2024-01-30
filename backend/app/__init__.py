@@ -9,8 +9,8 @@ from .models.user_Model import User
 from .api.auth_routes import auth_routes
 
 # DataBase Models_Version 2
-from .models_Version2 import db
-from .models_Version2.Children import user_Model, date_Model
+# from .models_Version2 import db
+from .models_Version2 import db, user_Model, date_Model, review_Model
 # DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config
@@ -19,6 +19,7 @@ from pymongo.server_api import ServerApi
 from .api.example_routes import example_routes
 from .api.user_routes import user_routes
 from .api.date_routes import date_routes
+from .api.review_routes import review_routes
 
 # app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 app = Flask(__name__)
@@ -38,7 +39,7 @@ app.register_blueprint(example_routes, url_prefix='/api/example')
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(date_routes, url_prefix='/api/date')
-
+app.register_blueprint(review_routes, url_prefix='/api/review')
 # Application Security
 CORS(app)
 

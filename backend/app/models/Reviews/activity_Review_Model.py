@@ -7,9 +7,10 @@ class Activity_Review:
     collection_name = "Activity_Review"
 
     # Table Columns
-    def __init__(self, user_Id, activity_Id, rating, stars):
+    def __init__(self, user_Id, activity_Id, description, rating, stars):
         self.user_Id = user_Id
         self.activity_Id = activity_Id
+        self.description = description
         self.rating = rating
         self.stars = stars
         # properties only initialized here
@@ -26,6 +27,7 @@ class Activity_Review:
             "id": str(self._id),
             "user_Id": self.user_Id,
             "activity_Id": self.activity_Id,
+            "description": self.description,
             "rating": self.rating,
             "stars": self.stars,
             "created_at": self.created_at,
