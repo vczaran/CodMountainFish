@@ -1,6 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Map from '../components/Map/Map';
 
 export default function TripInfo() {
+  const location = {
+      address: 'Cod Mountain Fish Co.',
+      lat: 36.96578633181195,
+      lng: -122.00103392460099,
+    }
+
   return (
     <div>
       <h1>Directions</h1>
@@ -35,13 +42,28 @@ export default function TripInfo() {
         <li>Park at a metered spot and purchase a parking ticket from the pay kiosk.</li>
         <li>Proceed to "S" dock.</li>
       </ol>
-      {/* Map */}
-      {/* What to Wear */}
-      {/* What's Included? */}
-      {/* Link to get Fishing License */}
-      {/* https://wildlife.ca.gov/Licensing/Fishing */}
-      {/* FAQs */}
-      {/* Cancellation Policy */}
+      <Map location={location} zoomLevel={17}/>
+      <h1>Parking:</h1>
+      <p> Metered parking is available near the harbor. Be sure to purchase a parking ticket from a kiosk 
+        located in the parking lot. Please allow enough time for parking and make your way to "S" Dock promptly.</p>
+      <h1>What to Bring:</h1>
+      <ul className='list-disc ml-10'>
+        <li>Comfortable clothing suitable for the weather conditions (layers are recommended)</li>
+        <li>Sunscreen, hat, and sunglasses</li>
+        <li>Food and beverages for your trip (alcohol is allowed for guests aged 21 or older)</li>
+        <li>Cash for deckhand tip (show your appreciation for their assistance)</li>
+        <li>A cooler to transport your catch (if you wish to keep your fish)</li>
+      </ul>
+      <h1>Meeting Point:</h1>
+      <p>Please arrive at least 30 minutes prior to your scheduled departure time at "S" Dock in the 
+        Santa Cruz Harbor. Look for our boat and crew members to check-in and begin your adventure.</p>
+      <h1>Fishing License</h1>
+      <p>You must obtain a CA sport fishing license in order to fish. <a className="underline" href='https://wildlife.ca.gov/Licensing/Fishing'>Click here</a> for information on how to obtain
+      and to purcahse a fishing license.</p>
+      {/* FAQs ?*/}
+      <h1>Cancellation Policy:</h1>
+      <p> If you need to cancel or reschedule your trip, please refer to our Terms and Conditions for the cancellation policy and any 
+        applicable fees. We understand that unforeseen circumstances may arise, and we will do our best to accommodate changes whenever possible.</p>
     </div>
   )
 }
