@@ -14,6 +14,7 @@ def get_fish_reports():
     if request.method == "GET":
         return jsonify(Fish_Report.get_All("Fish_Report"))
     if request.method == "POST":
+        print("REQUEST: ", request)
         form = FishReportForm()
         newFishReport = Fish_Report(
             date=form.data["date"],

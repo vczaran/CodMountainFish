@@ -24,8 +24,19 @@ export default function CreateReport() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+
+    fetch("/api/fish_report", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...form,
+        image: null
+      }),
+    });
   };
+
   return (
     <form
       onSubmit={handleSubmit}
