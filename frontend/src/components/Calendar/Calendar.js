@@ -10,8 +10,20 @@ const Calendar = () => {
     const currentDate = dayjs();
     const [today, setToday] = useState(currentDate);
     const [selectedDate, setSelectedDate] = useState(currentDate);
+    const [openDay, setOpenDay] = useState(false);
 
     console.log("selected date: ", selectedDate)
+
+    const handleDateClick = (date) => {
+        setSelectedDate(date);
+        console.log("date clicked: ", date.toDate().toDateString())
+    }
+
+    const grabDateInfo = (date) => {
+        // grab date info from database
+
+        // if date is not available, set openDay to true
+    }
 
     return (
         <div>
@@ -57,7 +69,8 @@ const Calendar = () => {
                         {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
                             return (
                                 <div key={index} className="numbers-box h-full text-sm border grid hover:bg-gray-100 transition-all cursor-pointer"
-                                    onClick={() => { setSelectedDate(date) }}>
+
+                                    onClick={() => { handleDateClick(date) }}>
                                     <div
                                         className={cn(
                                             currentMonth ? "" : "text-gray-400",
