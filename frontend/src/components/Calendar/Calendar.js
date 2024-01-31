@@ -14,7 +14,7 @@ const Calendar = () => {
     console.log("selected date: ", selectedDate)
 
     return (
-        <div className="flex justify-center gap-5 h-[100%] items-center">
+        <div className="flex justify-center gap-5 items-center">
             <div className="calendar-box w-[650px] h-[400px]">
                 <div className="flex gap-5 pb-2">
                     <div className="font-semibold">{months[today.month()]}, {today.year()}</div>
