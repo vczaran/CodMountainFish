@@ -15,10 +15,7 @@ const Calendar = () => {
 
     return (
         <div className="flex justify-center gap-5 h-[100%] items-center">
-
             <div className="calendar-box w-[650px] h-[400px]">
-
-
                 <div className="flex gap-5 pb-2">
                     <div className="font-semibold">{months[today.month()]}, {today.year()}</div>
                     <div className="flex items-center gap-5">
@@ -31,7 +28,7 @@ const Calendar = () => {
                         <GrFormNext className="w-5 h-5 cursor-pointer" onClick={() => {
                             console.log("next month")
                             setToday(today.month(today.month() + 1))
-                        }}/>
+                        }} />
 
                     </div>
                 </div>
@@ -45,19 +42,17 @@ const Calendar = () => {
                 <div className="w-full h-full grid grid-cols-7">
                     {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
                         return (
-                            <div key={index} className="numbers-box h-full text-sm border grid hover:bg-gray-100 transition-all cursor-pointer">
+                            <div key={index} className="numbers-box h-full text-sm border grid hover:bg-gray-100 transition-all cursor-pointer"
+                                onClick={() => { setSelectedDate(date) }}>
                                 <div
-                                className={cn(
-                                    currentMonth ? "" : "text-gray-400",
-                                    today ? "bg-red-600 text-white" : "",
-                                    selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white" : "",
-                                    "h-6 w-6 grid place-content-center rounded-full"
+                                    className={cn(
+                                        currentMonth ? "" : "text-gray-400",
+                                        today ? "bg-red-600 text-white" : "",
+                                        selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white" : "",
+                                        "h-6 w-6 grid place-content-center rounded-full hover:bg-black hover:text-white transition-all cursor-pointer select-none"
                                     )}
-                                    onClick={() => {
-                                        setSelectedDate(date)
-                                        console.log("clicked new date!!!!")
-                                    }}
-                                    >{date.date()}</div>
+                                >{date.date()}
+                                </div>
                             </div>
                         );
                     })}
@@ -72,7 +67,7 @@ const Calendar = () => {
             </div>
 
 
-            </div>
+        </div>
     )
 }
 
