@@ -4,6 +4,7 @@ from .Images.fish_Images_Model import Fish_Image
 from .Images.scenery_Images_Model import Scenery_Image
 from .Reviews.activity_Review_Model import Activity_Review
 from .Reviews.recipe_Review_Model import Recipe_Review
+from .booking_Model import Booking
 from .crud_Model import CRUD
 from .date_Model import Date
 from .db import db
