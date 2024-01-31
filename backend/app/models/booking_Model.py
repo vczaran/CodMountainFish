@@ -11,7 +11,7 @@ class Booking(CRUD):
 
     # Table Columns
 
-    def __init__(self, date, tripType, phoneNumber, status, partySize, firstName, lastName, paid, email ):
+    def __init__(self, date, tripType, phoneNumber, status, partySize, firstName, lastName, paid, email, time):
         self.date = date
         self.tripType = tripType
         self.phoneNumber = phoneNumber
@@ -21,6 +21,7 @@ class Booking(CRUD):
         self.lastName = lastName
         self.paid = paid
         self.email = email
+        self.time = time
         # properties only initialized here
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()

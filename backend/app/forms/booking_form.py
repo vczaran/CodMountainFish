@@ -14,3 +14,4 @@ class BookingForm(FlaskForm):
     lastName = StringField("lastName")
     paid = BooleanField("paid")
     email = EmailField("email")
+    time = StringField("time")

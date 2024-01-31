@@ -27,6 +27,7 @@ def newBooking():
         lastName=form.data.get("lastName"),
         paid=form.data.get("paid"),
         email=form.data.get("email"),
+        time=form.data.get("time")
     )
     return jsonify({"Booking":  newBooking.save_One("Booking")})
 
