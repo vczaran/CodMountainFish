@@ -1,14 +1,14 @@
 import React from 'react';
 import Slider from "react-slick";
 import { dataReviews } from '../../assets/dataReview';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 
 const Review = () => {
 
     const settings = {
-        dots: true, 
+        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
@@ -16,7 +16,7 @@ const Review = () => {
         autoplay: true,
         responsive: [
             {
-                breakpoint: 1024, 
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
                 },

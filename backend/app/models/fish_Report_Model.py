@@ -8,7 +8,7 @@ class Fish_Report(CRUD):
     collection_name = "Fish_Report"
 
     # Table Columns
-    def __init__(self):
+    def __init__(self, date, description, images):
         self.date = date
         self.description = description
         self.images = images
