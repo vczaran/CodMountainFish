@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const Review = () => {
-    // const data = dataReviews;
 
     const settings = {
         dots: true, 
