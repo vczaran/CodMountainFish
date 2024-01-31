@@ -38,38 +38,10 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Trip Card - need to link */}
       <div>
-        <Trip />
-        
+        <Trip />       
       </div>
-
-      {/* Trip Tiles - need to add link to trip pages & booking page  */}
-      {/* <div className="h-96 flex flex-row items-center justify-evenly border-4 border-blue-500 trips">  */}
-
-        {/* placeholder - will need function to populate info below */}
-        {/* <div className="flex flex-col h-90 w-96 trip border-4 border-yellow-500">
-          <div className="h-90 bg-green-300 group border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent">
-            <div className="rounded-md h-36 w-full bg-center bg-cover bg-no-repeat" 
-               style={{ backgroundImage: `url(${bg})` }} >  
-            </div>
-            <div className="flex flex-col border-2 rounded-md ">
-              <article className="flex flex-col items-center porse">
-                <h2 className="text-indigo-600 group-hover:text-gray-900 font-bold text-xl">Longrange(Lingcod) - 6hr</h2>
-                <p className="text-indigo-600 group-hover:text-gray-900 ...">$350.00/person </p>
-                <p className="text-indigo-500 group-hover:text-gray-500 ...">This charter takes you to the productive waters near Ano Nuevo and Pigeon Point, located north of Santa Cruz. </p>
-              </article>
-              <div className="flex flex-row items-start justify-evenly h-10">
-                <BookButton />
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Details</button> 
-              </div>
-            </div> 
-          </div>
-        </div> */}
-
-
-
-      {/* </div> */}
-
 
       {/* About sections - need to add video, link to about page, fix text width */}
       <div className="h-90 w-full flex flex-col justify-center items-center about" > 
