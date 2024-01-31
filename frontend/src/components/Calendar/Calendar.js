@@ -29,6 +29,7 @@ const Calendar = () => {
                             setToday(currentDate)
                         }}>Today</div>
                         <GrFormNext className="w-5 h-5 cursor-pointer" onClick={() => {
+                            console.log("next month")
                             setToday(today.month(today.month() + 1))
                         }}/>
 
@@ -53,18 +54,15 @@ const Calendar = () => {
                                     "h-6 w-6 grid place-content-center rounded-full"
                                     )}
                                     onClick={() => {
-                                        setSelectedDate(date);
-                                        console.log("here!!!")
+                                        setSelectedDate(date)
+                                        console.log("clicked new date!!!!")
                                     }}
-                                    >
-                                        {date.date()}
-                                    </div>
+                                    >{date.date()}</div>
                             </div>
                         );
                     })}
                 </div>
             </div>
-
 
             <div className="side-details-box w-[300px] h-[400px] border px-5">
                 <div className="font-semibold">
