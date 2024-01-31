@@ -15,3 +15,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+
+/* margin for Review */
+.slick-slide > div {
+  margin: 0 5px;
+}
