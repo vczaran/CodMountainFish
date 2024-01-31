@@ -2,17 +2,28 @@ import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask_login import LoginManager
+# DataBase Models
+from .models import db, user_Model, date_Model
+from .models.Images import fish_Images_Model, scenery_Images_Model
+from .models.Reviews import activity_Review_Model, recipe_Review_Model
+# DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config
 from pymongo.server_api import ServerApi
 # Api routes
 from .api.example_routes import example_routes
 from .api.fish_report_routes import fish_report_routes
+from .api.auth_routes import auth_routes  # not implemented yet
+from .api.user_routes import user_routes
+from .api.date_routes import date_routes
+from .api.review_routes import review_routes
 
+app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 
-# app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
-app = Flask(__name__)
-
+# Setup login manager
+login = LoginManager(app)
+login.login_view = 'auth.unauthorized'
 
 # Tell flask about our app extension
 app.config.from_object(Config)
@@ -26,13 +37,12 @@ print("===========")
 # connection to DB
 # db = PyMongo(app)
 
+app.register_blueprint(user_routes, url_prefix='/api/user')
+app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(date_routes, url_prefix='/api/date')
+app.register_blueprint(review_routes, url_prefix='/api/review')
 # Application Security
 CORS(app)
-
-#  we need to make sure that in production any
-# request made over http is redirected to https.
-# Well.........
-
 
 @app.before_request
 def https_redirect():
@@ -41,7 +51,6 @@ def https_redirect():
             url = request.url.replace('http://', 'https://', 1)
             code = 301
             return redirect(url, code=code)
-
 
 @app.after_request
 def inject_csrf_token(response):
@@ -53,7 +62,6 @@ def inject_csrf_token(response):
             'FLASK_ENV') == 'production' else None,
         httponly=True)
     return response
-
 
 @app.route("/api/docs")
 def api_help():
