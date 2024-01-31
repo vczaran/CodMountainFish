@@ -18,6 +18,7 @@
          MONGO_URI = 'MONGO_URI'
          MONGO_DBNAME = 'MONGO_DBNAME'
      ```
+    then within the parentheses place your environmental variables
 
 3. Get into your pipenv and run your Flask app
 
