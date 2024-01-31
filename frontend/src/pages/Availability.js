@@ -7,4 +7,5 @@ export default function Availability() {
       <div className="h-[650px]"><Calendar /></div>
     </div>
   )
-}
+
+  }
