@@ -32,7 +32,6 @@ export default function CreateReport() {
       },
       body: JSON.stringify({
         ...form,
-        image: null
       }),
     });
   };
