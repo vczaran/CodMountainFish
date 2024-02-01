@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from "react-slick";
 import { dataReviews } from '../../assets/dataReview';
 import "slick-carousel/slick/slick.css";
@@ -8,12 +8,16 @@ import "slick-carousel/slick/slick-theme.css";
 const Review = () => {
 
     const settings = {
+        // accessibility: true,
+        // arrows: true,
         dots: true, 
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
+        pauseOnHover: true,
+        cssEase: "linear",
         responsive: [
             {
                 breakpoint: 1024, 
@@ -37,22 +41,58 @@ const Review = () => {
 
     };
 
+    useEffect(() => {
+        const cards = document.querySelectorAll('.review-card');
+        let maxHeight = 0;
+        cards.forEach(card => {
+            const cardHeight = card.offsetHeight;
+            if (cardHeight > maxHeight) maxHeight = cardHeight;
+        });
+        cards.forEach(card => {
+            card.style.height = `${maxHeight}px`;
+        });
+    }, []);
+
+    const truncateText = (text, limit) => {
+        const words = text.split(' ');
+        if (words.length > limit) {
+            return words.slice(0, limit).join(' ') + '...';
+        }
+        return text;
+    };
+
 
 
 
   return (
-    <div className="mx-auto my-5 ">
-        <Slider {...settings}>
-            {dataReviews.map((review, index) => (
-                <div key={index} className="p-2 h-auto min-h-[200px] flex flex-col justify-between overflow-hidden rounded-lg shadow-xl bg-white ">
-                    <div className="mb-2 text-xl font-bold" id="name">{review.name}</div>
-                    <div className="mb-4 text-lg text-yellow-400" id="rating">{'\u2605'.repeat(review.rating)}</div>
-                    <p className="text-sm text-gray-600 " id="description">{review.comments}</p>
-                </div>
+    <>
+        <style>
+            {
+                `.slick-prev:before, .slick-next:before {
+                    color: black
 
-            ))}
-        </Slider>
-    </div>
+                }`
+            }
+
+
+        </style>
+        <div className="mx-auto">
+            <Slider {...settings}>
+                {dataReviews.map((review, index) => (
+                    <div key={index} className="p-1 h-auto min-h-[15rem] flex flex-col justify-between overflow-hidden rounded-lg shadow-xl review-card">
+                        <div className="mb-1 text-xl font-bold antialiased leading-snug" id="name">{review.name}</div>
+                        <div className="mb-2 text-lg text-yellow-400 antialiased leading-snug" id="rating">{'\u2605'.repeat(review.rating)}</div>
+                        <p className="text-base text-gray-600 antialiased leading-snug" id="description">{truncateText(review.comments,100)}</p>
+                    </div>
+
+                ))}
+            </Slider>
+        </div>
+    
+    
+    </>
+
+
   );
 }
 

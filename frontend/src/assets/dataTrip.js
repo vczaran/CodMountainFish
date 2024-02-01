@@ -11,9 +11,19 @@ export const dataTrips=[
         photo: bg,
         description: "Targeting the best-available rockfish species, our expertise ensures you fish in the most productive areas, including deepwater rock fishing zones."
     }, 
-
+    
     {   
         id: 2,
+        title:"Halibut Trip",
+        price: "300/Person",
+        duration: 6,
+        capacity: 6,
+        photo: bg,
+        description: "Our focused approach in the coastal waters maximizes your chances of catching halibut, a highly sought-after species."
+    }, 
+
+    {   
+        id: 3,
         title:"Wildlife Tour",
         price: "250/Person",
         duration: 4,
@@ -22,15 +32,6 @@ export const dataTrips=[
         description: "A morning or sunset tour along the Santa Cruz coastline, offering views of diverse marine life in their natural setting."
     }, 
 
-    {   
-        id: 3,
-        title:"Halibut Trip",
-        price: "300/Person",
-        duration: 6,
-        capacity: 6,
-        photo: bg,
-        description: "Our focused approach in the coastal waters maximizes your chances of catching halibut, a highly sought-after species."
-    }, 
 
     {   
         id: 4,
