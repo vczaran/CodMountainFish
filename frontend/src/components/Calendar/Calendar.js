@@ -103,7 +103,18 @@ const Calendar = () => {
                                                             <p>{booking.lastName} - x{booking.partySize}</p>
                                                         </div>
                                                     )}
-
+                                                    {booking.tripType === 'wildlife' && (
+                                                        <div className="flex">
+                                                            <img className="object-contain h-5 w-5" src="./whale.jpeg" alt="whale" />
+                                                            <p>{booking.lastName} - x{booking.partySize}</p>
+                                                        </div>
+                                                    )}
+                                                    {booking.tripType === 'halibut' && (
+                                                        <div className="flex">
+                                                            <img className="object-contain h-5 w-5" src="./Halibut.webp" alt="halibut" />
+                                                            <p>{booking.lastName} - x{booking.partySize}</p>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             ))
                                         )}
