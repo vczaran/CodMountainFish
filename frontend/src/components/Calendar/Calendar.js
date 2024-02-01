@@ -100,7 +100,7 @@ const Calendar = () => {
                                                     {booking.tripType === 'rockfish' && (
                                                         <div className="flex">
                                                             <img className="object-contain h-5 w-5" src="./rockfish.png" alt="rockfish" />
-                                                            <p>{booking.lastName} - full boat</p>
+                                                            <p>{booking.lastName} - x{booking.partySize}</p>
                                                         </div>
                                                     )}
 
