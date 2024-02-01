@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { generateDate, months } from "../../utils/calendar";
 import cn from "../../utils/cn";
 import dayjs from 'dayjs';
+import moment from 'moment';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 
@@ -10,38 +11,44 @@ const Calendar = () => {
     const currentDate = dayjs();
     const [today, setToday] = useState(currentDate);
     const [selectedDate, setSelectedDate] = useState(currentDate);
-    const [openDay, setOpenDay] = useState(false);
+    const [bookings, setBookings] = useState({});
 
-    console.log("selected date: ", selectedDate)
+
 
     const handleDateClick = (date) => {
         setSelectedDate(date);
-        console.log("date clicked: ", date.toDate().toDateString())
     }
 
-    const grabDateInfo = (date) => {
-        // grab date info from database
+    useEffect(() => {
+        const fetchBookings = async () => {
+            try {
+                const response = await fetch('/api/booking/all');
+                const data = await response.json();
+                console.log("data!!!!!", data)
+                const bookingsByDate = data.Booking.Bookings.reduce((acc, booking) => {
+                    const date = moment(booking.date).format('YYYY-MM-DD');
+                    if (!acc[date]) {
+                        acc[date] = [];
+                    }
+                    acc[date].push(booking);
+                    return acc;
+                }, {});
+                setBookings(bookingsByDate);
+            } catch (error) {
+                console.error('Failed to fetch bookings:', error);
+            }
+        };
 
-        // if date is not available, set openDay to true
-    }
+        fetchBookings();
+    }, []);
+
+    console.log("bookings", bookings)
 
     return (
         <div>
-            {/* <div className="ml-[90px] mt-[20px] h-[150px] w-[500px] border p-2">
-                <div>Trip Types</div>
-                <div>
-                <div className="flex">
-                <img className="object-contain h-5 w-5" src="./rockfish.png" alt="rockfish"></img>
 
-                </div>
-                <img className="object-contain h-5 w-5" src="./Halibut.webp" alt="halibut"></img>
-                <img className="object-contain h-5 w-5" src="./tuna.jpeg" alt="tuna"></img>
-                <img className="object-contain h-5 w-5" src="./sunset.png" alt="halibut"></img>
-                </div>
-
-            </div> */}
             <div className="flex justify-center gap-5 items-center">
-                <div className="calendar-box w-[650px] h-[400px]">
+                <div className="calendar-box w-[710px] h-[400px]">
                     <div className="flex gap-5 pb-2">
                         <div className="font-semibold">{months[today.month()]}, {today.year()}</div>
                         <div className="flex items-center gap-5">
@@ -67,9 +74,9 @@ const Calendar = () => {
 
                     <div className="w-full h-full grid grid-cols-7">
                         {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
+                            const dateBookings = bookings[date.format('YYYY-MM-DD')] || [];
                             return (
-                                <div key={index} className="numbers-box h-full text-sm border grid hover:bg-gray-100 transition-all cursor-pointer"
-
+                                <div key={index} className="calendar-small-box h-full text-sm border hover:bg-gray-100 transition-all cursor-pointer"
                                     onClick={() => { handleDateClick(date) }}>
                                     <div
                                         className={cn(
@@ -80,14 +87,27 @@ const Calendar = () => {
                                         )}
                                     >{date.date()}
                                     </div>
+                                    <div className="flex flex-col">
+                                        {dateBookings.length > 0 && (
+                                            dateBookings.map(booking => (
+                                                <div key={booking._id}>
+                                                    {booking.tripType === 'tuna' && (
+                                                        <div className="flex">
+                                                            <img className="object-contain h-5 w-5" src="./tuna.jpeg" alt="tuna" />
+                                                            <p>{booking.lastName} - full boat</p>
+                                                        </div>
+                                                    )}
+                                                    {booking.tripType === 'rockfish' && (
+                                                        <div className="flex">
+                                                            <img className="object-contain h-5 w-5" src="./rockfish.png" alt="rockfish" />
+                                                            <p>{booking.lastName} - full boat</p>
+                                                        </div>
+                                                    )}
 
-                                    {/* <div className="flex">
-                                <img className="object-contain h-5 w-5" src="./rockfish.png" alt="rockfish"></img>
-                                <img className="object-contain h-5 w-5" src="./Halibut.webp" alt="halibut"></img>
-                                <img className="object-contain h-5 w-5" src="./tuna.jpeg" alt="tuna"></img>
-                                <img className="object-contain h-5 w-5" src="./sunset.png" alt="halibut"></img>
-                                </div> */}
-
+                                                </div>
+                                            ))
+                                        )}
+                                    </div>
                                 </div>
                             );
                         })}
