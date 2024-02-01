@@ -16,27 +16,33 @@ export default function Home() {
   return (
     <div className="flex flex-col h-full w-full home">
       {/* Top Background picture - might consider change to carousel */}
-      <div className="relative flex flex-col h-72 bgContainer"   >
+
+
+      <div className="relative flex flex-grow flex-col h-72 bgContainer"   >
         <div className="h-full w-full bg-center bg-cover bg-no-repeat" style={{ backgroundImage: `url(${bg})` }} >  
         </div>
         
-        <div className="absolute bottom-20 left-0 right-0"> 
-          <BookButton />
-        </div>
+        {/* <div className="absolute bottom-20 left-0 right-0"> 
+        </div> */}
       </div>
-      {/* Mission statement section - need to fix the width of inner text */}
-      <div className="flex flex-col items-center justify-center h-30 w-full bg-vuejs-300 missionContainer border-4 border-red-400">
-        <div className="flex flex-col items-center justify-center h-26 w-full border-4 border-orange-300" >
-          <article className="flex flex-col h-30 w-full items-center border-4 border-pink-500 prose">
-            <p className="font-bold text-2xl text-yellow-500"> Cod Mountain Fish Co.! </p>
-            <p className="text-white mb-2">Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. 
-            Our dedicated crew is here to ensure that your time on the water is not only productive but also enjoyable and filled with excitement.
-            </p>
 
+      {/* Mission statement section - need to fix the width of inner text */}
+      <div className="flex flex-grow h-30 w-full bg-vuejs-300 missionContainer">
+        <div className="p-8 flex flex-col flex-grow items-center justify-center h-26 mx-auto">   
+          <article className="flex flex-col h-30 w-11/12 md:w-3/4 lg:w-1/2 items-center p-1">
+            <h1 className="font-bold text-2xl text-yellow-500">Cod Mountain Fish Co.!</h1>
+            <p className="text-white overflow-ellipsis overflow-hidden flex-grow m-4">
+              Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. Our dedicated crew is here to ensure that 
+              your time on the water is not only productive but also enjoyable and filled with excitement.Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. Our dedicated crew is here to ensure that 
+              your time on the water is not only productive but also enjoyable and filled with excitement. 
+            </p>
           </article>  
+
           <BookButton />
         </div>
+
       </div>
+
 
       {/* Trip Card - need to link */}
       <div>
