@@ -12,6 +12,8 @@ from flask_pymongo import PyMongo
 from .config import Config
 from pymongo.server_api import ServerApi
 # Api routes
+from .api.example_routes import example_routes
+from .api.fish_report_routes import fish_report_routes
 from .api.auth_routes import auth_routes  # not implemented yet
 from .api.user_routes import user_routes
 from .api.date_routes import date_routes
@@ -26,10 +28,21 @@ login.login_view = 'auth.unauthorized'
 
 # Tell flask about our app extension
 app.config.from_object(Config)
+app.register_blueprint(example_routes, url_prefix='/api/example')
+# test the environmental variable
+print("===========")
+mongo_uri = os.environ.get('MONGO_URI')
+print(f"MONGO_URI: {mongo_uri}")
+print("===========")
+# connection to DB
+# db = PyMongo(app)
+
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(date_routes, url_prefix='/api/date')
 app.register_blueprint(review_routes, url_prefix='/api/review')
+app.register_blueprint(fish_report_routes, url_prefix='/api/fish_report')
+
 app.register_blueprint(booking_routes, url_prefix='/api/booking')
 # Application Security
 CORS(app)

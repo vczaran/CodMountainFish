@@ -10,6 +10,7 @@ class CRUD:
 
         collection = db.db[Table]
         result = collection.insert_one(self.__dict__)
+        print("SELF ----->", self.__dict__)
 
         if result:
             return {'Message': f' Item id {str(result.inserted_id)} has been saved in {Table} successfully', "id": str(result.inserted_id)}
