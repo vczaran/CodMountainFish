@@ -12,11 +12,16 @@ const Calendar = () => {
     const [today, setToday] = useState(currentDate);
     const [selectedDate, setSelectedDate] = useState(currentDate);
     const [bookings, setBookings] = useState({});
+    const [currentDayBookings, setCurrentDayBookings] = useState([]);
 
 
+    useEffect(() => {
+        setCurrentDayBookings(bookings[selectedDate.format('YYYY-MM-DD')] || []);
+    }, [bookings, selectedDate]);
 
     const handleDateClick = (date) => {
         setSelectedDate(date);
+        // setCurrentDayBookings(bookings[date.format('YYYY-MM-DD')] || []);
     }
 
     useEffect(() => {
@@ -34,15 +39,40 @@ const Calendar = () => {
                     return acc;
                 }, {});
                 setBookings(bookingsByDate);
+                // setCurrentDayBookings(bookingsByDate[selectedDate.format('YYYY-MM-DD')] || []);
+
             } catch (error) {
                 console.error('Failed to fetch bookings:', error);
             }
         };
-
         fetchBookings();
     }, []);
 
+
+
     console.log("bookings", bookings)
+    console.log("currentDayBookings", currentDayBookings)
+
+    const remainingSeats = () => {
+    const totalSeats = 6;
+    let remainingSeatsAM = totalSeats;
+    let remainingSeatsPM = totalSeats;
+
+    currentDayBookings.forEach(booking => {
+        if (booking.tripType === 'tuna') {
+            remainingSeatsAM = 0;
+            remainingSeatsPM = 0;
+        } else if (booking.time === 'am') {
+            remainingSeatsAM -= booking.partySize;
+        } else if (booking.time === 'pm') {
+            remainingSeatsPM -= booking.partySize;
+        }
+    });
+
+    return { remainingSeatsAM, remainingSeatsPM };
+
+}
+    console.log("remainingSeats", remainingSeats())
 
     return (
         <div>
@@ -92,27 +122,27 @@ const Calendar = () => {
                                             dateBookings.map(booking => (
                                                 <div key={booking._id}>
                                                     {booking.tripType === 'tuna' && (
-                                                        <div className="flex">
-                                                            <img className="object-contain h-5 w-5" src="./tuna.jpeg" alt="tuna" />
-                                                            <p>{booking.lastName} - full boat</p>
+                                                        <div className="flex items-center">
+                                                            <img className="object-contain h-6 w-6" src="./tuna.jpeg" alt="tuna" />
+                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - full boat</p>
                                                         </div>
                                                     )}
                                                     {booking.tripType === 'rockfish' && (
-                                                        <div className="flex">
-                                                            <img className="object-contain h-5 w-5" src="./rockfish.png" alt="rockfish" />
-                                                            <p>{booking.lastName} - x{booking.partySize}</p>
+                                                        <div className="flex items-center">
+                                                            <img className="object-contain h-6 w-6" src="./rockfish.png" alt="rockfish" />
+                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
                                                         </div>
                                                     )}
                                                     {booking.tripType === 'wildlife' && (
-                                                        <div className="flex">
-                                                            <img className="object-contain h-5 w-5" src="./whale.jpeg" alt="whale" />
-                                                            <p>{booking.lastName} - x{booking.partySize}</p>
+                                                        <div className="flex items-center">
+                                                            <img className="object-contain h-6 w-6" src="./whale.jpeg" alt="whale" />
+                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
                                                         </div>
                                                     )}
                                                     {booking.tripType === 'halibut' && (
-                                                        <div className="flex">
-                                                            <img className="object-contain h-5 w-5" src="./Halibut.webp" alt="halibut" />
-                                                            <p>{booking.lastName} - x{booking.partySize}</p>
+                                                        <div className="flex items-center">
+                                                            <img className="object-contain h-6 w-6" src="./Halibut.webp" alt="halibut" />
+                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
                                                         </div>
                                                     )}
                                                 </div>
