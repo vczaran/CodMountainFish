@@ -25,14 +25,15 @@ export default function CreateReport() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+
+    formData.append("date", form.date);
+    formData.append("image", form.image);
+    formData.append("description", form.description);
+
     fetch("/api/fish_report", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...form,
-      }),
+      body: formData,
     });
   };
 
@@ -55,6 +56,7 @@ export default function CreateReport() {
             onChange={handleImageChange}
             className="hidden"
             ref={inputRef}
+            accept=".png, .jpg, .jpeg"
           />
           <button
             type="button"

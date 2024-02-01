@@ -28,7 +28,6 @@ login.login_view = 'auth.unauthorized'
 # Tell flask about our app extension
 app.config.from_object(Config)
 app.register_blueprint(example_routes, url_prefix='/api/example')
-app.register_blueprint(fish_report_routes, url_prefix='/api/fish_report')
 # test the environmental variable
 print("===========")
 mongo_uri = os.environ.get('MONGO_URI')
@@ -41,6 +40,8 @@ app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(date_routes, url_prefix='/api/date')
 app.register_blueprint(review_routes, url_prefix='/api/review')
+app.register_blueprint(fish_report_routes, url_prefix='/api/fish_report')
+
 # Application Security
 CORS(app)
 

@@ -6,4 +6,4 @@ from wtforms.validators import DataRequired
 class FishReportForm(FlaskForm):
     date = StringField("date")
     description = StringField("description")
-    images = StringField("images")
+    image = FileField("images")
