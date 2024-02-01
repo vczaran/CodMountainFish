@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
+import { useHistory, useNavigate } from "react-router";
 import { FaRegImages } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
 import InputField from "../form-components/InputField";
 import TextBoxField from "../form-components/TextBoxField";
 import Button from "../form-components/Button";
 
-export default function CreateReport() {
+export default function CreateReport({ reports, setReports }) {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     image: null,
     description: "",
@@ -34,6 +36,10 @@ export default function CreateReport() {
     fetch("/api/fish_report", {
       method: "POST",
       body: formData,
+    }).then(() => {
+      // This is a hacky way to refresh the page
+      navigate("/fish-report");
+      window.location.reload();
     });
   };
 
