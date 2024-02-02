@@ -154,8 +154,6 @@ const Calendar = () => {
                         <div className="text-xs text-red-500">(full boat)</div>
                         </>
                     ) : remainingSeatsAM === 0 ?(
-
-
                             <>
                             <div className="flex">
                             <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
@@ -179,7 +177,37 @@ const Calendar = () => {
                     )}
                 </div>
             )}
+
             {pmTripType && (
+                <div>
+                    {remainingSeatsAM !== 0 && remainingSeatsPM === 0 && (
+                        <div className="text-xs mb-2 text-green-500">(am open)</div>
+                    )}
+                    { remainingSeatsPM === 0 ?(
+                            <>
+                            <div className="flex">
+                            <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
+                             <p className="ml-1 text-xs flex items-center">- 2pm</p>
+                            </div>
+                        <div className="text-xs  text-red-500">(full boat)</div>
+                            </>
+
+                    ) : (
+                        <div className="flex">
+                        <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
+                         <p className="ml-1 text-xs flex items-center">- 2pm</p>
+                        </div>
+                    )
+                    }
+                    {pmBookings.map(booking => (
+                        <p className="text-xs flex" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
+                    ))}
+
+                </div>
+            )}
+
+            {/* {pmTripType && (
+
                 <div>
                     <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
                     <p className="text-xs">PM {remainingSeatsPM === 0 && ' - full boat'}</p>
@@ -187,7 +215,7 @@ const Calendar = () => {
                         <p className="text-xs" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
                     ))}
                 </div>
-            )}
+            )} */}
         </div>
     );
 })}
