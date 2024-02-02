@@ -29,36 +29,31 @@ export default function About() {
         </div>
         <div className="m-10 space-y-4">
           <h1 className="text-amber-500 text-xl m-5 font-bold">Trip Types</h1>
-          <p> We offer a range of exciting trips tailored to different fishing preferences. Below are the trip types we offer, along with the details and rates:</p>
-          <h3 className="underline">Nearshore/Deeper Nearshore Trip:</h3>
+          <p> We offer a range of exciting trips tailored to different fishing preferences. Below are the trip types we offer, along with the details and rates. AM trips leave at 6am, PM trips at 3pm:</p>
+          <h3 className="underline">Rockfish Trip (AM or PM):</h3>
           <ul className="list-disc ml-5">
-            <li>Target Species: Rockfish, with chances of catching patrale sole and the occasional lingcod.</li>
-            <li>Bag Limit: 10 rockfish per fishing license, with sub-species limits within the general bag limit.</li>
-            <li>Trip Focus: We focus solely on rockfish species and go wherever the best quality is.</li>
+            <li>Targeting the best-available rockfish species, our expertise ensures you fish in the most productive areas, 
+              including deepwater rock fishing zones.</li>
+            <li>Duration: Up to 6 hours.</li>
+            <li>Price: $300 per person.</li>
+          </ul>
+          <h3 className="underline">Halibut Trip (AM or PM):</h3>
+          <ul className="list-disc ml-5">
+            <li>Our focused approach in the coastal waters maximizes your chances of catching halibut, a highly sought-after species.</li>
+            <li>Duration: Up to 6 hours.</li>
+            <li>Price: $300 per person.</li>
+          </ul>
+          <h3 className="underline">Tuna Charter (Seasonal,  All Day):</h3>
+          <ul className="list-disc ml-5">
+            <li>A specialized full-day trip to prime tuna fishing locations during peak season. Our knowledge guides us to the ideal spots for tuna fishing.</li>
+            <li>Duration: Up to 12 hours.</li>
+            <li>Price: $2500 for the boat, accommodating any party size up to 6 guests.</li>
+          </ul>
+          <h3 className="underline">Wildlife Tour (AM or PM):</h3>
+          <ul className="list-disc ml-5">
+            <li>An tour along the Santa Cruz coastline, offering views of diverse marine life in their natural setting.</li>
+            <li>Duration: 4 hours.</li>
             <li>Price: $250 per person.</li>
-            <li>Capacity: Maximum of 4 individuals.</li>
-          </ul>
-          <h3 className="underline">Long Range Trip:</h3>
-          <ul className="list-disc ml-5">
-            <li>Target Species: Lingcod and rockfish.</li>
-            <li>Trip Details: We travel north to target lingcod and fill our rockfish limits.</li>
-            <li>Duration: Longer trip with more travel time and fuel consumption.</li>
-            <li>Price: $350 per person.</li>
-          </ul>
-          <h3 className="underline">Halibut Trip:</h3>
-          <ul className="list-disc ml-5">
-            <li>Target Species: Halibut, occasional rockfish kept if encountered.</li>
-            <li>Trip Focus: We concentrate on halibut fishing, dedicating our efforts and time to maximize your chances of catching these prized fish.</li>
-            <li>Fishing Grounds: Shallow water areas away from our regular fishing spots.</li>
-            <li>Price: $250 per person.</li>
-          </ul>
-          <h3 className="underline">Tuna Charter:</h3>
-          <ul className="list-disc ml-5">
-            <li>Target Species: Bluefin tuna, with occasional bonito as welcomed bycatch.</li>
-            <li>Season: Late summer/early fall.</li>
-            <li>Fishing Technique: Trolling.</li>
-            <li>Fuel Consumption: These trips require more fuel than any other.</li>
-            <li>Price: $2500 for the whole boat.</li>
           </ul>
           <Link className=" bg-amber-600 text-white active:bg-amber-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150" to="/availability">Book Now</Link>
         </div>
