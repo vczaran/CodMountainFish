@@ -77,7 +77,7 @@ const Calendar = () => {
     return (
         <div>
 
-            <div className="flex justify-center gap-5 items-center">
+            <div className="flex justify-center gap-5 ">
                 <div className="calendar-box w-[600px] h-[400px]">
                     <div className="flex gap-5 pb-2">
                         <div className="font-semibold">{months[today.month()]}, {today.year()}</div>
@@ -135,7 +135,7 @@ const Calendar = () => {
                                                     )}
                                                     {booking.tripType === 'wildlife' && (
                                                         <div className="flex items-center">
-                                                            <img className="object-contain h-6 w-6" src="./whale.jpeg" alt="whale" />
+                                                            <img className="object-contain h-6 w-6" src="./whale.jpg" alt="whale" />
                                                             <p className="text-xs">{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
                                                         </div>
                                                     )}
@@ -155,52 +155,83 @@ const Calendar = () => {
                     </div>
                 </div>
 
-                {/* <div className="side-details-box w-[300px] h-[400px] border p-5 mt-[110px]">
-                    <div className="font-semibold">
-                        {selectedDate.toDate().toDateString()}
-                    </div>
-                    <p>Other info trip info????</p>
-                </div> */}
-                <div className="side-details-box w-[310px] h-[400px] border p-5 mt-[110px]">
+                <div className="side-details-box w-[310px] h-[auto] border p-5">
                     <div className="font-semibold">
                         {selectedDate.toDate().toDateString()}
                     </div>
                     {currentDayBookings.some(booking => booking.tripType === 'tuna') ? (
                         <>
-                            <div className="flex">
+                            <div className="border rounded-md p-2 mt-2">
+                            <div className="flex items-center gap-2">
                             <img src="./tuna.jpeg" alt="tuna" className="h-10 w-10 object-contain"/>
                             <p>Tuna Trip</p>
                             </div>
-                            <div className="flex">
-                            <button className="bg-gray-200 rounded-full px-2 py-1 inline-block">6 a.m.</button>
-                            <p>(0 seats available)</p>
+
+                            <div className="flex items-center gap-2 mb-2">
+                            <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                            <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
+                            <p className="text-xs">(0 seats left)</p>
                             </div>
-                            <div className="bg-gray-200 rounded-full px-2 py-1 inline-block">full boat</div>
+                        </div>
                         </>
                     ) : currentDayBookings.length === 0 ? (
-                        <>
-                        <div className="border rounded-md p-2">
+                        <div className="flex-col">
+                        <div className="border rounded-md p-2 mt-3">
                             <div className="flex items-center gap-2">
                             <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain"/>
                             <p>Rockfish Trip</p>
                             </div>
 
-                            <div className="flex items-center gap-2 mb-1">
+                            <div className="flex items-center gap-2 mb-2 text-xs">
                             <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                             <p className="text-xs">(6 seats left!)</p>
                             </div>
 
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 text-xs">
                             <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                             <p className="text-xs">(6 seats left!)</p>
                             </div>
                         </div>
-                            <img src="./halibut.jpeg" alt="halibut" />
+                        <div className="border rounded-md p-2 mt-3">
+                            <div className="flex items-center gap-2">
+                            <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain"/>
                             <p>Halibut Trip</p>
+                            </div>
+
+                            <div className="flex items-center gap-2 mb-2 text-xs">
+                            <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                            <p className="text-xs">(6 seats left!)</p>
+                            </div>
+
+                            <div className="flex items-center gap-2 text-xs">
+                            <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
+                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                            <p className="text-xs">(6 seats left!)</p>
+                            </div>
+                        </div>
+                        <div className="border rounded-md p-2 mt-3">
+                            <div className="flex items-center gap-2">
+                            <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain"/>
+                            <p>Wildlife Tour</p>
+                            </div>
+
+                            <div className="flex items-center gap-2 mb-2 text-xs">
+                            <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                            <p className="text-xs">(6 seats left!)</p>
+                            </div>
+
+                            <div className="flex items-center gap-2 text-xs">
+                            <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
+                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                            <p className="text-xs">(6 seats left!)</p>
+                            </div>
+                        </div>
                             {/* Add similar buttons and text for the Halibut and Wildlife trips */}
-                        </>
+                        </div>
                     ) : (
                         <></>
                         // Add your condition and rendering for a trip with a morning charter here
