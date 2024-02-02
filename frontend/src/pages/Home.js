@@ -12,18 +12,16 @@ export default function Home() {
 
 
 
-
-
   return (
     <div className="flex flex-col h-full w-full home">
       {/* Top Background picture - might consider change to carousel */}
+
 
       <div className="relative flex flex-grow flex-col h-72 bgContainer"   >
         <div className="h-full w-full bg-center bg-cover bg-no-repeat" alt="home-top-boat" style={{ backgroundImage: `url(${bg})` }} >  
         </div>
         
-        {/* <div className="absolute bottom-20 left-0 right-0"> 
-        </div> */}
+  
       </div>
 
       {/* Mission statement section */}
