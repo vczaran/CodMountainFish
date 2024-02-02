@@ -11,7 +11,7 @@ const Trip = () => {
   return (
 
 
-    <div className="p-8 grid gird-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 ">
+    <div className="px-20 py-6 grid gird-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 ">
 
         {dataTrips.map((trip) => (
             <div key={trip.id} className='flex flex-col border-2 rounded-xl mx-auto overflow-hidden group hover:bg-white hover:shadow-xl'> 

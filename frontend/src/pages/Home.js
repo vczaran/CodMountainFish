@@ -26,12 +26,14 @@ export default function Home() {
         </div> */}
       </div>
 
-      {/* Mission statement section - need to fix the width of inner text */}
-      <div className="flex flex-grow h-30 w-full bg-vuejs-300 missionContainer">
+      {/* Mission statement section */}
+      <div className="flex flex-grow h-26 w-full bg-vuejs-300 missionContainer">
+
+   
         <div className="p-6 flex flex-col flex-grow items-center justify-center h-26 mx-auto">   
-          <article className="flex flex-col h-30 w-11/12 md:w-3/4 lg:w-1/2 items-center">
-            <h1 className="font-bold text-2xl text-yellow-500 antialiased">Cod Mountain Fish Co.!</h1>
-            <p className="text-white overflow-ellipsis overflow-hidden flex-grow m-4 antialiased ">
+          <article className="flex flex-col h-30 w-11/12 md:w-3/4 lg:w-4/5 items-center">
+            <h1 className="font-bold text-2xl mb-4 text-yellow-500 antialiased">Cod Mountain Fish Co.!</h1>
+            <p className="block mb-6 font-sans text-base antialiased font-normal leading-relaxed text-white ">
               Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. Our dedicated crew is here to ensure that 
               your time on the water is not only productive but also enjoyable and filled with excitement.Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. Our dedicated crew is here to ensure that 
               your time on the water is not only productive but also enjoyable and filled with excitement. 
@@ -54,7 +56,7 @@ export default function Home() {
       <About />
 
 
-      <div className="h-90 w-full flex flex-col justify-center items-center about" > 
+      {/* <div className="h-90 w-full flex flex-col justify-center items-center about" > 
         <div className="h-52 w-full p-8 bg-vuejs-300 flex flex-row flex-grow items-center space-x-4 about-general">
           <div className="h-48 w-96 bg-purple-200 flex-grow vidoe" >
           <div className="rounded-md h-48 w-96 bg-center bg-cover bg-no-repeat flex-grow " 
@@ -117,23 +119,23 @@ export default function Home() {
         </div>
 
 
-      </div>
+      </div> */}
 
       {/* bottom bg */}
 
-      <div className="flex flex-col h-80 bgContainer"   >
+      {/* <div className="flex flex-col h-80 bgContainer"   >
         <div className="h-full w-full bg-center bg-cover bg-no-repeat" style={{ backgroundImage: `url(${fishing})` }} >  
         </div>
-      </div>
+      </div> */}
 
 
       {/* customer review */}
-      <div>
-        <h1 className="font-bold text-2xl p-2"> Hear from our awesome users! </h1>
+      {/* <div>
+        <h1 className="font-bold text-2xl p-4"> Hear from our awesome users! </h1>
 
-      </div>
+      </div> */}
 
-      <div className="p-6">
+      <div className="px-16 py-6">
         <Review />
 
       </div>
