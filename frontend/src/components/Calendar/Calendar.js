@@ -403,7 +403,7 @@ const Calendar = () => {
 
 
                                 </>
-                            ) : amTripType && pmTripType ? (
+                            ) : amTripType && pmTripType && amTripType === pmTripType ? (
                                 <>
                                 <div className="border rounded-md p-2 mt-3">
                                         <div className="flex items-center gap-2">
@@ -418,11 +418,24 @@ const Calendar = () => {
                                         <div className="flex items-center gap-2 text-xs">
                                             <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
                                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">(6 seats left!)</p>
+                                            <p className="text-xs">({remainingSeatsPM} seats left!)</p>
                                         </div>
+                                </div>
+                                </>
+                            ) : amTripType && pmTripType && amTripType !== pmTripType ? (
+                                <>
+                                 <div className="border rounded-md p-2 mt-3">
+                                        <div className="flex items-center gap-2">
+                                            <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            <p>{amTripType} Trip</p>
                                         </div>
-
-                                        <div className="border rounded-md p-2 mt-3">
+                                        <div className="flex items-center gap-2 mb-2 text-xs">
+                                            <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                            <p className="text-xs">({remainingSeatsAM} seats left!)</p>
+                                        </div>
+                                </div>
+                                <div className="border rounded-md p-2 mt-3">
                                         <div className="flex items-center gap-2">
                                             <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
                                             <p>{pmTripType} Trip</p>
@@ -432,15 +445,10 @@ const Calendar = () => {
                                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                             <p className="text-xs">({remainingSeatsPM} seats left!)</p>
                                         </div>
-                                        <div className="flex items-center gap-2 text-xs">
-                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</button>
-                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">(6 seats left!)</p>
-                                        </div>
-                                        </div>
-
+                                </div>
                                 </>
-                            ) : (
+                            )
+                            :(
                                 <></>
                             )}
 
