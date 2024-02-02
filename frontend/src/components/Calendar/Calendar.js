@@ -52,6 +52,7 @@ const Calendar = () => {
 
     console.log("bookings", bookings)
     console.log("currentDayBookings", currentDayBookings)
+    console.log("selectedDate", selectedDate)
 
     const remainingSeats = () => {
         const totalSeats = 6;
@@ -174,7 +175,7 @@ const Calendar = () => {
                             </div>
                         </div>
                         </>
-                    ) : currentDayBookings.length === 0 ? (
+                    ) : currentDayBookings.length === 0 && !selectedDate.isBefore(dayjs().startOf('day')) ? (
                         <div className="flex-col">
                         <div className="border rounded-md p-2 mt-3">
                             <div className="flex items-center gap-2">
@@ -230,10 +231,11 @@ const Calendar = () => {
                             <p className="text-xs">(6 seats left!)</p>
                             </div>
                         </div>
-                            {/* Add similar buttons and text for the Halibut and Wildlife trips */}
+
                         </div>
                     ) : (
-                        <></>
+                        <>
+                        </>
                         // Add your condition and rendering for a trip with a morning charter here
                     )}
                 </div>
