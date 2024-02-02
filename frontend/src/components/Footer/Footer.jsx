@@ -15,9 +15,10 @@ export default function Footer() {
     return (
         <footer className="flex justify-evenly bg-teal-400 inset-x-0 bottom-0">
             <img className="object-contain mt-5 h-20 w-20" src="./logo.png" alt="Logo"></img>
-            <Link to="/about">About Us</Link>
-            <Link to="/contact">Contact Us</Link>
-            <Link to="/trip-info">
+            <Link className="hover:underline" to="/about">About Us</Link>
+            <Link className="hover:underline" to="/contact">Contact Us</Link>
+            <Link className="hover:underline" to="/faq">FAQs</Link>
+            <Link className="hover:underline" to="/trip-info">
             {/* <Map location={location} zoomLevel={17}/> */}
             <img className="w-[250px] h-[150px]" src="./map.png" alt="map"></img>
             </Link>

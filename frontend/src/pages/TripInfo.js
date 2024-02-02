@@ -1,5 +1,6 @@
 import React from 'react';
 import Map from '../components/Map/Map';
+import { Link } from 'react-router-dom';
 
 export default function TripInfo() {
   const location = {
@@ -67,6 +68,7 @@ export default function TripInfo() {
       <h1 className='font-bold'>Cancellation Policy:</h1>
       <p> If you need to cancel or reschedule your trip, please refer to our Terms and Conditions for the cancellation policy and any 
         applicable fees. We understand that unforeseen circumstances may arise, and we will do our best to accommodate changes whenever possible.</p>
+      <Link className="underline font-bold" to="/faq">FAQs</Link>
     </div>
   )
 }
