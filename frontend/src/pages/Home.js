@@ -46,93 +46,24 @@ export default function Home() {
       </div>
 
 
-      {/* Trip Card - need to link */}
+      {/* Trip Card*/}
       <div>
         <Trip />       
       </div>
 
-      {/* About sections - need to add video, link to about page, fix text width */}
+      {/* About sections */}
 
-      <About />
-
-
-      {/* <div className="h-90 w-full flex flex-col justify-center items-center about" > 
-        <div className="h-52 w-full p-8 bg-vuejs-300 flex flex-row flex-grow items-center space-x-4 about-general">
-          <div className="h-48 w-96 bg-purple-200 flex-grow vidoe" >
-          <div className="rounded-md h-48 w-96 bg-center bg-cover bg-no-repeat flex-grow " 
-               style={{ backgroundImage: `url(${bg})` }} >  
-            </div>
-
-          </div>
-
-          <div className="h-48 w-full ">
-            <h1 className="text-amber-500 text-xl font-bold mb-5 ">About US</h1>
-              <p className="text overflow-ellipsis overflow-hidden flex-grow">   
-                At Cod Mountain Fish Co., we prioritize sustainability, ethical fishing practices, and responsible charter boat operations. 
-                We firmly believe that protecting our local waters and the fish species we target is of utmost importance. Through our daily operations, we strive to set an example of responsible 
-                practices and educate our customers about the significance of sustainable fishing. We are proud to play a role in preserving our precious marine ecosystem for future generations.
-              </p>
-              <p className="font-bold underline  mt-2"> Read More</p>
-
-          </div>
-        </div>
-
-        <div className="h-52 w-full p-24  flex flex-row items-center space-x-4 about-captain">
-          <div className="h-48 w-100">
-            <h1 className="text-amber-500 text-xl font-bold mb-5">The Captain </h1>
-              <p className="h-auto w-auto text">   Introducing the Sea Marie, the pride and joy of Cod Mountain Fish Co. This remarkable fishing vessel combines power, comfort, and functionality 
-              to deliver an extraordinary fishing experience in the beautiful waters of Santa Cruz. Powered by twin Yamaha 150hp engines, the Sea Marie is ready to take you on thrilling fishing 
-              adventures with ease and reliability.
-              </p>
-              <p className="font-bold underline  mt-2"> Read More</p>
-
-          </div>
-
-          <div className="h-48 w-96 bg-purple-200 vidoe" >
-          <div className="rounded-md h-48 w-96 bg-center bg-cover bg-no-repeat " 
-               style={{ backgroundImage: `url(${bg})` }} >  
-            </div>
-
-          </div>
+      <div className=" mb-2 max-w-100% ">
+        <About />
+      </div>
 
 
-        </div>
-
-        <div className="h-52 w-full p-24 bg-vuejs-300 flex flex-row items-center space-x-4 about-general">
-          <div className="h-48 w-96 bg-purple-200 vidoe" >
-          <div className="rounded-md h-48 w-96 bg-center bg-cover bg-no-repeat " 
-               style={{ backgroundImage: `url(${bg})` }} >  
-            </div>
-
-          </div>
-
-          <div className="h-48 w-100">
-            <h1 className="text-amber-500 text-xl font-bold mb-5">The Boat</h1>
-              <p className="h-auto w-auto text">   
-                At Cod Mountain Fish Co., we prioritize sustainability, ethical fishing practices, and responsible charter boat operations. 
-                We firmly believe that protecting our local waters and the fish species we target is of utmost importance. Through our daily operations, we strive to set an example of responsible 
-                practices and educate our customers about the significance of sustainable fishing. We are proud to play a role in preserving our precious marine ecosystem for future generations.
-              </p>
-              <p className="font-bold underline  mt-2"> Read More</p>
-
-          </div>
-        </div>
-
-
-      </div> */}
-
-      {/* bottom bg */}
-
-      {/* <div className="flex flex-col h-80 bgContainer"   >
-        <div className="h-full w-full bg-center bg-cover bg-no-repeat" style={{ backgroundImage: `url(${fishing})` }} >  
-        </div>
-      </div> */}
 
 
       {/* customer review */}
+
       {/* <div>
         <h1 className="font-bold text-2xl p-4"> Hear from our awesome users! </h1>
-
       </div> */}
 
       <div className="px-16 py-6">

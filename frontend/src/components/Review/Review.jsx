@@ -73,10 +73,8 @@ const Review = () => {
 
                 }`
             }
-
-
         </style>
-        <div className="mx-auto">
+        {/* <div className="mx-auto"> */}
             <Slider {...settings}>
                 {dataReviews.map((review, index) => (
                     <div key={index} className="p-2 h-auto min-h-[15rem] flex flex-col justify-between overflow-hidden rounded-lg shadow-xl review-card">
@@ -87,7 +85,7 @@ const Review = () => {
 
                 ))}
             </Slider>
-        </div>
+        {/* </div> */}
     
     
     </>
