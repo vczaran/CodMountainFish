@@ -6,6 +6,7 @@ import moment from 'moment';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 
+
 const Calendar = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const currentDate = dayjs();
@@ -21,7 +22,6 @@ const Calendar = () => {
 
     const handleDateClick = (date) => {
         setSelectedDate(date);
-        // setCurrentDayBookings(bookings[date.format('YYYY-MM-DD')] || []);
     }
 
     useEffect(() => {
@@ -39,8 +39,6 @@ const Calendar = () => {
                     return acc;
                 }, {});
                 setBookings(bookingsByDate);
-                // setCurrentDayBookings(bookingsByDate[selectedDate.format('YYYY-MM-DD')] || []);
-
             } catch (error) {
                 console.error('Failed to fetch bookings:', error);
             }
@@ -85,6 +83,12 @@ const Calendar = () => {
 
     console.log("amTripType", amTripType)
     console.log("amBookings", amBookings)
+    const tripImages = {
+        'Tuna': './tuna.jpeg',
+        'Rockfish': './rockfish.png',
+        'Wildlife': './whale.jpg',
+        'Halibut': './Halibut.webp'
+    };
 
     return (
         <div>
@@ -116,54 +120,80 @@ const Calendar = () => {
 
                     <div className="w-full h-full grid grid-cols-7">
                         {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
-                            const dateBookings = bookings[date.format('YYYY-MM-DD')] || [];
-                            return (
-                                <div key={index} className="calendar-small-box h-full text-sm border hover:bg-gray-100 transition-all cursor-pointer"
-                                    onClick={() => { handleDateClick(date) }}>
-                                    <div
-                                        className={cn(
-                                            currentMonth ? "" : "text-gray-400",
-                                            today ? "bg-red-600 text-white" : "",
-                                            selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white" : "",
-                                            "h-6 w-6 grid place-content-center rounded-full hover:bg-black hover:text-white transition-all cursor-pointer select-none"
-                                        )}
-                                    >{date.date()}
-                                    </div>
-                                    <div className="flex flex-col">
-                                        {dateBookings.length > 0 && (
-                                            dateBookings.map(booking => (
-                                                <div key={booking._id}>
-                                                    {booking.tripType === 'Tuna' && (
-                                                        <div className="flex items-center">
-                                                            <img className="object-contain h-6 w-6" src="./tuna.jpeg" alt="tuna" />
-                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - full boat</p>
-                                                        </div>
-                                                    )}
-                                                    {booking.tripType === 'Rockfish' && (
-                                                        <div className="flex items-center">
-                                                            <img className="object-contain h-6 w-6" src="./rockfish.png" alt="rockfish" />
-                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
-                                                        </div>
-                                                    )}
-                                                    {booking.tripType === 'Wildlife' && (
-                                                        <div className="flex items-center">
-                                                            <img className="object-contain h-6 w-6" src="./whale.jpg" alt="whale" />
-                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
-                                                        </div>
-                                                    )}
-                                                    {booking.tripType === 'Halibut' && (
-                                                        <div className="flex items-center">
-                                                            <img className="object-contain h-6 w-6" src="./Halibut.webp" alt="halibut" />
-                                                            <p className="text-xs">{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            ))
-                                        )}
-                                    </div>
-                                </div>
-                            );
-                        })}
+    const dateBookings = bookings[date.format('YYYY-MM-DD')] || [];
+    const amBookings = dateBookings.filter(booking => booking.time === 'am');
+    const pmBookings = dateBookings.filter(booking => booking.time === 'pm');
+    const amTripType = amBookings.length > 0 ? amBookings[0].tripType : null;
+    const pmTripType = pmBookings.length > 0 ? pmBookings[0].tripType : null;
+
+    const remainingSeatsAM = amBookings.reduce((total, booking) => total - booking.partySize, 6);
+    const remainingSeatsPM = pmBookings.reduce((total, booking) => total - booking.partySize, 6);
+
+    return (
+        <div key={index} className="calendar-small-box h-full text-sm border hover:bg-gray-100 transition-all cursor-pointer"
+            onClick={() => { handleDateClick(date) }}>
+            <div
+                className={cn(
+                    currentMonth ? "" : "text-gray-400",
+                    today ? "text-white bg-cyan-800" : "",
+                    selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white" : "",
+                    "h-6 w-6 grid place-content-center rounded-full hover:bg-black hover:text-white transition-all cursor-pointer select-none"
+                )}
+            >{date.date()}
+            </div>
+            {amTripType && (
+                <div>
+                    {/* <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} /> */}
+
+                    { amTripType === 'Tuna' ? (
+                        <>
+                        <div className="flex">
+                        <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
+                        <p className="ml-1 text-xs flex items-center">- 6am</p>
+                        </div>
+                        <div className="text-xs text-red-500">(full boat)</div>
+                        </>
+                    ) : remainingSeatsAM === 0 ?(
+
+
+                            <>
+                            <div className="flex">
+                            <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
+                             <p className="ml-1 text-xs flex items-center">- 6am</p>
+                            </div>
+                        <div className="text-xs  text-red-500">(full boat)</div>
+                            </>
+
+                    ) : (
+                        <div className="flex">
+                        <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
+                         <p className="ml-1 text-xs flex items-center">- 6am</p>
+                        </div>
+                    )
+                    }
+                    {amBookings.map(booking => (
+                        <p className="text-xs flex" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
+                    ))}
+                    {amTripType !== 'Tuna' && remainingSeatsPM !== 0 && remainingSeatsAM === 0 && (
+                        <div className="text-xs mt-2 text-green-500">(pm open)</div>
+                    )}
+                </div>
+            )}
+            {pmTripType && (
+                <div>
+                    <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
+                    <p className="text-xs">PM {remainingSeatsPM === 0 && ' - full boat'}</p>
+                    {pmBookings.map(booking => (
+                        <p className="text-xs" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+})}
+
+
+
                     </div>
                 </div>
 
@@ -171,7 +201,10 @@ const Calendar = () => {
                     <div className="font-semibold">
                         {selectedDate.toDate().toDateString()}
                     </div>
-                    {currentDayBookings.some(booking => booking.tripType === 'Tuna') ? (
+                    {selectedDate.isBefore(dayjs().startOf('day')) ? (
+                        <>
+                        </>
+                    ) : currentDayBookings.some(booking => booking.tripType === 'Tuna') ? (
                         <>
                             <div className="border rounded-md p-2 mt-2">
                                 <div className="flex items-center gap-2">
@@ -180,13 +213,13 @@ const Calendar = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                     <p className="text-xs">(0 seats left)</p>
                                 </div>
                             </div>
                         </>
-                    ) : currentDayBookings.length === 0 && !selectedDate.isBefore(dayjs().startOf('day')) ? (
+                    ) : currentDayBookings.length === 0 ? (
                         <div className="flex-col">
                             <div className="border rounded-md p-2 mt-3">
                                 <div className="flex items-center gap-2">
@@ -195,13 +228,13 @@ const Calendar = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 text-xs">
-                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
+                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
@@ -213,13 +246,13 @@ const Calendar = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 text-xs">
-                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
+                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
@@ -231,13 +264,13 @@ const Calendar = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 text-xs">
-                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
+                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
@@ -249,7 +282,7 @@ const Calendar = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
+                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
@@ -264,76 +297,85 @@ const Calendar = () => {
                                 <>
                                     <div className="border rounded-md p-2 mt-3">
                                         <div className="flex items-center gap-2">
-                                            <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            {amTripType === "Rockfish" ? (
+                                                <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            ) : amTripType === "Halibut" ? (
+                                                <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
+                                            ) : amTripType === "Wildlife" ? (
+                                                <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
+                                            ) : (
+                                                <></>
+                                            )
+                                            }
                                             <p>{amTripType} Trip</p>
                                         </div>
                                         {
                                             remainingSeatsAM === 0 ? (
                                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
-                                    <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
-                                    <p className="text-xs">(0 seats left)</p>
-                                </div>
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
+                                                    <p className="text-xs">(0 seats left)</p>
+                                                </div>
                                             ) : (
                                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                            <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
-                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">({remainingSeatsAM} seats left!)</p>
-                                            </div>
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">({remainingSeatsAM} seats left!)</p>
+                                                </div>
                                             )
                                         }
 
                                         <div className="flex items-center gap-2 text-xs">
-                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
+                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
                                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                             <p className="text-xs">(6 seats left!)</p>
                                         </div>
-                                        </div>
-                                        {
-                                            amTripType !== "Rockfish" && (
-                                                <div className="border rounded-md p-2 mt-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
-                                                        <p>Rockfish Trip</p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-xs">
-                                                        <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
-                                                        <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                                        <p className="text-xs">(6 seats left!)</p>
-                                                    </div>
+                                    </div>
+                                    {
+                                        amTripType !== "Rockfish" && (
+                                            <div className="border rounded-md p-2 mt-3">
+                                                <div className="flex items-center gap-2">
+                                                    <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                                    <p>Rockfish Trip</p>
                                                 </div>
-                                            )
-                                        }
-                                        {
-                                            amTripType !== "Halibut" && (
-                                                <div className="border rounded-md p-2 mt-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
-                                                        <p>Halibut Trip</p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-xs">
-                                                        <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
-                                                        <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                                        <p className="text-xs">(6 seats left!)</p>
-                                                    </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">(6 seats left!)</p>
                                                 </div>
-                                            )
-                                        }
-                                         {
-                                            amTripType !== "Wildlife" && (
-                                                <div className="border rounded-md p-2 mt-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
-                                                        <p>Wildlife Tour</p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-xs">
-                                                        <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
-                                                        <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                                        <p className="text-xs">(6 seats left!)</p>
-                                                    </div>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        amTripType !== "Halibut" && (
+                                            <div className="border rounded-md p-2 mt-3">
+                                                <div className="flex items-center gap-2">
+                                                    <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
+                                                    <p>Halibut Trip</p>
                                                 </div>
-                                            )
-                                        }
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">(6 seats left!)</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        amTripType !== "Wildlife" && (
+                                            <div className="border rounded-md p-2 mt-3">
+                                                <div className="flex items-center gap-2">
+                                                    <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
+                                                    <p>Wildlife Tour</p>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">(6 seats left!)</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
 
 
                                 </>
@@ -341,120 +383,202 @@ const Calendar = () => {
                                 <>
                                     <div className="border rounded-md p-2 mt-3">
                                         <div className="flex items-center gap-2">
-                                            <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            {pmTripType === "Rockfish" ? (
+                                                <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            ) : pmTripType === "Halibut" ? (
+                                                <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
+                                            ) : pmTripType === "Wildlife" ? (
+                                                <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
+                                            ) : (
+                                                <></>
+                                            )
+                                            }
                                             <p>{pmTripType} Trip</p>
                                         </div>
-                                        <div className="flex items-center gap-2 mb-2 text-xs">
-                                            <div className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</div>
-                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">({remainingSeatsPM} seats left!)</p>
-                                        </div>
                                         <div className="flex items-center gap-2 text-xs">
-                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</button>
+                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
                                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                             <p className="text-xs">(6 seats left!)</p>
                                         </div>
-                                        </div>
                                         {
-                                            pmTripType !== "Rockfish" && (
-                                                <div className="border rounded-md p-2 mt-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
-                                                        <p>Rockfish Trip</p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-xs">
-                                                        <button className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</button>
-                                                        <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                                        <p className="text-xs">(6 seats left!)</p>
-                                                    </div>
+                                            remainingSeatsPM === 0 ? (
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
+                                                    <p className="text-xs">(0 seats left)</p>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2 mb-2 text-xs">
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">({remainingSeatsPM} seats left!)</p>
                                                 </div>
                                             )
                                         }
-                                        {
-                                            pmTripType !== "Halibut" && (
-                                                <div className="border rounded-md p-2 mt-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
-                                                        <p>Halibut Trip</p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-xs">
-                                                        <button className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</button>
-                                                        <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                                        <p className="text-xs">(6 seats left!)</p>
-                                                    </div>
+                                    </div>
+                                    {
+                                        pmTripType !== "Rockfish" && (
+                                            <div className="border rounded-md p-2 mt-3">
+                                                <div className="flex items-center gap-2">
+                                                    <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                                    <p>Rockfish Trip</p>
                                                 </div>
-                                            )
-                                        }
-                                         {
-                                            pmTripType !== "Wildlife" && (
-                                                <div className="border rounded-md p-2 mt-3">
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
-                                                        <p>Wildlife Tour</p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-xs">
-                                                        <button className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</button>
-                                                        <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                                        <p className="text-xs">(6 seats left!)</p>
-                                                    </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">(6 seats left!)</p>
                                                 </div>
-                                            )
-                                        }
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        pmTripType !== "Halibut" && (
+                                            <div className="border rounded-md p-2 mt-3">
+                                                <div className="flex items-center gap-2">
+                                                    <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
+                                                    <p>Halibut Trip</p>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">(6 seats left!)</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        pmTripType !== "Wildlife" && (
+                                            <div className="border rounded-md p-2 mt-3">
+                                                <div className="flex items-center gap-2">
+                                                    <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
+                                                    <p>Wildlife Tour</p>
+                                                </div>
+                                                <div className="flex items-center gap-2 text-xs">
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">(6 seats left!)</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
 
 
                                 </>
                             ) : amTripType && pmTripType && amTripType === pmTripType ? (
                                 <>
-                                <div className="border rounded-md p-2 mt-3">
+                                    <div className="border rounded-md p-2 mt-3">
                                         <div className="flex items-center gap-2">
-                                            <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            {pmTripType === "Rockfish" ? (
+                                                <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            ) : pmTripType === "Halibut" ? (
+                                                <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
+                                            ) : pmTripType === "Wildlife" ? (
+                                                <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
+                                            ) : (
+                                                <></>
+                                            )
+                                            }
                                             <p>{amTripType} Trip</p>
                                         </div>
-                                        <div className="flex items-center gap-2 mb-2 text-xs">
-                                            <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
-                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">({remainingSeatsAM} seats left!)</p>
-                                        </div>
-                                        <div className="flex items-center gap-2 text-xs">
-                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</button>
-                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">({remainingSeatsPM} seats left!)</p>
-                                        </div>
-                                </div>
+                                        {
+                                            remainingSeatsAM === 0 ? (
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
+                                                    <p className="text-xs">(0 seats left)</p>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2 mb-2 text-xs">
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">({remainingSeatsAM} seats left!)</p>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            remainingSeatsPM === 0 ? (
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
+                                                    <p className="text-xs">(0 seats left)</p>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2 mb-2 text-xs">
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">({remainingSeatsPM} seats left!)</p>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
                                 </>
                             ) : amTripType && pmTripType && amTripType !== pmTripType ? (
                                 <>
-                                 <div className="border rounded-md p-2 mt-3">
+                                    <div className="border rounded-md p-2 mt-3">
                                         <div className="flex items-center gap-2">
-                                            <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            {amTripType === "Rockfish" ? (
+                                                <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            ) : amTripType === "Halibut" ? (
+                                                <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
+                                            ) : amTripType === "Wildlife" ? (
+                                                <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
+                                            ) : (
+                                                <></>
+                                            )
+                                            }
                                             <p>{amTripType} Trip</p>
                                         </div>
-                                        <div className="flex items-center gap-2 mb-2 text-xs">
-                                            <div className="border rounded-md px-2 py-1 inline-block ml-5">6 a.m.</div>
-                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">({remainingSeatsAM} seats left!)</p>
-                                        </div>
-                                </div>
-                                <div className="border rounded-md p-2 mt-3">
+                                        {
+                                            remainingSeatsAM === 0 ? (
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
+                                                    <p className="text-xs">(0 seats left)</p>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2 mb-2 text-xs">
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">({remainingSeatsAM} seats left!)</p>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="border rounded-md p-2 mt-3">
                                         <div className="flex items-center gap-2">
-                                            <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            {pmTripType === "Rockfish" ? (
+                                                <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
+                                            ) : pmTripType === "Halibut" ? (
+                                                <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
+                                            ) : pmTripType === "Wildlife" ? (
+                                                <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
+                                            ) : (
+                                                <></>
+                                            )
+                                            }
                                             <p>{pmTripType} Trip</p>
                                         </div>
-                                        <div className="flex items-center gap-2 mb-2 text-xs">
-                                            <div className="border rounded-md px-2 py-1 inline-block ml-5">2 p.m.</div>
-                                            <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
-                                            <p className="text-xs">({remainingSeatsPM} seats left!)</p>
-                                        </div>
-                                </div>
+                                        {
+                                            remainingSeatsPM === 0 ? (
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
+                                                    <p className="text-xs">(0 seats left)</p>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2 mb-2 text-xs">
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                                    <p className="text-xs">({remainingSeatsPM} seats left!)</p>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
                                 </>
                             )
-                            :(
-                                <></>
-                            )}
-
-
-
-
+                                : (
+                                    <></>
+                                )}
                         </div>
                     )}
                 </div>
