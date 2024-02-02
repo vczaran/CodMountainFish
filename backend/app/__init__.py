@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 # DataBase Models
-from .models import db, user_Model, date_Model, booking_Model
+from .models import db, user_Model, date_Model, booking_Model, trip_Model
 from .models.Images import fish_Images_Model, scenery_Images_Model
 from .models.Reviews import activity_Review_Model, recipe_Review_Model
 # DataBase Configuration
@@ -12,14 +12,12 @@ from flask_pymongo import PyMongo
 from .config import Config
 from pymongo.server_api import ServerApi
 # Api routes
-from .api.example_routes import example_routes
-from .api.fish_report_routes import fish_report_routes
 from .api.auth_routes import auth_routes  # not implemented yet
 from .api.user_routes import user_routes
 from .api.date_routes import date_routes
 from .api.review_routes import review_routes
 from .api.booking_routes import booking_routes
-
+from .api.trip_routes import trip_routes
 app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 
 # Setup login manager
@@ -28,22 +26,12 @@ login.login_view = 'auth.unauthorized'
 
 # Tell flask about our app extension
 app.config.from_object(Config)
-app.register_blueprint(example_routes, url_prefix='/api/example')
-# test the environmental variable
-print("===========")
-mongo_uri = os.environ.get('MONGO_URI')
-print(f"MONGO_URI: {mongo_uri}")
-print("===========")
-# connection to DB
-# db = PyMongo(app)
-
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(date_routes, url_prefix='/api/date')
 app.register_blueprint(review_routes, url_prefix='/api/review')
-app.register_blueprint(fish_report_routes, url_prefix='/api/fish_report')
-
 app.register_blueprint(booking_routes, url_prefix='/api/booking')
+app.register_blueprint(trip_routes, url_prefix='/api/trip')
 # Application Security
 CORS(app)
 
@@ -56,6 +44,7 @@ def https_redirect():
             code = 301
             return redirect(url, code=code)
 
+
 @app.after_request
 def inject_csrf_token(response):
     response.set_cookie(
@@ -66,6 +55,7 @@ def inject_csrf_token(response):
             'FLASK_ENV') == 'production' else None,
         httponly=True)
     return response
+
 
 @app.route("/api/docs")
 def api_help():
