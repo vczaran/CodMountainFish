@@ -6,18 +6,6 @@ import captain from "../../assets/captain.jpeg";
 
 const About = () => {
 
-  const settings = {
-    // accessibility: true,
-    // arrows: true,
-    // dots: true, 
-    infinite: true,
-    // speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    // autoplay: true,
-    // pauseOnHover: true,
-    cssEase: "linear",
-  }
 
 
   return (
@@ -76,7 +64,7 @@ const About = () => {
                   </svg></button></a>
           </div>
           <div
-              className="relative h-64 w-2/5 lg:w-3/12 m-4 overflow-hidden text-gray-700 bg-white rounded-lg shrink-0">
+              className="relative h-64 w-2/5 lg:w-3/12 m-4 overflow-hidden text-gray-700 bg-white rounded-md shrink-0">
               <img
               src={captain}
               alt="card-image" className="object-contain h-full w-full rounded-md" />

@@ -1,19 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import bg from "../assets/bg.jpg";
-import fishing from "../assets/fishing.jpg"
 import BookButton from "../components/navbar/BookButton";
 import Review from "../components/Review/Review.jsx";
 import Trip from "../components/Trip/Trip.jsx";
 import About from "../components/About/AboutSection.jsx";
+import Focus from "../components/Focus/Focus.jsx";
 
 export default function Home() {
+  const [focusPosition, setFocusPosition] = useState({top:0, height:80});
+  const [showFocus, setShowFocus] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const remInPixels = 16; // Base conversion rate for rem to pixels; adjust if your site's base size differs.
+    const boxHeight = 20 * remInPixels; // 20rem converted to pixels.
+
+    // console.log({ top: e.pageY - window.scrollY - (boxHeight / 2), height: boxHeight });
+
+
+    setFocusPosition({ 
+      top: e.pageY - window.scrollY - (boxHeight / 2), // Centers the box on the cursor vertically.
+      height: boxHeight
+    });
+    setShowFocus(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowFocus(false);
+  };
 
 
 
 
 
   return (
-    <div className="flex flex-col h-full w-full home">
+    <div 
+      className="flex flex-col h-full w-full home"
+      // onMouseMove={handleMouseMove}
+      // onMouseLeave={handleMouseLeave} 
+    >
       {/* Top Background picture - might consider change to carousel */}
 
 
@@ -64,15 +88,12 @@ export default function Home() {
         <h1 className="font-bold text-2xl p-4"> Hear from our awesome users! </h1>
       </div> */}
 
-      <div className="px-16 py-6">
+      <div className="px-14 py-6">
         <Review />
 
       </div>
 
-
-
-
-
+      {/* {showFocus && <Focus top={focusPosition.top} height={focusPosition.height} />} */}
 
 
     </div>

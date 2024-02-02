@@ -69,7 +69,8 @@ const Review = () => {
         <style>
             {
                 `.slick-slider:hover .slick-prev:before, .slick-slider:hover .slick-next:before {
-                    color: black
+                    color: grey;
+                    font-size: 36px;
 
                 }`
             }
