@@ -1,6 +1,6 @@
 from datetime import datetime
-from ..db import db
-from ..crud_Model import CRUD
+from .db import db
+from .crud_Model import CRUD
 
 
 class Trip(CRUD):
