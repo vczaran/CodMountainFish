@@ -78,9 +78,9 @@ const Review = () => {
             <Slider {...settings}>
                 {dataReviews.map((review, index) => (
                     <div key={index} className="p-2 h-auto min-h-[15rem] flex flex-col justify-between overflow-hidden rounded-lg shadow-xl review-card">
-                        <div className="mb-1 text-xl font-bold antialiased leading-snug" id="name">{review.name}</div>
+                        <div className="mb-1 text-xl font-bold text-gray-700 antialiased leading-snug" id="name">{review.name}</div>
                         <div className="mb-2 text-lg text-yellow-400 antialiased leading-snug" id="rating">{'\u2605'.repeat(review.rating)}</div>
-                        <p className="text-base text-gray-600 antialiased leading-snug" id="description">{truncateText(review.comments,100)}</p>
+                        <p className="text-base text-gray-700 antialiased leading-snug" id="description">{truncateText(review.comments,100)}</p>
                     </div>
 
                 ))}
