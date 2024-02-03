@@ -9,6 +9,7 @@ import CaptainAndVessel from "./pages/CaptainAndVessel";
 import Recipes from "./pages/Recipes";
 import Footer from "./components/Footer/Footer";
 import TripInfo from "./pages/TripInfo";
+import FAQ from "./pages/FAQ";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/trip-info" element={<TripInfo />} />
         <Route path="/fish-report" element={<FishReport />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
       <Footer />
     </div>

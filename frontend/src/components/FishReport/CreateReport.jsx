@@ -1,17 +1,28 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useHistory, useNavigate } from "react-router";
 import { FaRegImages } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
 import InputField from "../form-components/InputField";
 import TextBoxField from "../form-components/TextBoxField";
 import Button from "../form-components/Button";
 
-export default function CreateReport() {
+export default function CreateReport({ reports, setReports }) {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     image: null,
     description: "",
     date: "",
   });
+  const [errors, setErrors] = useState({});
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    const errorsObj = {};
+    if (!form.date) errorsObj.date = "Date is required";
+    if (!form.image) errorsObj.image = "Image is required";
+    if (!form.description) errorsObj.description = "Description is required";
+    setErrors(errorsObj);
+  }, [form]);
 
   const handleButtonClick = () => {
     inputRef.current.click();
@@ -24,8 +35,24 @@ export default function CreateReport() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    if (Object.keys(errors).length > 0) return;
+
+    const formData = new FormData();
+
+    formData.append("date", form.date);
+    formData.append("image", form.image);
+    formData.append("description", form.description);
+
+    fetch("/api/fish_report", {
+      method: "POST",
+      body: formData,
+    }).then(() => {
+      // This is a hacky way to refresh the page
+      navigate("/fish-report");
+      window.location.reload();
+    });
   };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -45,6 +72,7 @@ export default function CreateReport() {
             onChange={handleImageChange}
             className="hidden"
             ref={inputRef}
+            accept=".png, .jpg, .jpeg"
           />
           <button
             type="button"
