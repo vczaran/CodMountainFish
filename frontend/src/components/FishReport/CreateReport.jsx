@@ -8,6 +8,7 @@ import Button from "../form-components/Button";
 
 export default function CreateReport({ reports, setReports }) {
   const navigate = useNavigate();
+  
   const [form, setForm] = useState({
     image: null,
     description: "",

@@ -39,7 +39,16 @@ def get_fish_reports():
 @fish_report_routes.route('/<id>', methods=["PUT", "DELETE"])
 def update_delete_fish_report(id):
     if request.method == "PUT":
-        return jsonify(Fish_Report.put_Update("Fish_Report", id, request.json))
+        print("PUT REQUEST: ", id)
+        report = db.db["Fish_Report"].find_one({"_id": ObjectId(id)})
+        form = FishReportForm()
+        newFishReport = Fish_Report(
+            date=form.data["date"],
+            description=form.data["description"],
+            image=report["image"]
+        )
+        # newFishReport.put_Update("Fish_Report", id)
+        return jsonify(Fish_Report.put_Update("Fish_Report", id, newFishReport.__dict__))
     if request.method == "DELETE":
         report = db.db["Fish_Report"].find_one({"_id": ObjectId(id)})
         remove_file_from_s3(report["image"])
