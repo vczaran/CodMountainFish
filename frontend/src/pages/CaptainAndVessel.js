@@ -35,7 +35,7 @@ export default function CaptainAndVessel() {
         <p>Safety is a top priority aboard the Sea Marie. In addition to its powerful engines, the vessel is equipped with a comprehensive range of safety features, 
           including life jackets, first aid kits, and communication devices. Captain Greg's dedication to passenger safety ensures that you can embark on your fishing 
           journey with peace of mind, knowing that every precaution has been taken.</p>
-        <Link className="bg-cyan-600 text-white active:bg-cyan-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
+        <Link className="bg-cyan-600 text-white active:bg-cyan-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
       </div>
     </div>
   )

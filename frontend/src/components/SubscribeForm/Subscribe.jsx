@@ -19,7 +19,7 @@ export default function Subscribe () {
                 <div>
                     <input placeholder="Email" type="email" onChange={(e) => {setEmail(e.target.value)}} value={email} required/>
                 </div>
-                <button className="mb-1 mt-1 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-1 px-2 rounded">Subscribe</button>
+                <button className="mb-1 mt-1 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-1 px-2 rounded hover:underline">Subscribe</button>
             </form>
         </div>
     )

@@ -26,7 +26,7 @@ export default function Navigation() {
           <Link
             key={index}
             to={link}
-            className={`${location === "/" + link ? "underline" : ""}`}
+            className={`${location === "/" + link ? "underline" : "hover:underline"}`}
           >
             {capitalizeLink(link)}
           </Link>
