@@ -92,10 +92,31 @@ const Calendar = () => {
 
     return (
         <div>
+            <div className="border w-[300px] ml-[85px] h-[auto] mb-5">
+                <div className="pl-3 p-1 font-semibold">Trip Types</div>
+                <div className="border-t text-sm pl-3 p-1">
+                    <div className="flex items-center gap-2">
+                        <img src="./rockfish.png" alt="rockfish" className="h-8 w-10 object-contain" />
+                        <div className="">Rockfish</div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <img src="./Halibut.webp" alt="halibut" className="h-8 w-10 object-contain" />
+                        <div>Halibut</div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <img src="./tuna.jpeg" alt="tuna" className="h-8 w-10 object-contain" />
+                        <div>Tuna</div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <img src="./whale.jpg" alt="whale" className="h-8 w-10 object-contain" />
+                        <div>Wildlife Tour</div>
+                    </div>
+                </div>
+            </div>
 
             <div className="flex justify-center gap-5 ">
-                <div className="calendar-box w-[600px] h-[400px]">
-                    <div className="flex gap-5 pb-2">
+                <div className="calendar-box w-[650px] h-[auto]">
+                    <div className="flex gap-5 pb-2 border justify-center">
                         <div className="font-semibold">{months[today.month()]}, {today.year()}</div>
                         <div className="flex items-center gap-5">
                             <GrFormPrevious className="w-5 h-5 cursor-pointer" onClick={() => {
@@ -118,107 +139,96 @@ const Calendar = () => {
                         })}
                     </div>
 
-                    <div className="w-full h-full grid grid-cols-7">
+                    <div className="w-full h-[auto] grid grid-cols-7">
                         {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => {
-    const dateBookings = bookings[date.format('YYYY-MM-DD')] || [];
-    const amBookings = dateBookings.filter(booking => booking.time === 'am');
-    const pmBookings = dateBookings.filter(booking => booking.time === 'pm');
-    const amTripType = amBookings.length > 0 ? amBookings[0].tripType : null;
-    const pmTripType = pmBookings.length > 0 ? pmBookings[0].tripType : null;
+                            const dateBookings = bookings[date.format('YYYY-MM-DD')] || [];
+                            const amBookings = dateBookings.filter(booking => booking.time === 'am');
+                            const pmBookings = dateBookings.filter(booking => booking.time === 'pm');
+                            const amTripType = amBookings.length > 0 ? amBookings[0].tripType : null;
+                            const pmTripType = pmBookings.length > 0 ? pmBookings[0].tripType : null;
 
-    const remainingSeatsAM = amBookings.reduce((total, booking) => total - booking.partySize, 6);
-    const remainingSeatsPM = pmBookings.reduce((total, booking) => total - booking.partySize, 6);
+                            const remainingSeatsAM = amBookings.reduce((total, booking) => total - booking.partySize, 6);
+                            const remainingSeatsPM = pmBookings.reduce((total, booking) => total - booking.partySize, 6);
 
-    return (
-        <div key={index} className="calendar-small-box h-full text-sm border hover:bg-gray-100 transition-all cursor-pointer"
-            onClick={() => { handleDateClick(date) }}>
-            <div
-                className={cn(
-                    currentMonth ? "" : "text-gray-400",
-                    today ? "text-white bg-cyan-800" : "",
-                    selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white" : "",
-                    "h-6 w-6 grid place-content-center rounded-full hover:bg-black hover:text-white transition-all cursor-pointer select-none"
-                )}
-            >{date.date()}
-            </div>
-            {amTripType && (
-                <div>
-                    {/* <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} /> */}
+                            return (
+                                <div key={index} className="calendar-small-box min-h-[60px] text-sm border hover:bg-gray-100 transition-all cursor-pointer"
+                                    onClick={() => { handleDateClick(date) }}>
+                                    <div
+                                        className={cn(
+                                            currentMonth ? "" : "text-gray-400",
+                                            today ? "text-white bg-cyan-800" : "",
+                                            selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white" : "",
+                                            "h-6 w-6 grid place-content-center rounded-full hover:bg-black hover:text-white transition-all cursor-pointer select-none"
+                                        )}
+                                    >{date.date()}
+                                    </div>
+                                    {amTripType && (
+                                        <div className="pl-1 pb-1">
+                                            {/* <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} /> */}
 
-                    { amTripType === 'Tuna' ? (
-                        <>
-                        <div className="flex">
-                        <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
-                        <p className="ml-1 text-xs flex items-center">- 6am</p>
-                        </div>
-                        <div className="text-xs text-red-500">(full boat)</div>
-                        </>
-                    ) : remainingSeatsAM === 0 ?(
-                            <>
-                            <div className="flex">
-                            <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
-                             <p className="ml-1 text-xs flex items-center">- 6am</p>
-                            </div>
-                        <div className="text-xs  text-red-500">(full boat)</div>
-                            </>
+                                            {amTripType === 'Tuna' ? (
+                                                <>
+                                                    <div className="flex">
+                                                        <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
+                                                        <p className="ml-1 text-xs flex items-center">- 6am</p>
+                                                    </div>
+                                                    <div className="text-xs text-red-500">(full boat)</div>
+                                                </>
+                                            ) : remainingSeatsAM === 0 ? (
+                                                <>
+                                                    <div className="flex">
+                                                        <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
+                                                        <p className="ml-1 text-xs flex items-center">- 6am</p>
+                                                    </div>
+                                                    <div className="text-xs  text-red-500">(full boat)</div>
+                                                </>
 
-                    ) : (
-                        <div className="flex">
-                        <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
-                         <p className="ml-1 text-xs flex items-center">- 6am</p>
-                        </div>
-                    )
-                    }
-                    {amBookings.map(booking => (
-                        <p className="text-xs flex" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
-                    ))}
-                    {amTripType !== 'Tuna' && remainingSeatsPM !== 0 && remainingSeatsAM === 0 && (
-                        <div className="text-xs mt-2 text-green-500">(pm open)</div>
-                    )}
-                </div>
-            )}
+                                            ) : (
+                                                <div className="flex">
+                                                    <img className="object-contain h-6 w-6" src={tripImages[amTripType]} alt={amTripType} />
+                                                    <p className="ml-1 text-xs flex items-center">- 6am</p>
+                                                </div>
+                                            )
+                                            }
+                                            {amBookings.map(booking => (
+                                                <p className="text-xs flex" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
+                                            ))}
+                                            {amTripType !== 'Tuna' && remainingSeatsPM !== 0 && remainingSeatsAM === 0 && (
+                                                <div className="text-xs mt-2 text-green-500">(pm open)</div>
+                                            )}
+                                        </div>
+                                    )}
 
-            {pmTripType && (
-                <div>
-                    {remainingSeatsAM !== 0 && remainingSeatsPM === 0 && (
-                        <div className="text-xs mb-2 text-green-500">(am open)</div>
-                    )}
-                    { remainingSeatsPM === 0 ?(
-                            <>
-                            <div className="flex">
-                            <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
-                             <p className="ml-1 text-xs flex items-center">- 2pm</p>
-                            </div>
-                        <div className="text-xs  text-red-500">(full boat)</div>
-                            </>
+                                    {pmTripType && (
+                                        <div className="pl-1 pb-1">
+                                            {remainingSeatsAM !== 0 && remainingSeatsPM === 0 && (
+                                                <div className="text-xs mb-2 text-green-500">(am open)</div>
+                                            )}
+                                            {remainingSeatsPM === 0 ? (
+                                                <>
+                                                    <div className="flex">
+                                                        <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
+                                                        <p className="ml-1 text-xs flex items-center">- 2pm</p>
+                                                    </div>
+                                                    <div className="text-xs  text-red-500">(full boat)</div>
+                                                </>
 
-                    ) : (
-                        <div className="flex">
-                        <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
-                         <p className="ml-1 text-xs flex items-center">- 2pm</p>
-                        </div>
-                    )
-                    }
-                    {pmBookings.map(booking => (
-                        <p className="text-xs flex" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
-                    ))}
+                                            ) : (
+                                                <div className="flex">
+                                                    <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
+                                                    <p className="ml-1 text-xs flex items-center">- 2pm</p>
+                                                </div>
+                                            )
+                                            }
+                                            {pmBookings.map(booking => (
+                                                <p className="text-xs flex" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
+                                            ))}
 
-                </div>
-            )}
-
-            {/* {pmTripType && (
-
-                <div>
-                    <img className="object-contain h-6 w-6" src={tripImages[pmTripType]} alt={pmTripType} />
-                    <p className="text-xs">PM {remainingSeatsPM === 0 && ' - full boat'}</p>
-                    {pmBookings.map(booking => (
-                        <p className="text-xs" key={booking._id}>{booking.lastName.substring(0, 8)} - x{booking.partySize}</p>
-                    ))}
-                </div>
-            )} */}
-        </div>
-    );
-})}
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
 
 
 

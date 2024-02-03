@@ -10,6 +10,7 @@ import Recipes from "./pages/Recipes";
 import Footer from "./components/Footer/Footer";
 import TripInfo from "./pages/TripInfo";
 
+
 function App() {
   return (
     <div>
