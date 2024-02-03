@@ -4,6 +4,8 @@ import cn from "../../utils/cn";
 import dayjs from 'dayjs';
 import moment from 'moment';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import CalendarModal from "../CalendarModal/CalendarModal";
+
 
 
 
@@ -14,6 +16,8 @@ const Calendar = () => {
     const [selectedDate, setSelectedDate] = useState(currentDate);
     const [bookings, setBookings] = useState({});
     const [currentDayBookings, setCurrentDayBookings] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState(null);
 
 
     useEffect(() => {
@@ -89,6 +93,19 @@ const Calendar = () => {
         'Wildlife': './whale.jpg',
         'Halibut': './Halibut.webp'
     };
+
+    const openModalWithBooking = (date, time, tripType, seatsOpen) => {
+        console.log("booking details~~~~~~", date, time, tripType, seatsOpen)
+        const booking = {
+            date: date.format('ddd MMM DD YYYY'),
+            time,
+            tripType,
+            seatsOpen
+        };
+        console.log("booking details", booking)
+        setIsModalOpen(true);
+        setSelectedBooking(booking);
+      };
 
     return (
         <div>
@@ -229,9 +246,6 @@ const Calendar = () => {
                                 </div>
                             );
                         })}
-
-
-
                     </div>
                 </div>
 
@@ -267,7 +281,7 @@ const Calendar = () => {
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
                                     <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
-                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white " onClick={() => openModalWithBooking(selectedDate, "6am", "Rockfish", "6")}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 
@@ -621,6 +635,7 @@ const Calendar = () => {
                     )}
                 </div>
             </div>
+            <CalendarModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} selectedBooking={selectedBooking} />
         </div>
     )
 }
