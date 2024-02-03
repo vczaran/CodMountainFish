@@ -9,8 +9,18 @@ import CaptainAndVessel from "./pages/CaptainAndVessel";
 import Recipes from "./pages/Recipes";
 import Footer from "./components/Footer/Footer";
 import TripInfo from "./pages/TripInfo";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticate } from "./store/session";
+import LoginTest from "./components/LoginTest";
 
 function App() {
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+  useEffect(() => {
+    dispatch(authenticate());
+  }, [dispatch]);
+  console.log(sessionUser);
   return (
     <div>
       <Navigation />
@@ -23,6 +33,7 @@ function App() {
         <Route path="/trip-info" element={<TripInfo />} />
         <Route path="/fish-report" element={<FishReport />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/login" element={<LoginTest />} />
       </Routes>
       <Footer />
     </div>

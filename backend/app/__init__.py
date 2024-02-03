@@ -3,16 +3,17 @@ from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from bson import ObjectId
 # DataBase Models
 from .models import db, user_Model, date_Model, booking_Model
 from .models.Images import fish_Images_Model, scenery_Images_Model
 from .models.Reviews import activity_Review_Model, recipe_Review_Model
+from .models.user_Model import User
 # DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config
 from pymongo.server_api import ServerApi
 # Api routes
-from .api.example_routes import example_routes
 from .api.fish_report_routes import fish_report_routes
 from .api.auth_routes import auth_routes  # not implemented yet
 from .api.user_routes import user_routes
@@ -28,7 +29,6 @@ login.login_view = 'auth.unauthorized'
 
 # Tell flask about our app extension
 app.config.from_object(Config)
-app.register_blueprint(example_routes, url_prefix='/api/example')
 # test the environmental variable
 print("===========")
 mongo_uri = os.environ.get('MONGO_URI')
@@ -46,6 +46,10 @@ app.register_blueprint(fish_report_routes, url_prefix='/api/fish_report')
 app.register_blueprint(booking_routes, url_prefix='/api/booking')
 # Application Security
 CORS(app)
+
+@login.user_loader
+def load_user(id):
+    return User.get_ById("User", ObjectId(id))
 
 
 @app.before_request
