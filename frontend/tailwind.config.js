@@ -9,6 +9,9 @@ module.exports = {
       xl: '1440px',
 
     },
+    fontFamily: {
+      'sans': ['Tahoma']
+    },
     extend: {
       colors: {
         vuejs: {
