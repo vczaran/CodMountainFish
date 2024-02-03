@@ -10,11 +10,13 @@ import Recipes from "./pages/Recipes";
 import Footer from "./components/Footer/Footer";
 import TripInfo from "./pages/TripInfo";
 import FAQ from "./pages/FAQ";
+import Dictaphone from "./components/Dictaphone/Dictaphone";
 
 function App() {
   return (
     <div>
       <Navigation />
+      <Dictaphone />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
