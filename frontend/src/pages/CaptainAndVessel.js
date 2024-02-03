@@ -24,7 +24,7 @@ export default function CaptainAndVessel() {
       <div className='mt-10 mb-10 space-y-4'>
         <h1 className="text-sky-500 text-xl font-bold m-5">Sea Marie</h1>
         <p>Introducing the Sea Marie, the pride and joy of Cod Mountain Fish Co. This remarkable fishing vessel combines power, comfort, and functionality 
-          to deliver an extraordinary fishing experience in the beautiful waters of Santa Cruz. Powered by twin Yamaha 150hp engines, the Sea Marie is ready 
+          to deliver an extraordinary fishing experience in the beautiful waters of Santa Cruz. Powered by twin Yamaha 150 horsepower engines, the Sea Marie is ready 
           to take you on thrilling fishing adventures with ease and reliability.</p>
         <p>The Sea Marie boasts an expansive deck, providing plenty of space for fishing enthusiasts to move around and cast their lines. With a well-thought-out 
           deck layout, anglers can enjoy unrestricted access to prime fishing spots, ensuring an optimal fishing experience. The deck's generous size also allows 

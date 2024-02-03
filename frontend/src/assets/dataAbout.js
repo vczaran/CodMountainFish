@@ -22,7 +22,7 @@ export const dataAbout=[
         title:"About Boat",
         photo: bg,
         description: 
-        "Introducing the Sea Marie, the pride and joy of Cod Mountain Fish Co. This remarkable fishing vessel combines power, comfort, and functionality to deliver an extraordinary fishing experience in the beautiful waters of Santa Cruz. Powered by twin Yamaha 150hp engines, the Sea Marie is ready to take you on thrilling fishing adventures with ease and reliability."
+        "Introducing the Sea Marie, the pride and joy of Cod Mountain Fish Co. This remarkable fishing vessel combines power, comfort, and functionality to deliver an extraordinary fishing experience in the beautiful waters of Santa Cruz. Powered by twin Yamaha 150 horsepower engines, the Sea Marie is ready to take you on thrilling fishing adventures with ease and reliability."
     }, 
 
 
