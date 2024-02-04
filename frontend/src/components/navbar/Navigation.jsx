@@ -19,7 +19,7 @@ export default function Navigation() {
   return (
     <nav className="flex justify-between mt-3 mx-10 items-center">
       <Link className="" to={"/"}>
-        <img className="object-contain h-20 w-20" src="./logo.png" alt="Logo"></img>
+        <img className="object-contain h-[150px] w-[150px]" src="./logo.png" alt="Logo"></img>
       </Link>
       <div className="flex gap-10 items-center">
         {links.map((link, index) => (
