@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEf } from "react";
 import { IoMdClose } from "react-icons/io";
+import { GoArrowLeft } from "react-icons/go";
 
 export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBooking }) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
-    const [people, setPeople] = useState(0);
+    const [partySize, setPartySize] = useState(0);
+    const [fullBoat, setFullBoat] = useState(false);
+    const [selectedSeats, setSelectedSeats] = useState(0);
+
+    console.log("party size", partySize)
 
     const tripPrices = {
-        "Rockfish": "$300",
-        "Halibut": "$300",
-        "Tuna": "$2500",
-        "Wildlife": "$250",
+        "Rockfish": 300,
+        "Halibut": 300,
+        "Tuna": 2500,
+        "Wildlife": 250,
     }
+
+    const fullBoatPrice = selectedBooking ? tripPrices[selectedBooking.tripType] * 6 : 0;
 
     if (!isModalOpen) return null;
     console.log("selected booking!!!", selectedBooking)
+    console.log("full boat? ", fullBoat)
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -56,23 +64,70 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
 
     return (
         <div className="fixed top-0 left-0 flex items-center justify-center h-screen w-screen bg-opacity-50 bg-slate-900 ">
-            <div className="border mx-40 bg-white h-[auto] w-[100%] flex flex-col justify-center p-10 rounded-md">
-                <div className="flex justify-end">
+            <div className="border mx-40 bg-white h-[auto] w-[100%] flex flex-col justify-center py-5 rounded-md">
+                <div className="flex justify-between px-5">
+                    <button className="w-auto flex justify-center text-sm" onClick={() => setIsModalOpen(false)}><GoArrowLeft className="text-xl pr-2 w-auto" />Go back to calendar</button>
                     <button className="w-5 flex justify-center " onClick={() => setIsModalOpen(false)}><IoMdClose className="text-xl" /></button>
                 </div>
-                <div className="flex justify-center gap-10 bg-blue-400 mt-5">
-                    <img src="./rockfish-guys.jpeg" alt="rockfish-guys" className="bg-blue-500 h-[200px] w-[150px] object-contain" />
+                <div className="flex justify-center gap-5 mt-5 py-10 border-y-[1px] border-slate-200">
+                    <img src="./rockfish-guys.jpeg" alt="rockfish-guys" className="h-[200px] w-[150px] object-contain" />
 
-                    <div>
-                        <div className="pb-10">You are booking a {selectedBooking.tripType} Trip for {selectedBooking.date} at {selectedBooking.time}.</div>
-                        <div className="border flex">
-                            <select className="w-9">
-                                {[...Array(6)].map((_, i) =>
-                                    <option key={i} value={i + 1}>{i + 1}</option>
-                                )}
-                            </select> People
-                        <div>{tripPrices[selectedBooking.tripType]}</div>
+                    <div className="flex-col">
+                        <div className="text-gray-500 text-sm pt-[20px]">You're booking:</div>
+                        <div className="text-lg font-semibold text-teal-500">{selectedBooking.tripType} Trip </div>
+                        <div className="text-sm pb-[20px]">{selectedBooking.date} @ {selectedBooking.time}</div>
+
+                        <div className="flex gap-6">
+                            <div className="border border-slate-300 flex w-[250px] justify-between rounded-sm">
+                                <div className="flex">
+                                    <select
+                                        className={`px-2 w-auto ${fullBoat ? 'bg-slate-200' : 'bg-teal-500'}`}
+                                        value={fullBoat ? 0 : selectedSeats}
+                                        onChange={(e) => setSelectedSeats(e.target.value)}
+                                        disabled={fullBoat} // Disable the select element if fullBoat is true
+                                    >
+                                        {[...Array(selectedBooking.seatsOpen)].map((_, i) =>
+                                            <option key={i} value={i + 1}>{fullBoat ? 0 : i + 1}</option>
+                                        )}
+                                    </select>
+                                    <div className="pl-2 py-[2px] border-l-[1px] border-slate-300">
+                                        <div className="">People</div>
+                                        <div className="text-xs">(${tripPrices[selectedBooking.tripType]} per person)</div>
+                                    </div>
+                                </div>
+                                <div className="pr-[15px] py-[2px]">
+                                {fullBoat ? '$0' : `$${tripPrices[selectedBooking.tripType] * (selectedSeats ? Number(selectedSeats) : 1)}`}
+                                </div>
+                            </div>
+                            {
+    selectedBooking.seatsOpen === 6 && (
+        <div className="border border-slate-300 flex w-[250px] justify-between rounded-sm px-[15px] py-[2px]">
+            <div className="flex items-center">
+                <input
+                    type="checkbox"
+                    id="fullBoat"
+                    name="boatOption"
+                    checked={fullBoat}
+                    onChange={(e) => {
+                        setFullBoat(e.target.checked);
+                        if (e.target.checked) {
+                            setSelectedSeats(0); // Set selectedSeats to 0 when the checkbox is checked
+                        }
+                    }}
+                    className="form-checkbox rounded-full text-blue-500"
+                />
+                <div>
+                    <label htmlFor="fullBoat" className="ml-2">Private Charter</label>
+                    <div className="text-xs pl-2">(up to 6 people)</div>
+                </div>
+            </div>
+            <div>${fullBoatPrice}</div>
+        </div>
+    )
+}
+
                         </div>
+
                     </div>
 
                 </div>
