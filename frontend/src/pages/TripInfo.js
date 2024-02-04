@@ -10,7 +10,7 @@ export default function TripInfo() {
     }
 
   return (
-    <div className='ml-10 space-y-4 mb-10'>
+    <div className='ml-10 space-y-4 mb-10 leading-8'>
       <div className='grid grid-cols-2 gap-2 w-full mt-10'>
         <div className='space-y-4'>
           <h3 className='font-bold'>Directions From Highway 17:</h3>

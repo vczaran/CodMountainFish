@@ -6,7 +6,12 @@ export default function Subscribe () {
 
     function handleSubmit (e) {
         e.preventDefault();
-        // TODO when backend/DB connection is set up
+        
+        // Is this right?
+        // fetch("api/subscribe", {
+        //     method: "POST",
+        //     body: {name, email}
+        // })
     }
 
     return (

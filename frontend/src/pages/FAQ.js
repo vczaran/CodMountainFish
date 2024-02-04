@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FAQ () {
     return (
-        <div className="space-y-10 mb-20">
+        <div className="space-y-10 mb-20 leading-8">
             <h1 className="text-xl font-bold text-center">Frequently Asked Questions</h1>
             <ol className="list-decimal space-y-10 ml-10">
                 <li>What types of trips do you offer? <br></br>
