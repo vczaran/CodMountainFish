@@ -288,7 +288,7 @@ const Calendar = () => {
 
                                 <div className="flex items-center gap-2 text-xs">
                                     <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
-                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "pm", "Rockfish", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
                             </div>
@@ -300,7 +300,7 @@ const Calendar = () => {
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
                                     <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
-                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
+                                    <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "am", "Halibut", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 

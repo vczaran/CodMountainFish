@@ -36,6 +36,17 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
     console.log("selected booking!!!", selectedBooking)
     console.log("full boat? ", fullBoat)
 
+    const handleClose = () => {
+        setIsModalOpen(false); // Close the modal
+        setFirstName("");
+        setLastName("");
+        setPhoneNumber("");
+        setEmail("");
+        setFullBoat(false);
+        setPartySize(0);
+        setSelectedSeats(0);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -77,6 +88,9 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
             setLastName("");
             setPhoneNumber("");
             setEmail("");
+            setFullBoat(false);
+            setPartySize(0);
+            setSelectedSeats(0);
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -87,8 +101,8 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
         <div className="fixed top-0 left-0 flex items-start justify-center h-screen w-screen bg-opacity-50 bg-slate-900 overflow-y-auto">
             <div className="border mx-40 my-[20px] bg-white h-[auto] w-[100%] flex flex-col py-5 rounded-md">
                 <div className="flex justify-between px-5">
-                    <button className="w-auto flex justify-center text-sm" onClick={() => setIsModalOpen(false)}><GoArrowLeft className="text-xl pr-2 w-auto" />Go back to calendar</button>
-                    <button className="w-5 flex justify-center " onClick={() => setIsModalOpen(false)}><IoMdClose className="text-xl" /></button>
+                    <button className="w-auto flex justify-center text-sm" onClick={() => handleClose()}><GoArrowLeft className="text-xl pr-2 w-auto" />Go back to calendar</button>
+                    <button className="w-5 flex justify-center " onClick={() => handleClose()}><IoMdClose className="text-xl" /></button>
                 </div>
 
                 <div className="flex justify-center gap-5 mt-5 mb-5 py-10 border-y-[1px] border-slate-200">
