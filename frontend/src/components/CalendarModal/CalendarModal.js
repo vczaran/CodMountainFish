@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import { GoArrowLeft } from "react-icons/go";
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBooking }) {
     const [firstName, setFirstName] = useState("");
@@ -37,16 +39,19 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // const bookingData = {
-        //     firstName,
-        //     lastName,
-        //     phoneNumber,
-        //     email,
-        //     date: selectedBooking.date,
-        //     time: selectedBooking.time,
-        //     tripType: selectedBooking.tripType,
-        //     seatsOpen: selectedBooking.seatsOpen
-        // };
+        const bookingData = {
+            date: selectedBooking.date,
+            tripType: selectedBooking.tripType,
+            phoneNumber,
+            status: "pending", // Set the status to "pending" by default
+            partySize: fullBoat ? 6 : selectedSeats,
+            firstName,
+            lastName,
+            email,
+            time: selectedBooking.time
+        };
+
+        console.log("booking data", bookingData)
 
         // fetch('/api/bookings', {
         //     method: 'POST',
@@ -72,7 +77,7 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
 
     return (
         <div className="fixed top-0 left-0 flex items-start justify-center h-screen w-screen bg-opacity-50 bg-slate-900 overflow-y-auto">
-        <div className="border mx-40 my-[20px] bg-white h-[auto] w-[100%] flex flex-col py-5 rounded-md">
+            <div className="border mx-40 my-[20px] bg-white h-[auto] w-[100%] flex flex-col py-5 rounded-md">
                 <div className="flex justify-between px-5">
                     <button className="w-auto flex justify-center text-sm" onClick={() => setIsModalOpen(false)}><GoArrowLeft className="text-xl pr-2 w-auto" />Go back to calendar</button>
                     <button className="w-5 flex justify-center " onClick={() => setIsModalOpen(false)}><IoMdClose className="text-xl" /></button>
@@ -153,7 +158,14 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
                                 </div>
                                 <div className="mb-5">
                                     <label htmlFor="phoneNumber" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
-                                    <input type="tel" id="phoneNumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Phone Number" required />
+                                    <PhoneInput
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        defaultCountry="US"
+                                        name="user_phone"
+                                        placeholder="Your phone number"
+                                        value={phoneNumber}
+                                        onChange={setPhoneNumber}
+                                    />
                                 </div>
                                 <div className="mb-5">
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
