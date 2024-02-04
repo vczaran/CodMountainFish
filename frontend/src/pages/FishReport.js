@@ -5,7 +5,8 @@ import CreateReport from "../components/FishReport/CreateReport";
 export default function FishReportContainer() {
   const [fishReports, setFishReports] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  // This is to test admin. Will check logged in user
+  const isAdmin = true;
   useEffect(() => {
     async function fetchFishReport() {
       try {
@@ -23,6 +24,8 @@ export default function FishReportContainer() {
   }, []);
 
   const handleDelete = (reportId) => {
+    if (!window.confirm("Are you sure you want to delete this report?")) return;
+
     console.log("deleting report with id:", reportId);
     // Send a DELETE request to the server
     fetch(`/api/fish_report/${reportId}`, {
@@ -43,14 +46,45 @@ export default function FishReportContainer() {
       });
   };
 
+  function handleUpdate({ id, description, image, date }) {
+    console.log("updating report with id:", id);
+    // Send a PUT request to the server
+    fetch(`/api/fish_report/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ description, image, date }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Update the report in the state
+          setFishReports((prevReports) =>
+            prevReports.map((report) => {
+              if (report._id === id) {
+                return { ...report, description, image, date };
+              }
+              return report;
+            })
+          );
+        } else {
+          console.error("Failed to update the report");
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to update the report:", error);
+      });
+  }
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 my-5">
-      <p>!!!This will be shown when owner is logged in!!!</p>
-      <CreateReport reports={fishReports} setReports={setFishReports} />
+      {isAdmin && (
+        <CreateReport reports={fishReports} setReports={setFishReports} />
+      )}
       {/* This should eventually pull from the database */}
       {fishReports?.length &&
         fishReports.map((report) => (
@@ -59,8 +93,9 @@ export default function FishReportContainer() {
             image={report.image}
             description={report.description}
             date={report.date}
-            id={report.id}
+            id={report._id}
             handleDelete={() => handleDelete(report._id)}
+            handleUpdate={handleUpdate}
           />
         ))}
     </div>
