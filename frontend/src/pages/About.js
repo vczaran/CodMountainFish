@@ -9,7 +9,7 @@ export default function About() {
       <p className="w-1/2 text-center mb-3">Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. 
         Our dedicated crew is here to ensure that your time on the water is not only productive but also enjoyable 
         and filled with excitement.</p>
-      <Link className="bg-teal-900 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
+      <Link className="bg-teal-900 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
       <div className="bg-sky-900 grid grid-cols-2 gap-2 w-full mt-10 text-white">
         <img src="./Photos/fam.jpeg" alt="family"></img>
         <div className="m-10 space-y-4">
@@ -55,7 +55,7 @@ export default function About() {
             <li>Duration: 4 hours.</li>
             <li>Price: $250 per person.</li>
           </ul>
-          <Link className=" bg-white text-teal-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none ease-linear transition-all duration-150" to="/availability">Book Now</Link>
+          <Link className=" bg-white text-teal-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline ease-linear transition-all duration-150" to="/availability">Book Now</Link>
         </div>
         <img src="./Photos/trip.png" alt="boat"></img>
         <p className="m-10">Please note that all our rates are subject to change, and availability may vary based on the season and demand. We strive to provide exceptional
