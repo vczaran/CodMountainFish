@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center leading-8">
       <img className="w-full h-[400px]" src="./Photos/cover-boat.jpg" alt="boat"></img>
-      <h1 className="text-center text-teal-600 text-2xl font-bold mt-10 mb-10">Cod Mountain Fish Co.</h1>
+      <h1 className="text-center text-teal-900 text-2xl font-bold mt-10 mb-10">Cod Mountain Fish Co.</h1>
       <p className="w-1/2 text-center mb-3">Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. 
         Our dedicated crew is here to ensure that your time on the water is not only productive but also enjoyable 
         and filled with excitement.</p>
-      <Link className="bg-cyan-600 text-white active:bg-cyan-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
-      <div className="bg-cyan-600 grid grid-cols-2 gap-2 w-full mt-10 text-white">
+      <Link className="bg-teal-900 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" to="/availability">Book Now</Link>
+      <div className="bg-sky-900 grid grid-cols-2 gap-2 w-full mt-10 text-white">
         <img src="./Photos/fam.jpeg" alt="family"></img>
         <div className="m-10 space-y-4">
-          <h1 className="text-amber-500 text-xl font-bold m-5">About Us</h1>
+          <h1 className="text-white text-xl font-bold m-5">About Us</h1>
           <p>We are a premier charter fishing company located in Santa Cruz, California, offering unforgettable guided fishing tours of the beautiful Monterey Bay. 
           Founded by Greg Webb, a dedicated fisherman and seasoned captain, Cod Mountain Fish Co. is committed to providing an exceptional fishing experience for anglers 
           of all skill levels.</p>
@@ -28,7 +28,7 @@ export default function About() {
             Monterey Bay. Let's make a memory, pull on some fish, and have a good time doing it!</p>
         </div>
         <div className="m-10 space-y-4">
-          <h1 className="text-amber-500 text-xl m-5 font-bold">Trip Types</h1>
+          <h1 className="text-white text-xl m-5 font-bold">Trip Types</h1>
           <p> We offer a range of exciting trips tailored to different fishing preferences. Below are the trip types we offer, along with the details and rates. AM trips leave at 6am, PM trips at 3pm:</p>
           <h3 className="underline">Rockfish Trip (AM or PM):</h3>
           <ul className="list-disc ml-5">
@@ -55,7 +55,7 @@ export default function About() {
             <li>Duration: 4 hours.</li>
             <li>Price: $250 per person.</li>
           </ul>
-          <Link className=" bg-amber-600 text-white active:bg-amber-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none ease-linear transition-all duration-150" to="/availability">Book Now</Link>
+          <Link className=" bg-amber-800 text-white active:bg-amber-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none ease-linear transition-all duration-150" to="/availability">Book Now</Link>
         </div>
         <img src="./Photos/trip.png" alt="boat"></img>
         <p className="m-10">Please note that all our rates are subject to change, and availability may vary based on the season and demand. We strive to provide exceptional
