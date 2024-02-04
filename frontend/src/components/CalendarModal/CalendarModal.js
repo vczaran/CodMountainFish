@@ -29,6 +29,13 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
         "Wildlife": 250,
     }
 
+    const tripTypeImages = {
+        "Rockfish": "./rockfish-guys.jpeg",
+        "Halibut": "./halibut-guy.jpeg",
+        "Wildlife": "./whale-jump.jpeg",
+        // Add the other trip types and their corresponding images here
+    };
+
     const fullBoatPrice = selectedBooking ? (selectedBooking.tripType === "Tuna" ? 2500 : tripPrices[selectedBooking.tripType] * 6) : 0;
 
     if (!isModalOpen) return null;
@@ -105,7 +112,11 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
                 </div>
 
                 <div className="flex justify-center gap-5 mt-5 mb-5 py-10 border-y-[1px] border-slate-200">
-                    <img src="./rockfish-guys.jpeg" alt="rockfish-guys" className="h-[200px] w-[150px] object-contain" />
+                    <img
+                        src={selectedBooking ? tripTypeImages[selectedBooking.tripType] : ""}
+                        alt={selectedBooking ? selectedBooking.tripType : ""}
+                        className="h-[200px] w-[150px] object-contain"
+                    />
 
                     <div className="flex-col">
                         <div className="text-gray-500 text-sm pt-[20px]">You're booking:</div>
