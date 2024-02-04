@@ -97,7 +97,9 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
                     <div className="flex-col">
                         <div className="text-gray-500 text-sm pt-[20px]">You're booking:</div>
                         <div className="text-lg font-semibold text-teal-500">{selectedBooking.tripType} Trip </div>
-                        <div className="text-sm pb-[20px]">{selectedBooking.date} @ {selectedBooking.time}</div>
+                        <div className="text-sm pb-[20px]">
+                            {selectedBooking.date} @ {selectedBooking.time === 'am' ? '6am' : selectedBooking.time === 'pm' ? '2pm' : selectedBooking.time}
+                            </div>
 
                         <div className="flex gap-6">
                             <div className="border border-slate-300 flex w-[250px] justify-between rounded-sm">
