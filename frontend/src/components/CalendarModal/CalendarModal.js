@@ -26,11 +26,10 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
     const tripPrices = {
         "Rockfish": 300,
         "Halibut": 300,
-        "Tuna": 2500,
         "Wildlife": 250,
     }
 
-    const fullBoatPrice = selectedBooking ? tripPrices[selectedBooking.tripType] * 6 : 0;
+    const fullBoatPrice = selectedBooking ? (selectedBooking.tripType === "Tuna" ? 2500 : tripPrices[selectedBooking.tripType] * 6) : 0;
 
     if (!isModalOpen) return null;
     console.log("selected booking!!!", selectedBooking)
@@ -78,23 +77,23 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
             },
             body: JSON.stringify(bookingData),
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            setRefresh(new Date());
-            // Close the modal and clear the form
-            setIsModalOpen(false);
-            setFirstName("");
-            setLastName("");
-            setPhoneNumber("");
-            setEmail("");
-            setFullBoat(false);
-            setPartySize(0);
-            setSelectedSeats(0);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                setRefresh(new Date());
+                // Close the modal and clear the form
+                setIsModalOpen(false);
+                setFirstName("");
+                setLastName("");
+                setPhoneNumber("");
+                setEmail("");
+                setFullBoat(false);
+                setPartySize(0);
+                setSelectedSeats(0);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     };
 
     return (
@@ -113,31 +112,36 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
                         <div className="text-lg font-semibold text-teal-500">{selectedBooking.tripType} Trip </div>
                         <div className="text-sm pb-[20px]">
                             {selectedBooking.date} @ {selectedBooking.time === 'am' ? '6am' : selectedBooking.time === 'pm' ? '2pm' : selectedBooking.time}
-                            </div>
+                        </div>
 
                         <div className="flex gap-6">
-                            <div className="border border-slate-300 flex w-[250px] justify-between rounded-sm">
-                                <div className="flex">
-                                    <select
-                                        className={`px-2 w-auto ${fullBoat ? 'bg-slate-200' : 'bg-teal-500'}`}
-                                        value={fullBoat ? 0 : selectedSeats}
-                                        onChange={(e) => setSelectedSeats(e.target.value)}
-                                        disabled={fullBoat} // Disable the select element if fullBoat is true
-                                    >
-                                        <option value={0}>0</option> {/* Add an option with the value of 0 */}
-                                        {[...Array(selectedBooking.seatsOpen)].map((_, i) =>
-                                            <option key={i} value={i + 1}>{i + 1}</option>
-                                        )}
-                                    </select>
-                                    <div className="pl-2 py-[2px] border-l-[1px] border-slate-300">
-                                        <div className="">People</div>
-                                        <div className="text-xs">(${tripPrices[selectedBooking.tripType]} per person)</div>
+                            {
+                                selectedBooking.tripType !== "Tuna" && (
+                                    <div className="border border-slate-300 flex w-[250px] justify-between rounded-sm">
+                                        <div className="flex">
+                                            <select
+                                                className={`px-2 w-auto ${fullBoat ? 'bg-slate-200' : 'bg-teal-500'}`}
+                                                value={fullBoat ? 0 : selectedSeats}
+                                                onChange={(e) => setSelectedSeats(e.target.value)}
+                                                disabled={fullBoat} // Disable the select element if fullBoat is true
+                                            >
+                                                <option value={0}>0</option> {/* Add an option with the value of 0 */}
+                                                {[...Array(selectedBooking.seatsOpen)].map((_, i) =>
+                                                    <option key={i} value={i + 1}>{i + 1}</option>
+                                                )}
+                                            </select>
+                                            <div className="pl-2 py-[2px] border-l-[1px] border-slate-300">
+                                                <div className="">People</div>
+                                                <div className="text-xs">(${tripPrices[selectedBooking.tripType]} per person)</div>
+                                            </div>
+                                        </div>
+                                        <div className="pr-[15px] py-[2px]">
+                                            {fullBoat ? '$0' : `$${tripPrices[selectedBooking.tripType] * (selectedSeats ? Number(selectedSeats) : 1)}`}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="pr-[15px] py-[2px]">
-                                    {fullBoat ? '$0' : `$${tripPrices[selectedBooking.tripType] * (selectedSeats ? Number(selectedSeats) : 1)}`}
-                                </div>
-                            </div>
+                                )
+                            }
+
                             {
                                 selectedBooking.seatsOpen === 6 && (
                                     <div className="border border-slate-300 flex w-[250px] justify-between rounded-sm px-[15px] py-[2px]">
