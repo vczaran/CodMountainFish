@@ -55,7 +55,7 @@ export default function About() {
             <li>Duration: 4 hours.</li>
             <li>Price: $250 per person.</li>
           </ul>
-          <Link className=" bg-amber-800 text-white active:bg-amber-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none ease-linear transition-all duration-150" to="/availability">Book Now</Link>
+          <Link className=" bg-white text-teal-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:underline outline-none focus:outline-none ease-linear transition-all duration-150" to="/availability">Book Now</Link>
         </div>
         <img src="./Photos/trip.png" alt="boat"></img>
         <p className="m-10">Please note that all our rates are subject to change, and availability may vary based on the season and demand. We strive to provide exceptional

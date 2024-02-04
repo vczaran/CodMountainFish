@@ -22,16 +22,16 @@ const Trip = () => {
 
                 {/* trip info */}
                 <div className="flex flex-col flex-grow px-6 py-4 antialiased leading-snug font-sans">
-                    <div className="mb-2 text-gray-600 font-bold text-xl group-hover:text-vuejs-300">
+                    <div className="mb-2 text-gray-700 font-bold text-xl group-hover:text-vuejs-400">
                         {trip.title} - {trip.duration}hr
                     </div>
 
-                    <p className="text-gray-700 flex-grow font-sans antialiased group-hover:text-vuejs-300">
+                    <p className="text-gray-700 flex-grow font-sans antialiased group-hover:text-vuejs-400">
                         Price: ${trip.price} <br></br>  
                         Max Capacity: {trip.capacity}
                     </p>
 
-                    <p className="font-sans text-base font-normal antialiased leading-relaxed text-gray-500 overflow-ellipsis overflow-hidden flex-grow mt-2 group-hover:text-vuejs-300">
+                    <p className="font-sans text-base font-normal antialiased leading-relaxed text-gray-700 overflow-ellipsis overflow-hidden flex-grow mt-2 group-hover:text-vuejs-400">
                         {trip.description}
                     </p>
                
@@ -43,8 +43,9 @@ const Trip = () => {
                             <button 
                             onClick={() => navigate('/trip-info')}
                              className=" 
-                             hover:bg-vuejs-400  
-                             text-vuejs-300 hover:text-white 
+                             hover:bg-vuejs-400
+                             hover:underline  
+                             text-vuejs-400 hover:text-white 
                                font-bold 
                                py-2 
                                px-4 
