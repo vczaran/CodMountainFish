@@ -29,7 +29,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(date_routes, url_prefix='/api/date')
-app.register_blueprint(review_routes, url_prefix='/api/review')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(booking_routes, url_prefix='/api/booking')
 app.register_blueprint(trip_routes, url_prefix='/api/trip')
 # Application Security
