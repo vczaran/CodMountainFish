@@ -39,6 +39,4 @@ class User(CRUD, UserMixin):
             "size": self.size,
             "email": self.email,
             "admin": self.admin,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at
         }

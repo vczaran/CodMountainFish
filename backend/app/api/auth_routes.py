@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import user_Model, db, User
+from app.models import db, User
 from app.forms import LoginForm
 from bson import ObjectId
-from flask_login import current_user, login_user, logout_user, login_required, LoginManager
+from flask_login import current_user, login_user, logout_user
 
 
 auth_routes = Blueprint('auth', __name__)
@@ -23,7 +23,7 @@ def authenticate():
     """
     Authenticates a user.
     """
-    print("current_user: ", current_user)
+    print("current_user: ", current_user, current_user.is_authenticated)
     if current_user.is_authenticated:
         print("CURRENT USER: ", current_user)
         return current_user.to_dict()
@@ -35,21 +35,15 @@ def login():
     """
     Logs a user in
     """
-    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     form = LoginForm()
-    print("FORM: ", form.data)
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("VALID FORM")
         user_dict = db.db.User.find_one({"email": form.data['email']})
-        print("============!!!!!!!!!!!!!!!!!!!", user_dict)
-        print("GET ID : ---------> ", user_dict["_id"])
         user_dict["id"] = str(user_dict["_id"])
         user = User(**user_dict)
         login_user(user)
-        print("33333333after login_user")
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
