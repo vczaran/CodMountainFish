@@ -4,7 +4,7 @@ import { GoArrowLeft } from "react-icons/go";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 
-export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBooking }) {
+export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBooking, setRefresh }) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -39,8 +39,15 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        const dateObject = new Date(selectedBooking.date);
+        const year = dateObject.getFullYear();
+        const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JavaScript
+        const day = String(dateObject.getDate()).padStart(2, '0');
+
+        const formattedDate = `${year}-${month}-${day}`;
+
         const bookingData = {
-            date: selectedBooking.date,
+            date: formattedDate,
             tripType: selectedBooking.tripType,
             phoneNumber,
             status: "pending", // Set the status to "pending" by default
@@ -48,31 +55,32 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
             firstName,
             lastName,
             email,
-            time: selectedBooking.time
+            time: selectedBooking.time // make sure its "am" or "pm"
         };
 
         console.log("booking data", bookingData)
 
-        // fetch('/api/bookings', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(bookingData),
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log('Success:', data);
-        //     // Close the modal and clear the form
-        //     setIsModalOpen(false);
-        //     setFirstName("");
-        //     setLastName("");
-        //     setPhoneNumber("");
-        //     setEmail("");
-        // })
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        // });
+        fetch('/api/booking/new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            setRefresh(new Date());
+            // Close the modal and clear the form
+            setIsModalOpen(false);
+            setFirstName("");
+            setLastName("");
+            setPhoneNumber("");
+            setEmail("");
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     };
 
     return (

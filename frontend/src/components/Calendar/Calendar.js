@@ -18,6 +18,7 @@ const Calendar = () => {
     const [currentDayBookings, setCurrentDayBookings] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedBooking, setSelectedBooking] = useState(null);
+    const [refresh, setRefresh] = useState(false);
 
 
     useEffect(() => {
@@ -48,7 +49,7 @@ const Calendar = () => {
             }
         };
         fetchBookings();
-    }, []);
+    }, [refresh]);
 
 
 
@@ -635,7 +636,11 @@ const Calendar = () => {
                     )}
                 </div>
             </div>
-            <CalendarModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} selectedBooking={selectedBooking} />
+            <CalendarModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            selectedBooking={selectedBooking}
+            setRefresh={setRefresh} />
         </div>
     )
 }
