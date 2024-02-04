@@ -6,7 +6,7 @@ from flask_login import LoginManager
 # DataBase Models
 from .models import db, user_Model, date_Model, booking_Model, trip_Model
 from .models.Images import fish_Images_Model, scenery_Images_Model
-from .models.Reviews import activity_Review_Model, recipe_Review_Model
+from .models.Reviews import trip_Review_Model, recipe_Review_Model
 # DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config

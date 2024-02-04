@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from datetime import datetime
 from bson import ObjectId
 
-from ..models.Reviews.activity_Review_Model import Activity_Review
+from ..models.Reviews.trip_Review_Model import Trip_Review
 from ..models.Reviews.recipe_Review_Model import Recipe_Review
 
 from ..forms.review_form import ReviewForm
