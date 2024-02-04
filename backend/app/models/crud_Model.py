@@ -20,7 +20,7 @@ class CRUD:
         else:
             return {
                 'Message': "Items has not been saved",
-                "Status code": 404
+                "Status code": 400
             }
 
     def save_Many(self, Table, data_list):
@@ -35,7 +35,7 @@ class CRUD:
         else:
             return {
                 'Message': f'Items have not been saved in {Table}',
-                "Status code": 404
+                "Status code": 400
             }
 
     def get_ById(Table, id):
@@ -104,7 +104,7 @@ class CRUD:
         else:
             return {
                 'Message': f'{id} from {Table} not found',
-                "Status code": 404
+                "Status code": 400
             }
 
     def delete(Table, id):
