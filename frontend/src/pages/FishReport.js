@@ -95,6 +95,7 @@ export default function FishReport({ isAdmin }) {
             id={report._id}
             handleDelete={() => handleDelete(report._id)}
             handleUpdate={handleUpdate}
+            isAdmin={isAdmin}
           />
         ))}
     </div>

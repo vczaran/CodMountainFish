@@ -13,6 +13,7 @@ export default function Report({
   date,
   handleDelete,
   handleUpdate,
+  isAdmin,
 }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [form, setForm] = useState({
@@ -30,17 +31,21 @@ export default function Report({
   console.log("Report -> isUpdating", isUpdating);
   return (
     <div className="max-w-[80rem] flex flex-col w-[30rem] relative">
-      {!isUpdating ? (
-        <MdEditNote
-          className="absolute top-0 right-0 text-3xl cursor-pointer hover:text-blue-700"
-          onClick={() => setIsUpdating(true)}
-        />
-      ) : (
-        <TiDelete
-          className="absolute top-0 right-0 text-3xl cursor-pointer hover:text-red-600"
-          onClick={() => setIsUpdating(false)}
-        />
-      )}
+      {isAdmin &&
+        <>
+          {!isUpdating ? (
+          <MdEditNote
+            className="absolute top-0 right-0 text-3xl cursor-pointer hover:text-blue-700"
+            onClick={() => setIsUpdating(true)}
+          />
+          ) : (
+          <TiDelete
+            className="absolute top-0 right-0 text-3xl cursor-pointer hover:text-red-600"
+            onClick={() => setIsUpdating(false)}
+          />
+          )}
+        </>
+      }
       {isUpdating && (
         <HiOutlineTrash
           className="absolute top-0 left-0 text-3xl cursor-pointer hover:text-red-600"
