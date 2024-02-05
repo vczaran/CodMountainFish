@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import Report from "../components/FishReport/Report";
 import CreateReport from "../components/FishReport/CreateReport";
 
-export default function FishReportContainer() {
+export default function FishReport({ isAdmin }) {
   const [fishReports, setFishReports] = useState([]);
   const [loading, setLoading] = useState(true);
   // This is to test admin. Will check logged in user
-  const isAdmin = true;
   useEffect(() => {
-    async function fetchFishReport({ isAdmin = false }) {
+    async function fetchFishReport() {
       try {
         const response = await fetch("/api/fish_report");
         const data = await response.json();
@@ -75,6 +74,7 @@ export default function FishReportContainer() {
         console.error("Failed to update the report:", error);
       });
   }
+  console.log("isAdmin", isAdmin);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -85,7 +85,6 @@ export default function FishReportContainer() {
       {isAdmin && (
         <CreateReport reports={fishReports} setReports={setFishReports} />
       )}
-      {/* This should eventually pull from the database */}
       {fishReports?.length &&
         fishReports.map((report) => (
           <Report

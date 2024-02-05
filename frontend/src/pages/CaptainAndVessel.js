@@ -23,8 +23,6 @@ export default function CaptainAndVessel() {
           his knowledge and stories with fellow fishing enthusiasts.</p>
         <p className='ml-5'>When you choose to embark on a fishing adventure with Captain Greg and Cod Mountain Fish Co., you can trust that you're in the hands of a
         captain who genuinely cares about your experience. His commitment to safety, professionalism, and making lasting memories ensures that your
-        <p className='ml-5'>When you choose to embark on a fishing adventure with Captain Greg and Cod Mountain Fish Co., you can trust that you're in the hands of a
-        captain who genuinely cares about your experience. His commitment to safety, professionalism, and making lasting memories ensures that your
         time on the water will be filled with excitement, relaxation, and the thrill of reeling in your catch.</p>
       </div>
       <img className="bg-cyan-600" src="./Photos/cap.jpeg" alt="Captain"></img>
