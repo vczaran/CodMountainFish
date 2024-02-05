@@ -73,3 +73,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### npm install react-slick --save
 ### npm install slick-carousel --save
 ### npm install -D @tailwindcss/typography
+
+### npm install dayjs
