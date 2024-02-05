@@ -49,12 +49,12 @@ export default function Home() {
       </div>
 
       {/* Mission statement section */}
-      <div className="flex flex-grow h-26 w-full bg-vuejs-300 missionContainer">
+      <div className="flex flex-grow h-26 w-full bg-sky-900 missionContainer">
 
    
         <div className="p-6 flex flex-col flex-grow items-center justify-center h-26 mx-auto">   
           <article className="flex flex-col h-30 w-11/12 md:w-3/4 lg:w-4/5 items-center">
-            <h1 className="font-bold text-2xl mb-4 text-yellow-500 antialiased">Cod Mountain Fish Co.!</h1>
+            <h1 className="font-bold text-2xl mb-4 text-white antialiased">Cod Mountain Fish Co.!</h1>
             <p className="block mb-6 font-sans text-base antialiased font-normal leading-relaxed text-white ">
               Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. Our dedicated crew is here to ensure that 
               your time on the water is not only productive but also enjoyable and filled with excitement.Welcome to Cod Mountain Fish Co., where every fishing trip is tailored to your preferences and skill level. Our dedicated crew is here to ensure that 
@@ -62,7 +62,7 @@ export default function Home() {
             </p>
           </article>  
 
-          <BookButton />
+          {/* <BookButton /> */}
         </div>
 
       </div>

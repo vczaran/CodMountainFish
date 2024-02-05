@@ -78,7 +78,7 @@ export default function CreateReport({ reports, setReports }) {
           <button
             type="button"
             onClick={handleButtonClick}
-            className="w-[30rem] min-w-96 h-96 border-dashed border-2 border-gray-400 rounded-xl text-gray-400 m-auto hover:text-sky-600 hover:border-sky-600"
+            className="w-[30rem] min-w-96 h-96 border-dashed border-2 border-gray-800 rounded-xl text-gray-800 m-auto hover:text-sky-800 hover:border-sky-800"
           >
             <div className="flex justify-center gap-2">
               <IoAdd className="text-5xl" />
@@ -88,12 +88,14 @@ export default function CreateReport({ reports, setReports }) {
         </>
       )}
       <div className="flex flex-col justify-between pt-4 gap-4">
+        <p>Date:</p>
         <InputField
           placeholder="Date"
           type="date"
           value={form.date}
           onChange={(e) => setForm({ ...form, date: e.target.value })}
         />
+        <p>Description:</p>
         <TextBoxField
           placeholder="Description"
           type="text"

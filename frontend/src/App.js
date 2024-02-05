@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
 import Login from "./pages/Login";
 import FAQ from "./pages/FAQ";
+import Dictaphone from "./components/Dictaphone/Dictaphone";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
   return (
     <div>
       <Navigation />
+      <Dictaphone />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -11,7 +11,7 @@ const BookButton = () => {
       onClick={() => navigate('/availability')}
       className="
         bg-vuejs-400 
-        hover:bg-vuejs-200 
+        hover:underline
         text-white 
         font-bold 
         py-2 
