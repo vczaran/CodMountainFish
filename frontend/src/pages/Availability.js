@@ -1,10 +1,12 @@
 import React from "react";
 import Calendar from "../components/Calendar/Calendar";
+import Trip from "../components/Trip/Trip";
 
 export default function Availability() {
   return (
-    <div>
-      <div className="h-[650px]"><Calendar /></div>
+    <div className="">
+      <div className="h-[auto]"><Calendar /></div>
+      <Trip />
     </div>
   )
 

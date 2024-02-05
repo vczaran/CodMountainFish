@@ -11,6 +11,7 @@ import Footer from "./components/Footer/Footer";
 import TripInfo from "./pages/TripInfo";
 import FAQ from "./pages/FAQ";
 
+
 function App() {
   return (
     <div>
