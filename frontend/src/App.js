@@ -15,6 +15,7 @@ import { authenticate } from "./store/session";
 import Login from "./pages/Login";
 import FAQ from "./pages/FAQ";
 import Dictaphone from "./components/Dictaphone/Dictaphone";
+import Logout from "./pages/Logout";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
         />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/faq" element={<FAQ />} />
       </Routes>
       <Footer />
