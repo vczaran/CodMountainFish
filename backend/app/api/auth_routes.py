@@ -18,6 +18,8 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+
+
 @auth_routes.route('/')
 def authenticate():
     """
@@ -43,6 +45,7 @@ def login():
         user_dict = db.db.User.find_one({"email": form.data['email']})
         user_dict["id"] = str(user_dict["_id"])
         user = User(**user_dict)
+        print("USER: -> ", user)
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

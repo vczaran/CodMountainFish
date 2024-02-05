@@ -49,6 +49,7 @@ CORS(app)
 
 @login.user_loader
 def load_user(id):
+    print(User.get_ById("User", ObjectId(id)))
     return User.get_ById("User", ObjectId(id))
 
 
