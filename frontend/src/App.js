@@ -12,7 +12,7 @@ import TripInfo from "./pages/TripInfo";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
-import LoginTest from "./components/LoginTest";
+import Login from "./pages/Login";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate());
   }, [dispatch]);
-  console.log(sessionUser);
+
   return (
     <div>
       <Navigation />
@@ -33,7 +33,7 @@ function App() {
         <Route path="/trip-info" element={<TripInfo />} />
         <Route path="/fish-report" element={<FishReport />} />
         <Route path="/recipes" element={<Recipes />} />
-        <Route path="/login" element={<LoginTest />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </div>
