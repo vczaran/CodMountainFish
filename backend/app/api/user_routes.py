@@ -46,7 +46,7 @@ def new():
         email=form.data.get("email"),
         admin=form.data.get("admin")
     )
-    return jsonify({"user_id": str(newUser.save_One())})
+    return jsonify({"user_id": str(newUser.save_One("User"))})
 
 
 @user_routes.route('/all', methods=["GET"])

@@ -1,23 +1,39 @@
 from flask import jsonify
 from datetime import datetime
-from bson import ObjectId
+from flask_login import UserMixin
 from .db import db
 from .crud_Model import CRUD
+from werkzeug.security import generate_password_hash, check_password_hash
 
-class User(CRUD):
+
+class User(CRUD, UserMixin):
 
     collection_name = "User"
     # Table Columns
 
-    def __init__(self, firstName, lastName, password, phoneNumber, notes, size, email, admin):
-        self.firstName = firstName
-        self.lastName = lastName
-        self.password = generate_password_hash(password)
-        self.phoneNumber = phoneNumber
-        self.notes = notes
-        self.size = size
-        self.email = email
-        self.admin = admin
+    def __init__(self, **kwargs):
+        print("KWARGS : ", kwargs)
+        self.id = kwargs["id"]
+        self.firstName = kwargs["firstName"]
+        self.lastName = kwargs["lastName"]
+        self.password = generate_password_hash(kwargs["password"])
+        self.phoneNumber = kwargs["phoneNumber"]
+        self.notes = kwargs["notes"]
+        self.size = kwargs["size"]
+        self.email = kwargs["email"]
+        self.admin = kwargs["admin"]
         # properties only initialized here
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "firstName": self.firstName,
+            "lastName": self.lastName,
+            "phoneNumber": self.phoneNumber,
+            "notes": self.notes,
+            "size": self.size,
+            "email": self.email,
+            "admin": self.admin,
+        }

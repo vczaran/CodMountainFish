@@ -8,7 +8,7 @@ export default function FishReportContainer() {
   // This is to test admin. Will check logged in user
   const isAdmin = true;
   useEffect(() => {
-    async function fetchFishReport() {
+    async function fetchFishReport({ isAdmin = false }) {
       try {
         const response = await fetch("/api/fish_report");
         const data = await response.json();
