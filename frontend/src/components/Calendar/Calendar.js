@@ -250,13 +250,12 @@ const Calendar = () => {
                     </div>
                 </div>
 
-                <div className="side-details-box w-[310px] h-[auto] border  p-5 pt-2 bg-teal-500 rounded-md">
+                <div className="side-details-box w-[310px] h-[auto] border  p-5 pt-2 bg-teal-500 rounded-md self-start">
                     <div className="font-semibold">
                         {selectedDate.toDate().toDateString()}
                     </div>
                     {selectedDate.isBefore(dayjs().startOf('day')) ? (
-                        <>
-                        </>
+                         <div className="p-3 border text-sm text-slate-500 h-[100px] mt-0 m-[-20px] bg-white">This date is in the past, please choose a new date.</div>
                     ) : currentDayBookings.some(booking => booking.tripType === 'Tuna') ? (
                         <>
                             <div className="border rounded-md p-2 mt-2 bg-white">
