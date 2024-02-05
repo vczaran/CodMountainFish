@@ -14,7 +14,21 @@ user_routes = Blueprint('user', __name__)
 @user_routes.route("/new", methods=["POST"])
 def new():
     """
-    example of new user
+    Create a new user.
+
+    The form should contain the following fields:
+        - firstName: First name of the user.
+        - lastName: Last name of the user.
+        - password: User's password (required).
+        - phoneNumber: User's phone number.
+        - notes: Additional notes or comments about the user.
+        - size: User's size information.
+        - email: User's email address.
+        - admin: Boolean indicating whether the user has admin privileges.
+
+    Returns:
+        - JSON: {"user_id": "<new_user_id>"}
+        - Error message if it is not created
     """
     form = UserForm()
 
@@ -38,7 +52,11 @@ def new():
 @user_routes.route('/all', methods=["GET"])
 def AllUser():
     """
-    get All User
+    Retrieves a list of all users.
+
+    Returns:
+        - JSON: A JSON response containing the information of all users.
+        - Error message if the users are not found.
     """
     return User.get_AllUser()
 
@@ -46,7 +64,14 @@ def AllUser():
 @user_routes.route('/<string:id>', methods=["GET"])
 def UserById(id):
     """
-    get one user by its Id
+    Retrieve a user by their unique ID.
+
+    Parameters:
+    - id (str): The unique identifier of the user.
+
+    Returns:
+        - user_data (dict): A dictionary containing user information
+        - Error message if the user with the specified ID is not found.
     """
     return User.get_UserById(ObjectId(id))
 
@@ -54,14 +79,30 @@ def UserById(id):
 @user_routes.route('/<string:id>', methods=["PUT"])
 def UserUpdate(id):
     """
-    update user with updated properties
+    Update user with provided properties.
+
+    Parameters:
+    - id (str): User ID to identify the user to be updated.
+
+    The form should contain the following fields:
+        - firstName: First name of the user.
+        - lastName: Last name of the user.
+        - password: User's password (required).
+        - phoneNumber: User's phone number.
+        - notes: Additional notes or comments about the user.
+        - size: User's size information.
+        - email: User's email address.
+        - admin: Boolean indicating whether the user has admin privileges.
+
+    Returns:
+        - JSON: {"user_id": "<user_id>"}
+        - Error message if it is not updated
     """
     form = UserForm()
 
     password = str(form.data.get("password"))
 
     if password is None:
-        # Handle the case where the password is not provided
         return jsonify({"error": "Password is required"}), 400
 
     updateUser = User(
@@ -80,6 +121,14 @@ def UserUpdate(id):
 @user_routes.route('/<string:id>', methods=["DELETE"])
 def DeleteUser(id):
     """
-    delete user from database
+    Deletes a user from the database.
+
+    Parameters:
+        - id (str): User ID to identify the user to be deleted.
+
+    Returns:
+        - Success message if deleted
+        - Error message if it is not deleted
+
     """
     return User.delete_User(id)

@@ -6,7 +6,7 @@ from flask_login import LoginManager
 # DataBase Models
 from .models import db, user_Model, date_Model, booking_Model, trip_Model
 from .models.Images import fish_Images_Model, scenery_Images_Model
-from .models.Reviews import activity_Review_Model, recipe_Review_Model
+from .models.Reviews import trip_Review_Model, recipe_Review_Model
 # DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config
@@ -29,7 +29,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(date_routes, url_prefix='/api/date')
-app.register_blueprint(review_routes, url_prefix='/api/review')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(booking_routes, url_prefix='/api/booking')
 app.register_blueprint(trip_routes, url_prefix='/api/trip')
 # Application Security
@@ -68,20 +68,6 @@ def api_help():
                   for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
 
-
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def react_root(path):
-#     """
-#     This route will direct to the public directory in our
-#     react builds in the production environment for favicon
-#     or index.html requests
-#     """
-#     if path == 'favicon.ico':
-#         return app.send_from_directory('public', 'favicon.ico')
-#     return app.send_static_file('index.html')
-
-
-# @app.errorhandler(404)
-# def not_found(e):
-#     return app.send_static_file('index.html')
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')

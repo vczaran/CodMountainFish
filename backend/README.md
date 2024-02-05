@@ -81,7 +81,3 @@
     - **Description**: Deletes a object from the database on the provided Id.
     - **Parameters**: Id
     - **Returns**: A success message if the user is deleted; otherwise, returns an error message.
-
-9.  ## to_dict()
-
-    - **Description**: Converts instance properties to a dictionary for easy serialization to JSON
