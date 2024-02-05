@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate());
   }, [dispatch]);
-
+  console.log("sessionUser: ", sessionUser);
   return (
     <div>
       <Navigation />
@@ -31,7 +31,7 @@ function App() {
         <Route path="/availability" element={<Availability />} />
         <Route path="/captain-and-vessel" element={<CaptainAndVessel />} />
         <Route path="/trip-info" element={<TripInfo />} />
-        <Route path="/fish-report" element={<FishReport />} />
+        <Route path="/fish-report" element={<FishReport />} isAdmin={sessionUser.isAdmin} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/login" element={<Login />} />
       </Routes>

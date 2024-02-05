@@ -7,7 +7,7 @@ export default function FishReportContainer() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchFishReport() {
+    async function fetchFishReport({ isAdmin = false }) {
       try {
         const response = await fetch("/api/fish_report");
         const data = await response.json();
