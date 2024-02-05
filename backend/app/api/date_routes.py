@@ -27,7 +27,6 @@ def newDate():
         - Error message if the entry is not created successfully.
     """
     form = DateForm()
-    print(form.data.get("date"))
     newDate = Date(
         date=form.data.get("date"),
         trip_Id=form.data.get("trip_Id"),

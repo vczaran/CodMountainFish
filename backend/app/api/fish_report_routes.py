@@ -16,13 +16,9 @@ def get_fish_reports():
     if request.method == "GET":
         return jsonify(Fish_Report.get_All("Fish_Report"))
     if request.method == "POST":
-        print("\n\nINFO: \n")
-        print("REQUEST: ", request.cookies)
         form = FishReportForm()
         # form['csrf_token'].data = request.cookies['csrf_token']
-        print("FORM: ", form.data)
         image = form.data["image"]
-        print("IMAGE: ", image)
 
 
         image.filename = get_unique_filename(image.filename)
@@ -39,7 +35,6 @@ def get_fish_reports():
 @fish_report_routes.route('/<id>', methods=["PUT", "DELETE"])
 def update_delete_fish_report(id):
     if request.method == "PUT":
-        print("PUT REQUEST: ", id)
         report = db.db["Fish_Report"].find_one({"_id": ObjectId(id)})
         form = FishReportForm()
         newFishReport = Fish_Report(

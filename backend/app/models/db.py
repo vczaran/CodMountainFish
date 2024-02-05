@@ -10,8 +10,3 @@ try:
     print("Pinged your deployment. You successfully connected to MongoDB!")
 except Exception as e:
     print(e)
-
-print("===========")
-mongo_uri = os.environ.get('MONGO_URI')
-print(f"MONGO_URI: {mongo_uri}")
-print("===========")

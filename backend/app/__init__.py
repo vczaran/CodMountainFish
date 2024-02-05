@@ -36,13 +36,6 @@ def load_user(id):
 
 # Tell flask about our app extension
 app.config.from_object(Config)
-# test the environmental variable
-print("===========")
-mongo_uri = os.environ.get('MONGO_URI')
-print(f"MONGO_URI: {mongo_uri}")
-print("===========")
-# connection to DB
-# db = PyMongo(app)
 
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')

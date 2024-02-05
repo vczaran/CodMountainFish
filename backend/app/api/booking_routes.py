@@ -32,7 +32,6 @@ def newBooking():
         - Error message if the booking is not created successfully.
     """
     form = BookingForm()
-    print(form.data.get("date"))
     newBooking = Booking(
         date=form.data.get("date"),
         tripType=form.data.get("tripType"),
