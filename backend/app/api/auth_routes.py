@@ -2,11 +2,10 @@ from flask import Blueprint, jsonify, session, request
 from app.models import db, User
 from app.forms import LoginForm
 from bson import ObjectId
-from flask_login import current_user, login_user, logout_user
 
+from flask_login import current_user, login_user, logout_user, LoginManager
 
 auth_routes = Blueprint('auth', __name__)
-
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -25,9 +24,8 @@ def authenticate():
     """
     Authenticates a user.
     """
-    print("current_user: ", current_user, current_user.is_authenticated)
+    print("AUTHENTICATE ROUTE")
     if current_user.is_authenticated:
-        print("CURRENT USER: ", current_user)
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
 
@@ -46,7 +44,7 @@ def login():
         user_dict["id"] = str(user_dict["_id"])
         user = User(**user_dict)
         print("USER: -> ", user)
-        login_user(user)
+        login_user(user, remember=True)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

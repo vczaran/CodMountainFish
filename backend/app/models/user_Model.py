@@ -26,9 +26,6 @@ class User(CRUD, UserMixin):
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
 
-    def get_id(self):
-        return self.id
-
     def to_dict(self):
         return {
             "id": self.id,

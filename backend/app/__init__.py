@@ -27,6 +27,13 @@ app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
+@login.user_loader
+def load_user(id):
+    user_dict = db.db.User.find_one({"_id": ObjectId(id)})
+    user_dict["id"] = str(user_dict["_id"])
+    user = User(**user_dict)
+    return user
+
 # Tell flask about our app extension
 app.config.from_object(Config)
 # test the environmental variable
@@ -47,10 +54,7 @@ app.register_blueprint(booking_routes, url_prefix='/api/booking')
 # Application Security
 CORS(app)
 
-@login.user_loader
-def load_user(id):
-    print(User.get_ById("User", ObjectId(id)))
-    return User.get_ById("User", ObjectId(id))
+
 
 
 @app.before_request

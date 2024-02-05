@@ -28,9 +28,10 @@ class CRUD:
     def get_ById(Table, id):
         collection = db.db[Table]
         item = collection.find_one({"_id": id})
+        print("ITEM: ", item, "\n\n")
         if item:
             item["_id"] = str(item["_id"])
-            return {'Message': f'{Table } retrieved successfully', f"{Table}": item}
+            return {'Message': f'{Table} retrieved successfully', f"{Table}": item}
         else:
             return {'Message': f'{Table} not found'}, 404
 

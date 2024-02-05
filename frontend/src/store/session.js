@@ -11,13 +11,10 @@ const removeUser = () => ({
 });
 
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch("/api/auth", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch("/api/auth/");
   if (response.ok) {
     const data = await response.json();
+    console.log("AUTHENTICATE : ", data)
     if (data.errors) {
       return;
     }
