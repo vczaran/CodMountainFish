@@ -33,6 +33,7 @@ export default function CalendarModal({ isModalOpen, setIsModalOpen, selectedBoo
         "Rockfish": "./rockfish-guys.jpeg",
         "Halibut": "./halibut-guy.jpeg",
         "Wildlife": "./whale-jump.jpeg",
+        "Tuna": "./tuna-guy.jpeg"
         // Add the other trip types and their corresponding images here
     };
 
