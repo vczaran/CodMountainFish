@@ -106,12 +106,12 @@ const Calendar = () => {
         console.log("booking details", booking)
         setIsModalOpen(true);
         setSelectedBooking(booking);
-      };
+    };
 
     return (
         <div>
-            <div className="border w-[300px] ml-[85px] h-[auto] mb-5">
-                <div className="pl-3 p-1 font-semibold">Trip Types</div>
+            <div className="border border-teal-500 w-[300px] ml-[85px] h-[auto] mb-5 rounded-md">
+                <div className="pl-3 p-1 font-semibold bg-teal-500">Trip Types</div>
                 <div className="border-t text-sm pl-3 p-1">
                     <div className="flex items-center gap-2">
                         <img src="./rockfish.png" alt="rockfish" className="h-8 w-10 object-contain" />
@@ -134,7 +134,7 @@ const Calendar = () => {
 
             <div className="flex justify-center gap-5 ">
                 <div className="calendar-box w-[650px] h-[auto]">
-                    <div className="flex gap-5 pb-2 border justify-center">
+                    <div className="flex gap-5 bg-teal-500 border border-teal-500 justify-center p-1">
                         <div className="font-semibold">{months[today.month()]}, {today.year()}</div>
                         <div className="flex items-center gap-5">
                             <GrFormPrevious className="w-5 h-5 cursor-pointer" onClick={() => {
@@ -153,7 +153,7 @@ const Calendar = () => {
 
                     <div className="w-full grid grid-cols-7 text-gray-500">
                         {days.map((day, index) => {
-                            return <div className="week-days text-sm h-8 grid place-content-center border" key={index}>{day}</div>
+                            return <div className="week-days text-sm h-8 grid place-content-center border-[0.5px] border-teal-500 bg-slate-200" key={index}>{day}</div>
                         })}
                     </div>
 
@@ -169,12 +169,12 @@ const Calendar = () => {
                             const remainingSeatsPM = pmBookings.reduce((total, booking) => total - booking.partySize, 6);
 
                             return (
-                                <div key={index} className="calendar-small-box min-h-[60px] text-sm border hover:bg-gray-100 transition-all cursor-pointer"
+                                <div key={index} className="calendar-small-box min-h-[60px] text-sm border-[0.5px] border-teal-500 hover:bg-gray-100 transition-all cursor-pointer"
                                     onClick={() => { handleDateClick(date) }}>
                                     <div
                                         className={cn(
                                             currentMonth ? "" : "text-gray-400",
-                                            today ? "text-white bg-cyan-800" : "",
+                                            today ? "text-white bg-teal-500" : "",
                                             selectedDate.toDate().toDateString() === date.toDate().toDateString() ? "bg-black text-white" : "",
                                             "h-6 w-6 grid place-content-center rounded-full hover:bg-black hover:text-white transition-all cursor-pointer select-none"
                                         )}
@@ -250,7 +250,7 @@ const Calendar = () => {
                     </div>
                 </div>
 
-                <div className="side-details-box w-[310px] h-[auto] border p-5">
+                <div className="side-details-box w-[310px] h-[auto] border  p-5 pt-2 bg-teal-500 rounded-md">
                     <div className="font-semibold">
                         {selectedDate.toDate().toDateString()}
                     </div>
@@ -259,14 +259,14 @@ const Calendar = () => {
                         </>
                     ) : currentDayBookings.some(booking => booking.tripType === 'Tuna') ? (
                         <>
-                            <div className="border rounded-md p-2 mt-2">
+                            <div className="border rounded-md p-2 mt-2 bg-white">
                                 <div className="flex items-center gap-2">
                                     <img src="./tuna.jpeg" alt="tuna" className="h-10 w-10 object-contain" />
                                     <p>Tuna Trip</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                     <p className="text-xs">(0 seats left)</p>
                                 </div>
@@ -274,68 +274,68 @@ const Calendar = () => {
                         </>
                     ) : currentDayBookings.length === 0 ? (
                         <div className="flex-col">
-                            <div className="border rounded-md p-2 mt-3">
+                            <div className="border rounded-md p-2 mt-3 bg-white">
                                 <div className="flex items-center gap-2">
                                     <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
                                     <p>Rockfish Trip</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                    <div className="border bg-slate-200 rounded-md px-2 py-1 inline-block ml-5">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white " onClick={() => openModalWithBooking(selectedDate, "am", "Rockfish", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 text-xs">
-                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                    <button className="border bg-slate-200 rounded-md px-2 py-1 inline-block ml-5">2pm</button>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "pm", "Rockfish", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
                             </div>
-                            <div className="border rounded-md p-2 mt-3">
+                            <div className="border rounded-md p-2 mt-3 bg-white">
                                 <div className="flex items-center gap-2">
                                     <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
                                     <p>Halibut Trip</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "am", "Halibut", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 text-xs">
-                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</button>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "pm", "Halibut", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
                             </div>
-                            <div className="border rounded-md p-2 mt-3">
+                            <div className="border rounded-md p-2 mt-3 bg-white">
                                 <div className="flex items-center gap-2">
                                     <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
                                     <p>Wildlife Tour</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "am", "Wildlife", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 text-xs">
-                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</button>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "pm", "Wildlife", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
                             </div>
-                            <div className="border rounded-md p-2 mt-3">
+                            <div className="border rounded-md p-2 mt-3 bg-white">
                                 <div className="flex items-center gap-2">
                                     <img src="./tuna.jpeg" alt="tuna" className="h-10 w-10 object-contain" />
                                     <p>Tuna Trip</p>
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white" onClick={() => openModalWithBooking(selectedDate, "am", "Tuna", 6)}>Book</button>
                                     <p className="text-xs">(6 seats left!)</p>
                                 </div>
@@ -347,7 +347,7 @@ const Calendar = () => {
                             {amTripType && !pmTripType ? (
 
                                 <>
-                                    <div className="border rounded-md p-2 mt-3">
+                                    <div className="border rounded-md p-2 mt-3 bg-white">
                                         <div className="flex items-center gap-2">
                                             {amTripType === "Rockfish" ? (
                                                 <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
@@ -364,13 +364,13 @@ const Calendar = () => {
                                         {
                                             remainingSeatsAM === 0 ? (
                                                 <div className="flex items-center gap-2 mb-2">
-                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                                     <p className="text-xs">(0 seats left)</p>
                                                 </div>
                                             ) : (
                                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">({remainingSeatsAM} seats left!)</p>
                                                 </div>
@@ -378,20 +378,20 @@ const Calendar = () => {
                                         }
 
                                         <div className="flex items-center gap-2 text-xs">
-                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                            <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</button>
                                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                             <p className="text-xs">(6 seats left!)</p>
                                         </div>
                                     </div>
                                     {
                                         amTripType !== "Rockfish" && (
-                                            <div className="border rounded-md p-2 mt-3">
+                                            <div className="border rounded-md p-2 mt-3 bg-white">
                                                 <div className="flex items-center gap-2">
                                                     <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
                                                     <p>Rockfish Trip</p>
                                                 </div>
                                                 <div className="flex items-center gap-2 text-xs">
-                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</button>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">(6 seats left!)</p>
                                                 </div>
@@ -400,13 +400,13 @@ const Calendar = () => {
                                     }
                                     {
                                         amTripType !== "Halibut" && (
-                                            <div className="border rounded-md p-2 mt-3">
+                                            <div className="border rounded-md p-2 mt-3 bg-white">
                                                 <div className="flex items-center gap-2">
                                                     <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
                                                     <p>Halibut Trip</p>
                                                 </div>
                                                 <div className="flex items-center gap-2 text-xs">
-                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</button>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">(6 seats left!)</p>
                                                 </div>
@@ -415,13 +415,13 @@ const Calendar = () => {
                                     }
                                     {
                                         amTripType !== "Wildlife" && (
-                                            <div className="border rounded-md p-2 mt-3">
+                                            <div className="border rounded-md p-2 mt-3 bg-white">
                                                 <div className="flex items-center gap-2">
                                                     <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
                                                     <p>Wildlife Tour</p>
                                                 </div>
                                                 <div className="flex items-center gap-2 text-xs">
-                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">2pm</button>
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</button>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">(6 seats left!)</p>
                                                 </div>
@@ -433,7 +433,7 @@ const Calendar = () => {
                                 </>
                             ) : pmTripType && !amTripType ? (
                                 <>
-                                    <div className="border rounded-md p-2 mt-3">
+                                    <div className="border rounded-md p-2 mt-3 bg-white">
                                         <div className="flex items-center gap-2">
                                             {pmTripType === "Rockfish" ? (
                                                 <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
@@ -447,21 +447,21 @@ const Calendar = () => {
                                             }
                                             <p>{pmTripType} Trip</p>
                                         </div>
-                                        <div className="flex items-center gap-2 text-xs">
-                                            <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
+                                        <div className="flex items-center gap-2 mb-2 text-xs">
+                                            <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</button>
                                             <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                             <p className="text-xs">(6 seats left!)</p>
                                         </div>
                                         {
                                             remainingSeatsPM === 0 ? (
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                <div className="flex items-center gap-2 mb-2 bg-white">
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
                                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                                     <p className="text-xs">(0 seats left)</p>
                                                 </div>
                                             ) : (
-                                                <div className="flex items-center gap-2 mb-2 text-xs">
-                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                <div className="flex items-center gap-2 mb-2 text-xs bg-white">
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">({remainingSeatsPM} seats left!)</p>
                                                 </div>
@@ -470,13 +470,13 @@ const Calendar = () => {
                                     </div>
                                     {
                                         pmTripType !== "Rockfish" && (
-                                            <div className="border rounded-md p-2 mt-3">
+                                            <div className="border rounded-md p-2 mt-3 bg-white">
                                                 <div className="flex items-center gap-2">
                                                     <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
                                                     <p>Rockfish Trip</p>
                                                 </div>
                                                 <div className="flex items-center gap-2 text-xs">
-                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</button>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">(6 seats left!)</p>
                                                 </div>
@@ -485,13 +485,13 @@ const Calendar = () => {
                                     }
                                     {
                                         pmTripType !== "Halibut" && (
-                                            <div className="border rounded-md p-2 mt-3">
+                                            <div className="border rounded-md p-2 mt-3 bg-white">
                                                 <div className="flex items-center gap-2">
                                                     <img src="./Halibut.webp" alt="halibut" className="h-10 w-10 object-contain" />
                                                     <p>Halibut Trip</p>
                                                 </div>
                                                 <div className="flex items-center gap-2 text-xs">
-                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</button>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">(6 seats left!)</p>
                                                 </div>
@@ -500,13 +500,13 @@ const Calendar = () => {
                                     }
                                     {
                                         pmTripType !== "Wildlife" && (
-                                            <div className="border rounded-md p-2 mt-3">
+                                            <div className="border rounded-md p-2 mt-3 bg-white">
                                                 <div className="flex items-center gap-2">
                                                     <img src="./whale.jpg" alt="whale" className="h-10 w-10 object-contain" />
                                                     <p>Wildlife Tour</p>
                                                 </div>
                                                 <div className="flex items-center gap-2 text-xs">
-                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5">6am</button>
+                                                    <button className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</button>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">(6 seats left!)</p>
                                                 </div>
@@ -518,7 +518,7 @@ const Calendar = () => {
                                 </>
                             ) : amTripType && pmTripType && amTripType === pmTripType ? (
                                 <>
-                                    <div className="border rounded-md p-2 mt-3">
+                                    <div className="border rounded-md p-2 mt-3 bg-white">
                                         <div className="flex items-center gap-2">
                                             {pmTripType === "Rockfish" ? (
                                                 <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
@@ -534,14 +534,14 @@ const Calendar = () => {
                                         </div>
                                         {
                                             remainingSeatsAM === 0 ? (
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                <div className="flex items-center gap-2 mb-2 bg-white">
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                                     <p className="text-xs">(0 seats left)</p>
                                                 </div>
                                             ) : (
                                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">({remainingSeatsAM} seats left!)</p>
                                                 </div>
@@ -549,14 +549,14 @@ const Calendar = () => {
                                         }
                                         {
                                             remainingSeatsPM === 0 ? (
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                <div className="flex items-center gap-2 mb-2 bg-white">
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
                                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                                     <p className="text-xs">(0 seats left)</p>
                                                 </div>
                                             ) : (
                                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">({remainingSeatsPM} seats left!)</p>
                                                 </div>
@@ -566,7 +566,7 @@ const Calendar = () => {
                                 </>
                             ) : amTripType && pmTripType && amTripType !== pmTripType ? (
                                 <>
-                                    <div className="border rounded-md p-2 mt-3">
+                                    <div className="border rounded-md p-2 mt-3 bg-white">
                                         <div className="flex items-center gap-2">
                                             {amTripType === "Rockfish" ? (
                                                 <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
@@ -583,20 +583,20 @@ const Calendar = () => {
                                         {
                                             remainingSeatsAM === 0 ? (
                                                 <div className="flex items-center gap-2 mb-2">
-                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                                     <p className="text-xs">(0 seats left)</p>
                                                 </div>
                                             ) : (
                                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">6am</div>
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">6am</div>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">({remainingSeatsAM} seats left!)</p>
                                                 </div>
                                             )
                                         }
                                     </div>
-                                    <div className="border rounded-md p-2 mt-3">
+                                    <div className="border rounded-md p-2 mt-3 bg-white">
                                         <div className="flex items-center gap-2">
                                             {pmTripType === "Rockfish" ? (
                                                 <img src="./rockfish.png" alt="rockfish" className="h-10 w-10 object-contain" />
@@ -613,13 +613,13 @@ const Calendar = () => {
                                         {
                                             remainingSeatsPM === 0 ? (
                                                 <div className="flex items-center gap-2 mb-2">
-                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
                                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                                     <p className="text-xs">(0 seats left)</p>
                                                 </div>
                                             ) : (
                                                 <div className="flex items-center gap-2 mb-2 text-xs">
-                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5">2pm</div>
+                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
                                                     <button className="rounded-md px-3 py-1 inline-block bg-amber-400 text-white ">Book</button>
                                                     <p className="text-xs">({remainingSeatsPM} seats left!)</p>
                                                 </div>
@@ -636,10 +636,10 @@ const Calendar = () => {
                 </div>
             </div>
             <CalendarModal
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            selectedBooking={selectedBooking}
-            setRefresh={setRefresh} />
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                selectedBooking={selectedBooking}
+                setRefresh={setRefresh} />
         </div>
     )
 }
