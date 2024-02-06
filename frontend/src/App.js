@@ -9,6 +9,7 @@ import CaptainAndVessel from "./pages/CaptainAndVessel";
 import Recipes from "./pages/Recipes";
 import Footer from "./components/Footer/Footer";
 import TripInfo from "./pages/TripInfo";
+import { SpeedDialWithTextOutside } from "./components/SpeedDial/SpeedDial";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         <Route path="/fish-report" element={<FishReport />} />
         <Route path="/recipes" element={<Recipes />} />
       </Routes>
+
+      {/* <SpeedDialWithTextOutside /> */}
+
       <Footer />
     </div>
   );

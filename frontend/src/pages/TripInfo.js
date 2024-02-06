@@ -5,5 +5,7 @@ export default function TripInfo() {
     <div>
       Trip Info
     </div>
+
+    
   )
 }

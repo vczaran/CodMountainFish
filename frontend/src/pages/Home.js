@@ -5,6 +5,9 @@ import Review from "../components/Review/Review.jsx";
 import Trip from "../components/Trip/Trip.jsx";
 import About from "../components/About/AboutSection.jsx";
 import Focus from "../components/Focus/Focus.jsx";
+import { SpeedDialWithTextOutside } from "../components/SpeedDial/SpeedDial.jsx";
+
+
 
 export default function Home() {
   const [focusPosition, setFocusPosition] = useState({top:0, height:80});
@@ -26,6 +29,13 @@ export default function Home() {
 
   const handleMouseLeave = () => {
     setShowFocus(false);
+  };
+
+  const labelProps = {
+    variant: "small",
+    color: "blue-gray",
+    className:
+      "absolute top-2/4 -left-2/4 -translate-y-2/4 -translate-x-3/4 font-normal",
   };
 
 
@@ -94,6 +104,17 @@ export default function Home() {
       </div>
 
       {/* {showFocus && <Focus top={focusPosition.top} height={focusPosition.height} />} */}
+
+      <div className="">
+        <SpeedDialWithTextOutside />
+
+      </div>
+
+ 
+
+
+
+
 
 
     </div>
