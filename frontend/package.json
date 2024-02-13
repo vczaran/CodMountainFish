@@ -20,11 +20,14 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.1",
     "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@tailwindcss/typography": "^0.5.10",
+    "dotenv": "^16.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "set \"CI=false\" && react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -48,8 +51,6 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@tailwindcss/typography": "^0.5.10",
-    "dotenv": "^16.4.1"
+
   }
 }
