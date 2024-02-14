@@ -10,16 +10,11 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
-const initialState = { user: null };
-
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch("/api/auth/", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch("/api/auth/");
   if (response.ok) {
     const data = await response.json();
+    console.log("AUTHENTICATE : ", data)
     if (data.errors) {
       return;
     }
@@ -28,7 +23,6 @@ export const authenticate = () => async (dispatch) => {
 };
 
 export const login = (email, password) => async (dispatch) => {
-  console.log("-------im hereeeeeeeee", email, password);
   const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: {
@@ -92,6 +86,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     return ["An error occurred. Please try again."];
   }
 };
+const initialState = { user: null };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

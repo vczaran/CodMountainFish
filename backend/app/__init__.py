@@ -3,15 +3,18 @@ from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
+from bson import ObjectId
 # DataBase Models
 from .models import db, user_Model, date_Model, booking_Model, trip_Model
 from .models.Images import fish_Images_Model, scenery_Images_Model
-from .models.Reviews import activity_Review_Model, recipe_Review_Model
+from .models.Reviews import trip_Review_Model, recipe_Review_Model
+from .models.user_Model import User
 # DataBase Configuration
 from flask_pymongo import PyMongo
 from .config import Config
 from pymongo.server_api import ServerApi
 # Api routes
+from .api.fish_report_routes import fish_report_routes
 from .api.auth_routes import auth_routes  # not implemented yet
 from .api.user_routes import user_routes
 from .api.date_routes import date_routes
@@ -24,16 +27,34 @@ app = Flask(__name__, static_folder='../frontend/build', static_url_path='')
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
+@login.user_loader
+def load_user(id):
+    user_dict = db.db.User.find_one({"_id": ObjectId(id)})
+    user_dict["id"] = str(user_dict["_id"])
+    user = User(**user_dict)
+    return user
+
 # Tell flask about our app extension
 app.config.from_object(Config)
+# test the environmental variable
+print("===========")
+mongo_uri = os.environ.get('MONGO_URI')
+print(f"MONGO_URI: {mongo_uri}")
+print("===========")
+# connection to DB
+# db = PyMongo(app)
+
 app.register_blueprint(user_routes, url_prefix='/api/user')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(date_routes, url_prefix='/api/date')
-app.register_blueprint(review_routes, url_prefix='/api/review')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(booking_routes, url_prefix='/api/booking')
 app.register_blueprint(trip_routes, url_prefix='/api/trip')
+app.register_blueprint(fish_report_routes, url_prefix='/api/fish_report')
 # Application Security
 CORS(app)
+
+
 
 
 @app.before_request
@@ -68,20 +89,6 @@ def api_help():
                   for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
 
-
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def react_root(path):
-#     """
-#     This route will direct to the public directory in our
-#     react builds in the production environment for favicon
-#     or index.html requests
-#     """
-#     if path == 'favicon.ico':
-#         return app.send_from_directory('public', 'favicon.ico')
-#     return app.send_static_file('index.html')
-
-
-# @app.errorhandler(404)
-# def not_found(e):
-#     return app.send_static_file('index.html')
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
