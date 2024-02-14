@@ -3,7 +3,7 @@ FROM python:3.9-slim
 
 # Set environment variables
 ENV SECRET_KEY 'SECRET_KEY'
-ENV MONGO_URI 'mongodb+srv://roberto:GSxv5hlvvq28XEHm@cluster0.5unqqzh.mongodb.net/?retryWrites=true&w=majority'
+
 ENV MONGO_DBNAME 'Cluster0'
 
 # Set working directory
