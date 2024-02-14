@@ -131,7 +131,6 @@ const Calendar = () => {
                     </div>
                 </div>
             </div>
-
             <div className="flex justify-center gap-5 ">
                 <div className="calendar-box w-[650px] h-[auto]">
                     <div className="flex gap-5 bg-teal-500 border border-teal-500 justify-center p-1">

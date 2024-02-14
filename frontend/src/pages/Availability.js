@@ -6,7 +6,9 @@ export default function Availability() {
   return (
     <div className="">
       <div className="h-[auto]"><Calendar /></div>
+      <div>
       <Trip />
+      </div>
     </div>
   )
 
