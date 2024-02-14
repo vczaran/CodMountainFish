@@ -1,0 +1,26 @@
+# Ignore node_modules directory for Node.js projects
+node_modules
+
+# py projects
+.env
+__pycache__/
+*.py[cod]
+.venv
+.DS_Store
+.vscode/
+
+
+# Ignore any files or directories starting with a dot
+.*
+
+# Ignore editor-specific files
+*.swp
+.DS_Store
+
+# Ignore Docker-specific files
+.dockerignore
+Dockerfile
+
+# Ignore development-specific files
+*.log
+.env
