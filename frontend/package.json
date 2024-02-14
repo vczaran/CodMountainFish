@@ -53,6 +53,7 @@
   "proxy": "http://localhost:5000",
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "dotenv": "^16.4.1"
+    "dotenv": "^16.4.1",
+    "@babel/plugin-proposal-private-property-in-object": "*"
   }
 }
