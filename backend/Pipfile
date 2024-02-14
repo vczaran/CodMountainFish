@@ -24,6 +24,7 @@ werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 flask-pymongo = "*"
 pymongo = "==4.6.1"
+boto3 = "*"
 
 [dev-packages]
 
