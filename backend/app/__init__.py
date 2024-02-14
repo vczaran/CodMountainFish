@@ -50,6 +50,7 @@ app.register_blueprint(date_routes, url_prefix='/api/date')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(booking_routes, url_prefix='/api/booking')
 app.register_blueprint(trip_routes, url_prefix='/api/trip')
+app.register_blueprint(fish_report_routes, url_prefix='/api/fish_report')
 # Application Security
 CORS(app)
 
