@@ -2,9 +2,9 @@
 FROM python:3.9-slim
 
 # Set environment variables
-ENV SECRET_KEY 'SECRET_KEY'
-
-ENV MONGO_DBNAME 'Cluster0'
+# ENV SECRET_KEY 'SECRET_KEY'
+# ENV MONGO_URI ''
+# ENV MONGO_DBNAME 'Cluster0'
 
 # Set working directory
 WORKDIR /app
