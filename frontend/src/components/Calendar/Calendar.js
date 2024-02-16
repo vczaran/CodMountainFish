@@ -6,9 +6,6 @@ import moment from 'moment';
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import CalendarModal from "../CalendarModal/CalendarModal";
 
-
-
-
 const Calendar = () => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const currentDate = dayjs();
