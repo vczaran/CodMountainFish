@@ -453,7 +453,7 @@ const Calendar = () => {
                                         {
                                             remainingSeatsPM === 0 ? (
                                                 <div className="flex items-center gap-2 mb-2 bg-white">
-                                                    <div className="border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
+                                                    <div className="text-xs border rounded-md px-2 py-1 inline-block ml-5 bg-slate-200">2pm</div>
                                                     <div className="text-xs rounded-md px-3 py-1 inline-block bg-red-500 text-white ">Full Boat</div>
                                                     <p className="text-xs">(0 seats left)</p>
                                                 </div>
