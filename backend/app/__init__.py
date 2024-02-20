@@ -23,6 +23,7 @@ from .api.booking_routes import booking_routes
 from .api.trip_routes import trip_routes
 app = Flask(__name__, static_folder='../frontend/build', static_url_path='')
 
+
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
