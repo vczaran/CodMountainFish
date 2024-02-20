@@ -24,6 +24,9 @@ from .api.trip_routes import trip_routes
 # app = Flask(__name__, static_folder='../frontend/build', static_url_path='')
 app = Flask(__name__, static_folder='../frontend/public', static_url_path='')
 
+print("Static folder absolute path:", os.path.abspath(app.static_folder))
+
+
 
 # Setup login manager
 login = LoginManager(app)
