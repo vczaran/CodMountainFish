@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
 from ..models import user_Model
-from app.models.db import db
+from ..models.db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
