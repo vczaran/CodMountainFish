@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
-from app.models import user_Model
-from app.models.db import db
+from ..models import user_Model
+from ..models.db import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
@@ -25,14 +26,12 @@ def password_matches(form, field):
     # user = User.query.filter(User.email == email).first()
     print("EEEEEEMAIIIIL: ", email)
     user = db.db.User.find_one({"email": email})
-    print("&&&&&&&&&&&&&&&&&&&& log in form, user: ", user)
-    print("password----- ", user["password"])
+    print("USER: ", user["password"], password)
+
     if not user:
         raise ValidationError('No such user exists.')
-    # if not user.check_password(password):
-    #     raise ValidationError('Password was incorrect.')
-    if not user["password"] == password:
-        print("bad passowrd")
+    if not check_password_hash(user["password"], password):
+        print("bad password")
         raise ValidationError('Password was incorrect.')
 
 

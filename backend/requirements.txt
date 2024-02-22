@@ -24,3 +24,5 @@ werkzeug==2.2.2
 wtforms==3.0.1
 pymongo==4.6.1
 Flask-PyMongo
+email_validator==1.1.3
+boto3
